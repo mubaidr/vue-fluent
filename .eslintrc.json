@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["vue"],
+  "extends": ["airbnb", "plugin:vue/recommended", "prettier"],
+  "rules": {
+    "vue/max-attributes-per-line": 0,
+    "no-console": "off"
+  },
+  "globals": {
+    "document": true,
+    "window": true,
+    "swal": true
+  }
+}
