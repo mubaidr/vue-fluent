@@ -1,71 +1,46 @@
 # Bulma-Fluent
 
-Fluent Design Theme for [Bulma](http://bulma.io), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
+> Work in progress
+
+Fluent Design Components for [Vue.js](https://vuejs.org) using [Bulma](http://bulma.io) and [Bulma-Fluent-Theme](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
 
 <a href="https://liberapay.com/mubaidr/donate" target="_blank"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
 
-[![NPM](https://nodei.co/npm/bulma-fluent.png?compact=true)](https://nodei.co/npm/bulma-fluent/)
+[![NPM](https://nodei.co/npm/bulma-fluent.png?compact=true)](https://nodei.co/npm/vue-fluent/)
 
-![dependencies](https://david-dm.org/mubaidr/bulma-fluent.svg)
+![dependencies](https://david-dm.org/mubaidr/vue-fluent.svg)
 
-## [Demo](https://mubaidr.github.io/bulma-fluent/)
+## [Demo](https://mubaidr.github.io/vue-fluent/)
 
-Browse the [online demo here.](https://mubaidr.github.io/bulma-fluent/)
+Browse the [online demo here.](https://mubaidr.github.io/vue-fluent/)
 
 ## Quick install
 
 ### NPM
 
 ```sh
-npm install bulma-fluent
+npm install vue-fluent
 ```
 
 ### Yarn
 
 ```sh
-yarn add bulma-fluent
+yarn add vue-fluent
 ```
 
 ### Import
 
 After installation, you can import the CSS/Sass file into your project using this snippet:
 
-#### css
-
 ```sh
-import 'bulma-fluent/css/bulma.css'
-```
-
-#### sass
-
-```sh
-import 'bulma-fluent/bulma.sass'
+import 'vue-fluent/dist/vue-fluent.css'
+import 'vue-fluent/dist/vue-fluent.js'
 ```
 
 ## Download from this Repository
 
-[Download Latest Minified Build](https://raw.githubusercontent.com/mubaidr/bulma-fluent/master/css/bulma.min.css)
-
-## Customize
-
-Simply set your own Sass variables before importing Bulma-fluent.
-
-```scss
-// Set your brand colors
-$primary: #8a4d76;
-$info: #fa7c91;
-$success: #757763;
-$warning: yellow;
-$danger: red;
-$light: #ccc;
-$dark: #444;
-
-// Update font family
-$family-sans-serif: 'Calibri', 'Arial';
-
-// Import the Bulma-fluent
-@import 'bulma-fluent/bulma.sass';
-```
+[Download Latest Minified CSS](https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/vue-fluent.css)
+[Download Latest Minified JS](https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/vue-fluent.js)
 
 ## Copyright and license
 

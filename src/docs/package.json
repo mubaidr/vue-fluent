@@ -5,6 +5,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
+    "bulma-fluent": "^0.2.9",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
