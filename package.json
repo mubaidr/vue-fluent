@@ -1,15 +1,14 @@
 {
   "author": "Muhammad Ubaid Raza <mubaidr@gmail.com>",
   "bugs": {
-    "url": "https://github.com/mubaidr/bulma-fluent/issues"
+    "url": "https://github.com/mubaidr/vue-fluent/issues"
   },
-  "dependencies": {
-    "bulma-fluent": "^0.2.9",
-    "vue": "^2.5.16"
-  },
-  "description": "Fluent Design Theme for Bulma CSS framework, inspired by Microsoft’s Fluent Design System",
+  "dependencies": {},
+  "description":
+    "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System",
   "devDependencies": {
     "autoprefixer": "^8.5.0",
+    "bulma-fluent": "^0.2.9",
     "clean-css-cli": "^4.1.11",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-friendly-formatter": "^4.0.1",
@@ -18,37 +17,31 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
     "node-sass": "^4.9.0",
+    "poi": "^10.1.10",
     "postcss-cli": "^5.0.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "vue": "^2.5.16"
   },
-  "files": [
-    "css",
-    "sass",
-    "bulma.sass",
-    "LICENSE",
-    "README.md"
-  ],
-  "homepage": "https://mubaidr.github.io/bulma-fluent",
-  "keywords": [
-    "css3",
-    "bulma",
-    "theme",
-    "fluent"
-  ],
+  "files": ["dist", "src/lib", "LICENSE", "README.md"],
+  "homepage": "https://mubaidr.github.io/vue-fluent",
+  "keywords": ["vue", "bulma", "theme", "fluent"],
   "license": "MIT",
-  "main": "bulma.sass",
-  "name": "bulma-fluent",
+  "main": "src/lib/index.js",
+  "name": "vue-fluent",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mubaidr/bulma-fluent.git"
+    "url": "git+https://github.com/mubaidr/vue-fluent.git"
   },
   "scripts": {
-    "build": "npm run build-clean && npm run build-sass && npm run build-autoprefix && npm run build-minify",
-    "build-autoprefix": "postcss --use autoprefixer --map false --output css/bulma.css css/bulma.css",
+    "build":
+      "npm run build-clean && npm run build-sass && npm run build-autoprefix && npm run build-minify",
+    "build-autoprefix":
+      "postcss --use autoprefixer --map true --output css/bulma.css css/bulma.css",
     "build-clean": "rimraf css",
     "build-docs": "cd docs-src && npm run build && cd..",
     "build-minify": "cleancss -O2 -o css/bulma.min.css css/bulma.css",
-    "build-sass": "node-sass --output-style expanded --source-map true bulma.sass css/bulma.css",
+    "build-sass":
+      "node-sass --output-style expanded --source-map true bulma.sass css/bulma.css",
     "dev": "cd docs-src && npm run dev && cd..",
     "start": "npm run build-sass --watch",
     "test": "sh test/sass-compile-tester.sh"
