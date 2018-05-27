@@ -1,1 +1,2 @@
-console.log('testing...')
+import 'bulma-fluent'
+import 'bulma-addons'

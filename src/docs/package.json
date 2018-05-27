@@ -1,11 +1,6 @@
 {
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "dependencies": {
-    "bulma-fluent": "^0.2.9",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
@@ -21,7 +16,7 @@
   "name": "vue-fluent",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build  --dest ../../docs",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve"
   },

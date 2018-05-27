@@ -1,6 +1,6 @@
-# Bulma-Fluent
+# Vue-Fluent
 
-> Work in progress
+> Work in progress: NOT READY FOR USE YET
 
 Fluent Design Components for [Vue.js](https://vuejs.org) using [Bulma](http://bulma.io) and [Bulma-Fluent-Theme](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
 
@@ -37,10 +37,13 @@ import 'vue-fluent/dist/vue-fluent.css'
 import 'vue-fluent/dist/vue-fluent.js'
 ```
 
+## CDN link
+
+[unpkg.com/vue-fluent](https://unpkg.com/vue-fluent/dist/)
+
 ## Download from this Repository
 
-[Download Latest Minified CSS](https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/vue-fluent.css)
-[Download Latest Minified JS](https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/vue-fluent.js)
+[Download Latest Minified CSS](https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/)
 
 ## Copyright and license
 
