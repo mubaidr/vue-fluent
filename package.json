@@ -5,8 +5,8 @@
     "url": "https://github.com/mubaidr/vue-fluent/issues"
   },
   "dependencies": {
-    "bulma-addons": "^0.1.3",
-    "bulma-fluent": "^0.3.5",
+    "bulma-addons": "^0.1.4",
+    "bulma-fluent": "^0.3.6",
     "vue": "^2.5.16"
   },
   "description":
@@ -38,8 +38,8 @@
     "build-docs": "cd src/docs && npm run build && cd ../../",
     "build-lib":
       "poi build --clean-out-dir --filename.js vue-fluent.js --filename.css vue-fluent.css",
-    "dev": "cd src/docs && npm run dev && cd ../../",
+    "dev": "cd src/docs && npm run serve && cd ../../",
     "post-build-clean": "rimraf dist/*.html"
   },
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

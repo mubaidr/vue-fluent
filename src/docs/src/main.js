@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-// import '../../lib'
+import './assets/fontawesome/css/fontawesome-all.css'
+
+import './styles.sass'
 
 Vue.config.productionTip = false
 
