@@ -1170,8 +1170,8 @@ builtins@0.0.7:
   resolved "https://registry.yarnpkg.com/builtins/-/builtins-0.0.7.tgz#355219cd6cf18dbe7c01cc7fd2dce765cfdc549a"
 
 bulma-addons@^0.1.5:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/bulma-addons/-/bulma-addons-0.1.4.tgz#44785d73ccf01cfe6f97ecc7118c86669444cd1f"
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/bulma-addons/-/bulma-addons-0.1.5.tgz#e6b9b7e60a50c8fb07eb5c237c07be414c8fc88f"
   dependencies:
     bulma "^0.7.1"
 
