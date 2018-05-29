@@ -23,7 +23,7 @@
     "node-sass-import": "^2.0.1",
     "postcss-cli": "^5.0.0",
     "sass-loader": "^7.0.1",
-    "vue-cli": "2.8.2"
+    "vue-cli": "2.9.3"
   },
   "files": ["dist", "src/lib", "LICENSE", "README.md"],
   "homepage": "https://mubaidr.github.io/vue-fluent",
