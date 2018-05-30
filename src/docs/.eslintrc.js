@@ -4,11 +4,7 @@ module.exports = {
     node: true,
   },
   plugins: ['vue'],
-  extends: [
-    'plugin:vue/essential',
-    '@vue/airbnb',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['@vue/airbnb', 'plugin:vue/essential', 'prettier'],
   rules: {
     semi: 'off',
     'linebreak-style': 'off',

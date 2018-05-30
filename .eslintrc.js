@@ -14,12 +14,12 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['vue'],
-  extends: ['airbnb', 'plugin:vue/essential', 'plugin:prettier/recommended'],
+  extends: ['airbnb', 'plugin:vue/essential', 'prettier'],
   rules: {
+    'no-param-reassign': 'off',
     semi: 'off',
-    'vue/max-attributes-per-line': 'off',
     'linebreak-style': 'off',
-    'no-console': 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
   globals: {
     document: true,
