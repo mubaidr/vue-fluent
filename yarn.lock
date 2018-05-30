@@ -445,8 +445,8 @@ bulma-addons@^0.1.5:
     bulma "^0.7.1"
 
 bulma-fluent@^0.3.6:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/bulma-fluent/-/bulma-fluent-0.3.6.tgz#5b9ca0e1f633799b13bc288be6d847d926816294"
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/bulma-fluent/-/bulma-fluent-0.3.7.tgz#51556a73d31c47d13afb252b8129a96fd3af87f4"
   dependencies:
     bulma "^0.7.1"
 
