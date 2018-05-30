@@ -4,10 +4,9 @@ import router from './router'
 
 import './assets/fontawesome/css/fontawesome-all.css'
 
-import '../../lib/scss/build.scss'
+import './styles.sass'
 
 import Buefy from '../../lib/index'
-import './styles.sass'
 
 Vue.use(Buefy)
 

@@ -8,17 +8,16 @@
   </div>
 </template>
 <script>
-import HeaderView from './components/Header'
-import FooterView from './components/Footer'
+import HeaderView from './components/Header.vue'
+import FooterView from './components/Footer.vue'
 
 export default {
   components: {
     HeaderView,
-    FooterView,
-  },
+    FooterView
+  }
 }
 </script>
 
 <style lang="sass">
-@import '../../lib/vue-fluent.sass'
 </style>
