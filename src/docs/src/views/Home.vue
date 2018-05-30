@@ -13,7 +13,8 @@
           <ol>
             <li>
               use
-              <strong>npm</strong> to install the <em>bulma-fluent</em> package
+              <strong>npm</strong> to install the
+              <em>vue-fluent</em> package
             </li>
             <li>
               use
@@ -29,22 +30,23 @@
               <span class="title is-5">Use npm:
               </span>
               <p>
-                <a href="https://nodei.co/npm/bulma-fluent/"><img src="https://nodei.co/npm/bulma-fluent.png?compact=true"></a>
+                <a href="https://nodei.co/npm/vue-fluent/"><img src="https://nodei.co/npm/vue-fluent.png?compact=true"></a>
               </p>
               <p>
                 <code>
-                  import 'bulma-fluent/css/bulma.css'
+                  import 'vue-fluent/dist/vue-fluent.css'
+
                 </code>
                 <br/>or<br/>
                 <code>
-                  import 'bulma-fluent/bulma.sass'
+                  import 'vue-fluent/src/lib/index.scss';
                 </code>
               </p>
             </li>
             <li>
               <span class="title is-5">CDN link</span>
               <p>
-                <a href="https://unpkg.com/bulma-fluent/css/">unpkg.com/bulma-fluent</a>
+                <a href="https://unpkg.com/vue-fluent/css/">unpkg.com/vue-fluent</a>
               </p>
             </li>
             <li>
@@ -52,7 +54,7 @@
                 Download from the repository:
               </span>
               <p>
-                <a href="https://raw.githubusercontent.com/mubaidr/bulma-fluent/master/css/bulma.min.css">https://github.com/mubaidr/bulma-fluent/tree/master/css</a>
+                <a href="https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/">https://github.com/mubaidr/vue-fluent/tree/master/dist</a>
               </p>
             </li>
           </ol>
@@ -60,7 +62,7 @@
 
         <div class="content">
           <h2 class="subtitle is-3">Customize</h2>
-          <p>Simply set your own Sass variables before importing Bulma-fluent.</p>
+          <p>Simply set your own Sass variables before importing vue-fluent.</p>
           <p>
             <pre>
             <code>
@@ -76,8 +78,8 @@ $dark: #444
 // Update font family
 $family-sans-serif: "Calibri", "Arial"
 
-// Import the Bulma-fluent
-@import "bulma-fluent/bulma.sass"
+// Import the vue-fluent
+@import 'vue-fluent/src/lib/index.scss'
 </code></pre>
           </p>
         </div>

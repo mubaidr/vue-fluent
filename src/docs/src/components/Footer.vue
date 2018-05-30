@@ -8,7 +8,7 @@
               <img src="https://bulma.io/images/made-with-bulma.png" alt="Made with Bulma" width="128" height="24">
             </a>
             <br>
-            <strong>Bulma Fluent Theme
+            <strong>Vue Fluent Components
             </strong> by
             <a href="http://mubaidr.github.com" target="_blank"> Muhammad Ubaid Raza
             </a>

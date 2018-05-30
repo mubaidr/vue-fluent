@@ -5,13 +5,12 @@
     "url": "https://github.com/mubaidr/vue-fluent/issues"
   },
   "dependencies": {
-    "bulma-addons": "^0.1.5",
-    "bulma-fluent": "^0.3.6"
+    "bulma-addons": "^0.1.6",
+    "bulma-fluent": "^0.3.8"
   },
   "description":
     "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System",
   "devDependencies": {
-    "autoprefixer": "^8.5.1",
     "babel-eslint": "^8.2.3",
     "clean-css-cli": "^4.1.11",
     "eslint": "^4.19.1",
@@ -23,10 +22,9 @@
     "eslint-plugin-standard": "^3.1.0",
     "eslint-plugin-vue": "^4.5.0",
     "node-sass": "^4.9.0",
-    "node-sass-import": "^2.0.1",
-    "postcss-cli": "^5.0.0",
-    "sass-loader": "^7.0.1",
-    "vue-cli": "2.9.3"
+    "poi": "^10.2.1",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^7.0.1"
   },
   "files": ["dist", "src/lib", "LICENSE", "README.md"],
   "homepage": "https://mubaidr.github.io/vue-fluent",
@@ -42,21 +40,18 @@
     "url": "git+https://github.com/mubaidr/vue-fluent.git"
   },
   "scripts": {
-    "build": "npm run build-lib-js && npm run build-lib-css",
-    "build-autoprefix":
-      "postcss --use autoprefixer --map true --output dist/vue-fluent.css dist/vue-fluent.css",
+    "build":
+      "npm run build-lib-js && npm run build-lib-css && npm run build-clean",
+    "build-clean": "rimraf dist/*.html",
     "build-docs": "cd src/docs && npm run build && cd ../../",
     "build-lib-css":
-      "npm run build-sass && npm run build-autoprefix && npm run build-minify",
+      "poi build src/lib/index.scss --out-dir dist --filename.css vue-fluent.css",
     "build-lib-js":
-      "vue build src/lib/index.js --prod --lib vue-fluent --dist dist",
+      "poi build src/lib/index.js --out-dir dist --filename.js vue-fluent.js --format cjs",
     "build-minify":
       "cleancss --level 2 -o dist/vue-fluent.min.css dist/vue-fluent.css",
-    "build-sass":
-      "node-sass --output-style expanded src/lib/scss/build.scss dist/vue-fluent.css --importer node_modules/node-sass-import",
     "dev": "cd src/docs && npm run serve && cd ../../",
-    "lint": "eslint --ext .js,.vue --fix src/",
-    "postinstall": "cd src/docs && yarn install"
+    "lint": "eslint --ext .js,.vue --fix src/"
   },
   "version": "0.1.1"
 }

@@ -29,63 +29,57 @@ import Upload from './components/upload'
 import config, { setOptions } from './utils/config'
 
 const components = {
-    Autocomplete,
-    Checkbox,
-    CheckboxButton,
-    Collapse,
-    Datepicker,
-    Dropdown,
-    DropdownItem,
-    Field,
-    Icon,
-    Input,
-    Loading,
-    Message,
-    Modal,
-    Notification,
-    Pagination,
-    Panel,
-    Radio,
-    RadioButton,
-    Select,
-    Switch,
-    TabItem,
-    Table,
-    TableColumn,
-    Tabs,
-    Tag,
-    Taglist,
-    Taginput,
-    Timepicker,
-    Tooltip,
-    Upload
+  Autocomplete,
+  Checkbox,
+  CheckboxButton,
+  Collapse,
+  Datepicker,
+  Dropdown,
+  DropdownItem,
+  Field,
+  Icon,
+  Input,
+  Loading,
+  Message,
+  Modal,
+  Notification,
+  Pagination,
+  Panel,
+  Radio,
+  RadioButton,
+  Select,
+  Switch,
+  TabItem,
+  Table,
+  TableColumn,
+  Tabs,
+  Tag,
+  Taglist,
+  Taginput,
+  Timepicker,
+  Tooltip,
+  Upload,
 }
 
 components.install = (Vue, options = {}) => {
-    // Options
-    setOptions(Object.assign(config, options))
+  // Options
+  setOptions(Object.assign(config, options))
 
-    for (const componentName in components) {
-        const component = components[componentName]
+  for (const componentName in components) {
+    const component = components[componentName]
 
-        if (component && componentName !== 'install') {
-            Vue.component(component.name, component)
-        }
+    if (component && componentName !== 'install') {
+      Vue.component(component.name, component)
     }
+  }
 
-    Vue.prototype.$dialog = Dialog
-    Vue.prototype.$loading = LoadingProgrammatic
-    Vue.prototype.$modal = ModalProgrammatic
-    Vue.prototype.$snackbar = Snackbar
-    Vue.prototype.$toast = Toast
+  Vue.prototype.$dialog = Dialog
+  Vue.prototype.$loading = LoadingProgrammatic
+  Vue.prototype.$modal = ModalProgrammatic
+  Vue.prototype.$snackbar = Snackbar
+  Vue.prototype.$toast = Toast
 }
 
 export default components
 
-export {
-    Dialog,
-    LoadingProgrammatic,
-    ModalProgrammatic,
-    Snackbar,
-    Toast
-}
+export { Dialog, LoadingProgrammatic, ModalProgrammatic, Snackbar, Toast }

@@ -2,11 +2,11 @@
 
 > Work in progress: NOT READY FOR USE YET
 
-Fluent Design Components for [Vue.js](https://vuejs.org) using [Bulma](http://bulma.io) and [Bulma-Fluent-Theme](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
+Fluent Design Components for [Vue.js](https://vuejs.org) using [Bulma](http://bulma.io) and [vue-fluent-Theme](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
 
 <a href="https://liberapay.com/mubaidr/donate" target="_blank"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
 
-[![NPM](https://nodei.co/npm/bulma-fluent.png?compact=true)](https://nodei.co/npm/vue-fluent/)
+[![NPM](https://nodei.co/npm/vue-fluent.png?compact=true)](https://nodei.co/npm/vue-fluent/)
 
 ![dependencies](https://david-dm.org/mubaidr/vue-fluent.svg)
 
