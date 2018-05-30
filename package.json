@@ -51,7 +51,10 @@
       "cleancss --level 2 -o dist/vue-fluent.min.css dist/vue-fluent.css",
     "build-sass":
       "node-sass --output-style expanded src/lib/scss/build.scss dist/vue-fluent.css --importer node_modules/node-sass-import",
-    "dev": "cd src/docs && npm run serve && cd ../../"
+    "dev": "cd src/docs && npm run serve && cd ../../",
+    "lint": "eslint --ext .js,.vue --fix src/lib",
+    "lint-docs": " cd src/docs && eslint --ext .js,.vue --fix src/docs",
+    "postinstall": "cd src/docs && yarn install"
   },
   "version": "0.1.1"
 }
