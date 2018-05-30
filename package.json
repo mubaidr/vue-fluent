@@ -1,6 +1,10 @@
 {
   "author": "Muhammad Ubaid Raza <mubaidr@gmail.com>",
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "bugs": {
     "url": "https://github.com/mubaidr/vue-fluent/issues"
   },
@@ -8,26 +12,41 @@
     "bulma-addons": "^0.1.5",
     "bulma-fluent": "^0.3.6"
   },
-  "description":
-    "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System",
+  "description": "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System",
   "devDependencies": {
     "autoprefixer": "^8.5.1",
     "clean-css-cli": "^4.1.11",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-plugin-html": "^4.0.3",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-vue": "^4.5.0",
     "node-sass": "^4.9.0",
     "node-sass-import": "^2.0.1",
     "postcss-cli": "^5.0.0",
+    "prettier": "^1.13.2",
     "sass-loader": "^7.0.1",
     "vue-cli": "2.9.3"
   },
-  "files": ["dist", "src/lib", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "src/lib",
+    "LICENSE",
+    "README.md"
+  ],
   "homepage": "https://mubaidr.github.io/vue-fluent",
-  "keywords": ["vue", "bulma", "theme", "fluent", "components"],
+  "keywords": [
+    "vue",
+    "bulma",
+    "theme",
+    "fluent",
+    "components"
+  ],
   "license": "MIT",
   "main": "src/lib/index.js",
   "name": "vue-fluent",
@@ -40,17 +59,12 @@
   },
   "scripts": {
     "build": "npm run build-lib-js && npm run build-lib-css",
-    "build-autoprefix":
-      "postcss --use autoprefixer --map true --output dist/vue-fluent.css dist/vue-fluent.css",
+    "build-autoprefix": "postcss --use autoprefixer --map true --output dist/vue-fluent.css dist/vue-fluent.css",
     "build-docs": "cd src/docs && npm run build && cd ../../",
-    "build-lib-css":
-      "npm run build-sass && npm run build-autoprefix && npm run build-minify",
-    "build-lib-js":
-      "vue build src/lib/index.js --prod --lib vue-fluent --dist dist",
-    "build-minify":
-      "cleancss --level 2 -o dist/vue-fluent.min.css dist/vue-fluent.css",
-    "build-sass":
-      "node-sass --output-style expanded src/lib/scss/build.scss dist/vue-fluent.css --importer node_modules/node-sass-import",
+    "build-lib-css": "npm run build-sass && npm run build-autoprefix && npm run build-minify",
+    "build-lib-js": "vue build src/lib/index.js --prod --lib vue-fluent --dist dist",
+    "build-minify": "cleancss --level 2 -o dist/vue-fluent.min.css dist/vue-fluent.css",
+    "build-sass": "node-sass --output-style expanded src/lib/scss/build.scss dist/vue-fluent.css --importer node_modules/node-sass-import",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/lib",
     "lint-docs": " cd src/docs && eslint --ext .js,.vue --fix src/docs",
