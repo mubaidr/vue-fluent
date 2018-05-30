@@ -180,9 +180,7 @@
             separatorsAsRegExp() {
                 const sep = this.onPasteSeparators
 
-                return sep.length ? new RegExp(sep.map((s) => {
-                    return s ? s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') : null
-                }).join('|'), 'g') : null
+                return sep.length ? new RegExp(sep.map((s) => s ? s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') : null).join('|'), 'g') : null
             }
         },
         watch: {
@@ -251,7 +249,7 @@
             },
 
             removeTag(index) {
-                var tag = this.tags.splice(index, 1)[0]
+                const tag = this.tags.splice(index, 1)[0]
                 this.$emit('input', this.tags)
                 this.$emit('remove', tag)
                 return tag

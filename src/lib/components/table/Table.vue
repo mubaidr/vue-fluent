@@ -293,11 +293,11 @@
 
                 if (this.newData.length <= perPage) {
                     return this.newData
-                } else {
+                } 
                     const start = (currentPage - 1) * perPage
                     const end = parseInt(start, 10) + parseInt(perPage, 10)
                     return this.newData.slice(start, end)
-                }
+                
             },
 
             /**
@@ -306,9 +306,7 @@
             isAllChecked() {
                 const validVisibleData = this.visibleData.filter(
                         (row) => this.isRowCheckable(row))
-                const isAllChecked = validVisibleData.some((currentVisibleRow) => {
-                    return indexOf(this.newCheckedRows, currentVisibleRow, this.customIsChecked) < 0
-                })
+                const isAllChecked = validVisibleData.some((currentVisibleRow) => indexOf(this.newCheckedRows, currentVisibleRow, this.customIsChecked) < 0)
                 return !isAllChecked
             },
 
@@ -316,9 +314,7 @@
              * Check if has any sortable column.
              */
             hasSortablenewColumns() {
-                return this.newColumns.some((column) => {
-                    return column.sortable
-                })
+                return this.newColumns.some((column) => column.sortable)
             },
 
             /**

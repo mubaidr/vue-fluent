@@ -115,9 +115,7 @@
     const HOUR_FORMAT_24 = '24'
     const HOUR_FORMAT_12 = '12'
 
-    const formatNumber = (value) => {
-        return (value < 10 ? '0' : '') + value
-    }
+    const formatNumber = (value) => (value < 10 ? '0' : '') + value
 
     const timeFormatter = (date, vm) => {
         let hours = date.getHours()
@@ -131,8 +129,8 @@
                 hours = 12
             }
         }
-        return formatNumber(hours) + ':' + formatNumber(minutes) +
-            (vm.hourFormat === HOUR_FORMAT_12 ? (' ' + (am ? AM : PM)) : '')
+        return `${formatNumber(hours)  }:${  formatNumber(minutes) 
+            }${vm.hourFormat === HOUR_FORMAT_12 ? (` ${  am ? AM : PM}`) : ''}`
     }
 
     const timeParser = (date, vm) => {
@@ -203,9 +201,7 @@
             hourFormat: {
                 type: String,
                 default: HOUR_FORMAT_24,
-                validator: (value) => {
-                    return value === HOUR_FORMAT_24 || value === HOUR_FORMAT_12
-                }
+                validator: (value) => value === HOUR_FORMAT_24 || value === HOUR_FORMAT_12
             },
             incrementMinutes: {
                 type: Number,
@@ -216,9 +212,9 @@
                 default: (date, vm) => {
                     if (typeof config.defaultTimeFormatter === 'function') {
                         return config.defaultTimeFormatter(date)
-                    } else {
+                    } 
                         return timeFormatter(date, vm)
-                    }
+                    
                 }
             },
             timeParser: {
@@ -226,16 +222,14 @@
                 default: (date, vm) => {
                     if (typeof config.defaultTimeParser === 'function') {
                         return config.defaultTimeParser(date)
-                    } else {
+                    } 
                         return timeParser(date, vm)
-                    }
+                    
                 }
             },
             mobileNative: {
                 type: Boolean,
-                default: () => {
-                    return config.defaultTimepickerMobileNative
-                }
+                default: () => config.defaultTimepickerMobileNative
             },
             position: String,
             unselectableTimes: Array
@@ -273,7 +267,7 @@
                     }
                     hours.push({
                         label: formatNumber(label),
-                        value: value
+                        value
                     })
                 }
                 return hours
@@ -408,15 +402,11 @@
                 if (this.unselectableTimes) {
                     if (!disabled) {
                         if (this.minutesSelected !== null) {
-                            const unselectable = this.unselectableTimes.filter((time) => {
-                                return time.getHours() === hour &&
-                                    time.getMinutes() === this.minutesSelected
-                            })
+                            const unselectable = this.unselectableTimes.filter((time) => time.getHours() === hour &&
+                                    time.getMinutes() === this.minutesSelected)
                             disabled = unselectable.length > 0
                         } else {
-                            const unselectable = this.unselectableTimes.filter((time) => {
-                                return time.getHours() === hour
-                            })
+                            const unselectable = this.unselectableTimes.filter((time) => time.getHours() === hour)
                             disabled = unselectable.length === this.minutes.length
                         }
                     }
@@ -445,10 +435,8 @@
                     }
                     if (this.unselectableTimes) {
                         if (!disabled) {
-                            const unselectable = this.unselectableTimes.filter((time) => {
-                                return time.getHours() === this.hoursSelected &&
-                                    time.getMinutes() === minute
-                            })
+                            const unselectable = this.unselectableTimes.filter((time) => time.getHours() === this.hoursSelected &&
+                                    time.getMinutes() === minute)
                             disabled = unselectable.length > 0
                         }
                     }
@@ -477,9 +465,9 @@
             formatValue(value) {
                 if (value && !isNaN(value)) {
                     return this.timeFormatter(value, this)
-                } else {
+                } 
                     return null
-                }
+                
             },
 
             /*
@@ -499,8 +487,8 @@
                 if (value && !isNaN(date)) {
                     const hours = date.getHours()
                     const minutes = date.getMinutes()
-                    return formatNumber(hours) + ':' +
-                        formatNumber(minutes) + ':00'
+                    return `${formatNumber(hours)  }:${ 
+                        formatNumber(minutes)  }:00`
                 }
                 return ''
             },

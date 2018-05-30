@@ -108,12 +108,12 @@
                                 return value
                             }
                         }).join(' <br> ')
-                    } else {
+                    } 
                         return this.newMessage
-                    }
-                } else {
+                    
+                } 
                     return this.newMessage
-                }
+                
             }
         },
         watch: {

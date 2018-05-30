@@ -101,11 +101,9 @@
                         } else {
                             this.newValue = []
                         }
-                    } else {
-                        if (this.native) {
+                    } else if (this.native) {
                             this.newValue = []
                         }
-                    }
                     for (let i = 0; i < value.length; i++) {
                         const file = value[i]
                         if (this.checkType(file)) {

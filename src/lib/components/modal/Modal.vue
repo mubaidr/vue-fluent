@@ -58,17 +58,13 @@
             },
             scroll: {
                 type: String,
-                default: () => {
-                    return config.defaultModalScroll
+                default: () => config.defaultModalScroll
                         ? config.defaultModalScroll
-                        : 'clip'
-                },
-                validator: (value) => {
-                    return [
+                        : 'clip',
+                validator: (value) => [
                         'clip',
                         'keep'
                     ].indexOf(value) >= 0
-                }
             }
         },
         data() {
@@ -76,7 +72,7 @@
                 isActive: this.active || false,
                 savedScrollTop: null,
                 newWidth: typeof this.width === 'number'
-                    ? this.width + 'px'
+                    ? `${this.width  }px`
                     : this.width
             }
         },

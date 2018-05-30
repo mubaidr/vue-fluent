@@ -28,37 +28,37 @@ export function indexOf(array, obj, fn) {
  * https://www.abeautifulsite.net/detecting-mobile-devices-with-javascript
  */
 export const isMobile = {
-    Android: function () {
+    Android () {
         return (
             typeof window !== 'undefined' &&
             window.navigator.userAgent.match(/Android/i)
         )
     },
-    BlackBerry: function () {
+    BlackBerry () {
         return (
             typeof window !== 'undefined' &&
             window.navigator.userAgent.match(/BlackBerry/i)
         )
     },
-    iOS: function () {
+    iOS () {
         return (
             typeof window !== 'undefined' &&
             window.navigator.userAgent.match(/iPhone|iPad|iPod/i)
         )
     },
-    Opera: function () {
+    Opera () {
         return (
             typeof window !== 'undefined' &&
             window.navigator.userAgent.match(/Opera Mini/i)
         )
     },
-    Windows: function () {
+    Windows () {
         return (
             typeof window !== 'undefined' &&
             window.navigator.userAgent.match(/IEMobile/i)
         )
     },
-    any: function () {
+    any () {
         return (
             isMobile.Android() ||
             isMobile.BlackBerry() ||

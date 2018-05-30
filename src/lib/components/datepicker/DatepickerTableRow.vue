@@ -81,9 +81,9 @@
                             day.getFullYear() === enabledDate.getFullYear() &&
                             day.getMonth() === enabledDate.getMonth()) {
                             return true
-                        } else {
+                        } 
                             validity.push(false)
-                        }
+                        
                     }
                 }
 

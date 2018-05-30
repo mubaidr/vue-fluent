@@ -87,19 +87,15 @@
             size: String,
             confirmText: {
                 type: String,
-                default: () => {
-                    return config.defaultDialogConfirmText
+                default: () => config.defaultDialogConfirmText
                         ? config.defaultDialogConfirmText
                         : 'OK'
-                }
             },
             cancelText: {
                 type: String,
-                default: () => {
-                    return config.defaultDialogCancelText
+                default: () => config.defaultDialogCancelText
                         ? config.defaultDialogCancelText
                         : 'Cancel'
-                }
             },
             hasInput: Boolean, // Used internally to know if it's prompt
             inputAttrs: {

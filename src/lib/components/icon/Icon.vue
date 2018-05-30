@@ -33,9 +33,9 @@
                 if (!this.both) {
                     if (this.newPack === 'mdi') {
                         return `${this.newPack}-${this.icon}`
-                    } else {
+                    } 
                         return `fa-${this.icon}`
-                    }
+                    
                 }
 
                 return this.newPack === 'mdi'

@@ -168,7 +168,7 @@
                 default: () => {
                     if (Array.isArray(config.defaultDayNames)) {
                         return config.defaultDayNames
-                    } else {
+                    } 
                         return [
                             'Su',
                             'M',
@@ -178,7 +178,7 @@
                             'F',
                             'S'
                         ]
-                    }
+                    
                 }
             },
             monthNames: {
@@ -186,7 +186,7 @@
                 default: () => {
                     if (Array.isArray(config.defaultMonthNames)) {
                         return config.defaultMonthNames
-                    } else {
+                    } 
                         return [
                             'January',
                             'February',
@@ -201,7 +201,7 @@
                             'November',
                             'December'
                         ]
-                    }
+                    
                 }
             },
             firstDayOfWeek: {
@@ -209,9 +209,9 @@
                 default: () => {
                     if (typeof config.defaultFirstDayOfWeek === 'number') {
                         return config.defaultFirstDayOfWeek
-                    } else {
+                    } 
                         return 0
-                    }
+                    
                 }
             },
             inline: Boolean,
@@ -230,7 +230,7 @@
             unselectableDates: Array,
             unselectableDaysOfWeek: {
                 type: Array,
-                default: () => { return config.defaultUnselectableDaysOfWeek }
+                default: () => config.defaultUnselectableDaysOfWeek
             },
             selectableDates: Array,
             dateFormatter: {
@@ -238,12 +238,12 @@
                 default: (date) => {
                     if (typeof config.defaultDateFormatter === 'function') {
                         return config.defaultDateFormatter(date)
-                    } else {
+                    } 
                         const dateUTC = new Date(Date.UTC(
                             date.getFullYear(), date.getMonth(), date.getDate()
                         ))
                         return dateUTC.toLocaleDateString()
-                    }
+                    
                 }
             },
             dateParser: {
@@ -251,16 +251,14 @@
                 default: (date) => {
                     if (typeof config.defaultDateParser === 'function') {
                         return config.defaultDateParser(date)
-                    } else {
+                    } 
                         return new Date(Date.parse(date))
-                    }
+                    
                 }
             },
             mobileNative: {
                 type: Boolean,
-                default: () => {
-                    return config.defaultDatepickerMobileNative
-                }
+                default: () => config.defaultDatepickerMobileNative
             },
             position: String,
             events: Array,
@@ -361,10 +359,10 @@
             /*
             * Emit input event on month and/or year change
             */
-            'focusedDateData.month'(value) {
+            'focusedDateData.month': function(value) {
                 this.$emit('change-month', value)
             },
-            'focusedDateData.year'(value) {
+            'focusedDateData.year': function(value) {
                 this.$emit('change-year', value)
             }
         },
@@ -396,9 +394,9 @@
             formatValue(value) {
                 if (value && !isNaN(value)) {
                     return this.dateFormatter(value)
-                } else {
+                } 
                     return null
-                }
+                
             },
 
             /*
@@ -440,9 +438,9 @@
                     const year = date.getFullYear()
                     const month = date.getMonth() + 1
                     const day = date.getDate()
-                    return year + '-' +
-                        ((month < 10 ? '0' : '') + month) + '-' +
-                        ((day < 10 ? '0' : '') + day)
+                    return `${year  }-${ 
+                        (month < 10 ? '0' : '') + month  }-${ 
+                        (day < 10 ? '0' : '') + day}`
                 }
                 return ''
             },
