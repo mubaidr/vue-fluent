@@ -1,10 +1,6 @@
 {
   "author": "Muhammad Ubaid Raza <mubaidr@gmail.com>",
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "bugs": {
     "url": "https://github.com/mubaidr/vue-fluent/issues"
   },
@@ -12,10 +8,10 @@
     "bulma-addons": "^0.1.6",
     "bulma-fluent": "^0.3.8"
   },
-  "description": "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
+  "description":
+    "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
   "devDependencies": {
     "babel-eslint": "^8.2.3",
-    "bili": "^3.1.2",
     "clean-css-cli": "^4.1.11",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
@@ -29,24 +25,11 @@
     "node-sass-import": "^2.0.1",
     "poi": "^10.2.1",
     "rimraf": "^2.6.2",
-    "rollup-plugin-vue": "2",
-    "sass-loader": "^7.0.1",
-    "vue-loader": "^15.2.2"
+    "sass-loader": "^7.0.1"
   },
-  "files": [
-    "dist",
-    "src/lib",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "src/lib", "LICENSE", "README.md"],
   "homepage": "https://mubaidr.github.io/vue-fluent",
-  "keywords": [
-    "vue",
-    "bulma",
-    "theme",
-    "fluent",
-    "components"
-  ],
+  "keywords": ["vue", "bulma", "theme", "fluent", "components"],
   "license": "MIT",
   "main": "src/lib/index.js",
   "name": "vue-fluent",
@@ -58,14 +41,14 @@
     "url": "git+https://github.com/mubaidr/vue-fluent.git"
   },
   "scripts": {
-    "build": "npm run build-lib-js && npm run build-lib-css && npm run build-clean",
-    "build-clean": "rimraf dist/*.html",
+    "build": "npm run build-lib-js && npm run build-lib-css",
     "build-docs": "cd src/docs && npm run build && cd ../../",
-    "build-lib-css": "node-sass src/lib/index.scss dist/vue-fluent.min.css --output-style compressed --source-map true --importer node_modules/node-sass-import",
-    "build-lib-js": "poi build src/lib/index.js --out-dir dist --filename.js vue-fluent.js --format cjs",
-    "build-minify": "cleancss -O1 -O2 -o dist/vue-fluent.min.css dist/vue-fluent.css",
+    "build-lib-css":
+      "node-sass src/lib/index.scss dist/vue-fluent.min.css --output-style compressed --importer node_modules/node-sass-import",
+    "build-lib-js":
+      "poi build --out-dir dist --filename.js vue-fluent.js --format cjs",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/"
   },
-  "version": "0.1.1"
+  "version": "0.1.2"
 }
