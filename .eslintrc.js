@@ -20,7 +20,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'vue/no-reserved-keys': 'off',
     semi: 'off',
-    'comma-dangle': 'always',
+    'comma-dangle': 'off',
   },
   globals: {
     document: true,

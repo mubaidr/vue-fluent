@@ -9,7 +9,7 @@
     "bulma-fluent": "^0.3.8"
   },
   "description":
-    "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System",
+    "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "clean-css-cli": "^4.1.11",
@@ -22,9 +22,11 @@
     "eslint-plugin-standard": "^3.1.0",
     "eslint-plugin-vue": "^4.5.0",
     "node-sass": "^4.9.0",
+    "node-sass-import": "^2.0.1",
     "poi": "^10.2.1",
     "rimraf": "^2.6.2",
-    "sass-loader": "^7.0.1"
+    "sass-loader": "^7.0.1",
+    "vue-loader": "^15.2.2"
   },
   "files": ["dist", "src/lib", "LICENSE", "README.md"],
   "homepage": "https://mubaidr.github.io/vue-fluent",
@@ -45,11 +47,11 @@
     "build-clean": "rimraf dist/*.html",
     "build-docs": "cd src/docs && npm run build && cd ../../",
     "build-lib-css":
-      "poi build src/lib/index.scss --out-dir dist --filename.css vue-fluent.css",
+      "node-sass src/lib/index.scss dist/vue-fluent.min.css --output-style compressed --source-map true --importer node_modules/node-sass-import",
     "build-lib-js":
       "poi build src/lib/index.js --out-dir dist --filename.js vue-fluent.js --format cjs",
     "build-minify":
-      "cleancss --level 2 -o dist/vue-fluent.min.css dist/vue-fluent.css",
+      "cleancss -O1 -O2 -o dist/vue-fluent.min.css dist/vue-fluent.css",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/"
   },

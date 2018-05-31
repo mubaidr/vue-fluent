@@ -6,13 +6,13 @@ import './assets/fontawesome/css/fontawesome-all.css'
 
 import './styles.sass'
 
-import Buefy from '../../lib/index'
-
-Vue.use(Buefy)
+import VueFluent from '../../lib/index'
 
 Vue.config.productionTip = false
 
+Vue.use(VueFluent)
+
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')
