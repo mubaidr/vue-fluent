@@ -70,6 +70,7 @@
               </span>
               <span>Star on Github</span>
             </a>
+            &nbsp;
             <a class="button is-light" href="https://raw.githubusercontent.com/mubaidr/vue-fluent/master/css/bulma.min.css" title="Download Latest Minified Build" target="_blank">
               <span class="icon">
                 <i class="fas fa-download" aria-hidden="true" />

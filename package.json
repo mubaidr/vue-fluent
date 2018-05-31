@@ -46,7 +46,7 @@
     "build-lib-css":
       "node-sass src/lib/index.scss dist/vue-fluent.min.css --output-style compressed --importer node_modules/node-sass-import",
     "build-lib-js":
-      "poi build --out-dir dist --filename.js vue-fluent.js --format cjs",
+      "poi build --out-dir dist --filename.js vue-fluent.min.js --format cjs",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/"
   },

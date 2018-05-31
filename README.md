@@ -1,8 +1,12 @@
 # Vue-Fluent
 
-> Work in progress: NOT READY FOR USE YET
+> [WIP] NOT READY FOR USE YET
 
-Fluent Design Components for [Vue.js](https://vuejs.org) using [Bulma](http://bulma.io) and [bulma-fluent](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
+> Fluent Design Components for [Vue.js](https://vuejs.org) using [Bulma](http://bulma.io) and [bulma-fluent](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
+
+> [Fluent Design Theme for Bulma](https://github.com/mubaidr/bulma-fluent) is also available.
+
+<br/>
 
 <a href="https://patreon.com/mubaidr">
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="42">
@@ -12,9 +16,9 @@ Fluent Design Components for [Vue.js](https://vuejs.org) using [Bulma](http://bu
 
 ![dependencies](https://david-dm.org/mubaidr/vue-fluent.svg)
 
-## [Demo](https://mubaidr.github.io/vue-fluent/)
+## [Documentation](https://mubaidr.github.io/vue-fluent/)
 
-Browse the [online demo here.](https://mubaidr.github.io/vue-fluent/)
+Browse the [online documentation here](https://mubaidr.github.io/vue-fluent/).
 
 ## Quick install
 
@@ -24,19 +28,24 @@ Browse the [online demo here.](https://mubaidr.github.io/vue-fluent/)
 npm install vue-fluent
 ```
 
-### Yarn
-
-```sh
-yarn add vue-fluent
-```
-
 ### Import
 
-After installation, you can import the CSS/Sass file into your project using this snippet:
+```js
+import Vue from 'vue'
+import VueFluent from 'vue-fluent'
 
-```sh
-import 'vue-fluent/dist/vue-fluent.css'
-import 'vue-fluent/dist/vue-fluent.js'
+Vue.use(VueFluent)
+
+// Or Import individual components
+
+Vue.component(VueFluent.Checkbox.name, VueFluent.Checkbox)
+Vue.component(VueFluent.Table.name, VueFluent.Table)
+Vue.component(VueFluent.Switch.name, VueFluent.Switch)
+
+// You can customize the theme, for details check cutsomize section
+// Then import styles
+
+import 'vue-fluent/src/lib/index.scss'
 ```
 
 ## CDN link

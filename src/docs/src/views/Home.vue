@@ -34,8 +34,7 @@
               </p>
               <p>
                 <code>
-                  import 'vue-fluent/dist/vue-fluent.css'
-
+                  import 'vue-fluent/dist/vue-fluent.min.css'
                 </code>
                 <br/>or<br/>
                 <code>
@@ -46,7 +45,7 @@
             <li>
               <span class="title is-5">CDN link</span>
               <p>
-                <a href="https://unpkg.com/vue-fluent/css/">unpkg.com/vue-fluent</a>
+                <a href="https://unpkg.com/vue-fluent/dist/">unpkg.com/vue-fluent</a>
               </p>
             </li>
             <li>
@@ -82,12 +81,6 @@ $family-sans-serif: "Calibri", "Arial"
 @import 'vue-fluent/src/lib/index.scss'
 </code></pre>
           </p>
-        </div>
-
-        <div class="content">
-          <h2 class="subtitle is-3">Documentation</h2>
-          <p>You can follow
-            <a href="https://bulma.io/documentation/">official bulma documentaion</a> for all components.</p>
         </div>
       </div>
     </section>
