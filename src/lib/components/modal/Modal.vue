@@ -1,29 +1,33 @@
 <template>
-    <transition :name="animation">
-        <div v-if="isActive" class="modal is-active">
-            <div class="modal-background" @click="cancel('outside')"/>
-            <div
-                class="animation-content"
-                :class="{ 'modal-content': !hasModalCard }"
-                :style="{ maxWidth: newWidth }">
-                <component
-                    v-if="component"
-                    v-bind="props"
-                    v-on="events"
-                    :is="component"
-                    @close="close"/>
-                <div
-                    v-else-if="content"
-                    v-html="content"/>
-                <slot v-else/>
-            </div>
-            <button
-                type="button"
-                v-if="showX"
-                class="modal-close is-large"
-                @click="cancel('x')"/>
-        </div>
-    </transition>
+  <transition :name="animation">
+    <div 
+      v-if="isActive" 
+      class="modal is-active">
+      <div 
+        class="modal-background" 
+        @click="cancel('outside')"/>
+      <div
+        :class="{ 'modal-content': !hasModalCard }"
+        :style="{ maxWidth: newWidth }"
+        class="animation-content">
+        <component
+          v-if="component"
+          v-bind="props"
+          :is="component"
+          v-on="events"
+          @close="close"/>
+        <div
+          v-else-if="content"
+          v-html="content"/>
+        <slot v-else/>
+      </div>
+      <button
+        v-if="showX"
+        type="button"
+        class="modal-close is-large"
+        @click="cancel('x')"/>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -96,6 +100,33 @@
                 this.handleScroll()
             }
         },
+        created() {
+            if (typeof window !== 'undefined') {
+                document.addEventListener('keyup', this.keyPress)
+            }
+        },
+        beforeMount() {
+            // Insert the Modal component in body tag
+            // only if it's programmatic
+            this.programmatic && document.body.appendChild(this.$el)
+        },
+        mounted() {
+            if (this.programmatic) this.isActive = true
+            else if (this.isActive) this.handleScroll()
+        },
+        beforeDestroy() {
+            if (typeof window !== 'undefined') {
+                document.removeEventListener('keyup', this.keyPress)
+                // reset scroll
+                document.documentElement.classList.toggle('is-clipped', false)
+                const savedScrollTop = !this.savedScrollTop
+                    ? document.documentElement.scrollTop
+                    : this.savedScrollTop
+                document.body.classList.toggle('is-noscroll', false)
+                document.documentElement.scrollTop = savedScrollTop
+                document.body.style.top = null
+            }
+        },
         methods: {
             handleScroll() {
                 if (typeof window === 'undefined') return
@@ -157,32 +188,5 @@
                 if (this.isActive && event.keyCode === 27) this.cancel('escape')
             }
         },
-        created() {
-            if (typeof window !== 'undefined') {
-                document.addEventListener('keyup', this.keyPress)
-            }
-        },
-        beforeMount() {
-            // Insert the Modal component in body tag
-            // only if it's programmatic
-            this.programmatic && document.body.appendChild(this.$el)
-        },
-        mounted() {
-            if (this.programmatic) this.isActive = true
-            else if (this.isActive) this.handleScroll()
-        },
-        beforeDestroy() {
-            if (typeof window !== 'undefined') {
-                document.removeEventListener('keyup', this.keyPress)
-                // reset scroll
-                document.documentElement.classList.toggle('is-clipped', false)
-                const savedScrollTop = !this.savedScrollTop
-                    ? document.documentElement.scrollTop
-                    : this.savedScrollTop
-                document.body.classList.toggle('is-noscroll', false)
-                document.documentElement.scrollTop = savedScrollTop
-                document.body.style.top = null
-            }
-        }
     }
 </script>

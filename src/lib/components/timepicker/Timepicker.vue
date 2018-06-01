@@ -1,102 +1,106 @@
 <template>
-    <div class="timepicker control" :class="[size, {'is-expanded': expanded}]">
-        <b-dropdown
-            v-if="!isMobile || inline"
-            ref="dropdown"
-            :position="position"
-            :disabled="disabled"
-            :inline="inline">
-            <b-input
-                v-if="!inline"
-                ref="input"
-                slot="trigger"
-                autocomplete="off"
-                :value="formatValue(dateSelected)"
-                :placeholder="placeholder"
-                :size="size"
-                :icon="icon"
-                :icon-pack="iconPack"
-                :loading="loading"
-                :disabled="disabled"
-                :readonly="readonly"
-                :rounded="rounded"
-                v-bind="$attrs"
-                @change.native="onChange($event.target.value)"
-                @focus="$emit('focus', $event)"
-                @blur="$emit('blur', $event) && checkHtml5Validity()"/>
+  <div 
+    :class="[size, {'is-expanded': expanded}]" 
+    class="timepicker control">
+    <b-dropdown
+      v-if="!isMobile || inline"
+      ref="dropdown"
+      :position="position"
+      :disabled="disabled"
+      :inline="inline">
+      <b-input
+        v-if="!inline"
+        ref="input"
+        slot="trigger"
+        :value="formatValue(dateSelected)"
+        :placeholder="placeholder"
+        :size="size"
+        :icon="icon"
+        :icon-pack="iconPack"
+        :loading="loading"
+        :disabled="disabled"
+        :readonly="readonly"
+        :rounded="rounded"
+        v-bind="$attrs"
+        autocomplete="off"
+        @change.native="onChange($event.target.value)"
+        @focus="$emit('focus', $event)"
+        @blur="$emit('blur', $event) && checkHtml5Validity()"/>
 
-            <b-dropdown-item :disabled="disabled" custom>
-                <div class="pagination-list">
-                    <b-field>
-                        <b-select
-                            v-model="hoursSelected"
-                            @change.native="onHoursChange($event.target.value)"
-                            :disabled="disabled"
-                            placeholder="00">
-                            <option
-                                v-for="hour in hours"
-                                :value="hour.value"
-                                :key="hour.value"
-                                :disabled="isHourDisabled(hour.value)">
-                                {{ hour.label }}
-                            </option>
-                        </b-select>
-                        <b-select
-                            v-model="minutesSelected"
-                            @change.native="onMinutesChange($event.target.value)"
-                            :disabled="disabled"
-                            placeholder="00">
-                            <option
-                                v-for="minute in minutes"
-                                :value="minute.value"
-                                :key="minute.value"
-                                :disabled="isMinuteDisabled(minute.value)">
-                                {{ minute.label }}
-                            </option>
-                        </b-select>
-                        <b-select
-                            v-model="meridienSelected"
-                            @change.native="onMeridienChange($event.target.value)"
-                            v-if="!isHourFormat24"
-                            :disabled="disabled">
-                            <option
-                                v-for="meridien in meridiens"
-                                :value="meridien"
-                                :key="meridien">
-                                {{ meridien }}
-                            </option>
-                        </b-select>
-                    </b-field>
-                </div>
+      <b-dropdown-item 
+        :disabled="disabled" 
+        custom>
+        <div class="pagination-list">
+          <b-field>
+            <b-select
+              v-model="hoursSelected"
+              :disabled="disabled"
+              placeholder="00"
+              @change.native="onHoursChange($event.target.value)">
+              <option
+                v-for="hour in hours"
+                :value="hour.value"
+                :key="hour.value"
+                :disabled="isHourDisabled(hour.value)">
+                {{ hour.label }}
+              </option>
+            </b-select>
+            <b-select
+              v-model="minutesSelected"
+              :disabled="disabled"
+              placeholder="00"
+              @change.native="onMinutesChange($event.target.value)">
+              <option
+                v-for="minute in minutes"
+                :value="minute.value"
+                :key="minute.value"
+                :disabled="isMinuteDisabled(minute.value)">
+                {{ minute.label }}
+              </option>
+            </b-select>
+            <b-select
+              v-if="!isHourFormat24"
+              v-model="meridienSelected"
+              :disabled="disabled"
+              @change.native="onMeridienChange($event.target.value)">
+              <option
+                v-for="meridien in meridiens"
+                :value="meridien"
+                :key="meridien">
+                {{ meridien }}
+              </option>
+            </b-select>
+          </b-field>
+        </div>
 
-                <footer
-                    v-if="$slots.default !== undefined && $slots.default.length"
-                    class="timepicker-footer">
-                    <slot/>
-                </footer>
-            </b-dropdown-item>
-        </b-dropdown>
+        <footer
+          v-if="$slots.default !== undefined && $slots.default.length"
+          class="timepicker-footer">
+          <slot/>
+        </footer>
+      </b-dropdown-item>
+    </b-dropdown>
 
-        <b-input
-            v-else
-            ref="input"
-            type="time"
-            autocomplete="off"
-            :value="formatHHMMSS(value)"
-            :placeholder="placeholder"
-            :size="size"
-            :icon="icon"
-            :icon-pack="iconPack"
-            :loading="loading"
-            :max="formatHHMMSS(maxTime)"
-            :min="formatHHMMSS(minTime)"
-            :disabled="disabled"
-            :readonly="false"
-            v-bind="$attrs"
-            @change.native="onChangeNativePicker"
-            @focus="$emit('focus', $event)"
-            @blur="$emit('blur', $event) && checkHtml5Validity()"/>
-    </div>
+    <b-input
+      v-else
+      ref="input"
+      :value="formatHHMMSS(value)"
+      :placeholder="placeholder"
+      :size="size"
+      :icon="icon"
+      :icon-pack="iconPack"
+      :loading="loading"
+      :max="formatHHMMSS(maxTime)"
+      :min="formatHHMMSS(minTime)"
+      :disabled="disabled"
+      :readonly="false"
+      v-bind="$attrs"
+      type="time"
+      autocomplete="off"
+      @change.native="onChangeNativePicker"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event) && checkHtml5Validity()"/>
+  </div>
 </template>
 
 <script>
@@ -323,6 +327,9 @@
                 !this.isValid && this.$refs.input.checkHtml5Validity()
             }
         },
+        mounted() {
+            this.updateInternalState(this.value)
+        },
         methods: {
 
             onMeridienChange(value) {
@@ -514,8 +521,5 @@
                 }
             }
         },
-        mounted() {
-            this.updateInternalState(this.value)
-        }
     }
 </script>

@@ -1,16 +1,16 @@
 <template>
-    <span
-        :data-label="label"
-        :class="[newType, position, size, {
-            'tooltip': active,
-            'is-square': square,
-            'is-animated': newAnimated,
-            'is-always': always,
-            'is-multiline': multilined,
-            'is-dashed': dashed
-    }]">
-        <slot/>
-    </span>
+  <span
+    :data-label="label"
+    :class="[newType, position, size, {
+      'tooltip': active,
+      'is-square': square,
+      'is-animated': newAnimated,
+      'is-always': always,
+      'is-multiline': multilined,
+      'is-dashed': dashed
+  }]">
+    <slot/>
+  </span>
 </template>
 
 <script>

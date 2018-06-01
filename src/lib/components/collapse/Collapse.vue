@@ -1,14 +1,20 @@
 <template>
-    <div class="collapse">
-        <div class="collapse-trigger" @click="toggle">
-            <slot name="trigger" :open="isOpen" />
-        </div>
-        <transition :name="animation">
-            <div class="collapse-content" v-show="isOpen">
-                <slot/>
-            </div>
-        </transition>
+  <div class="collapse">
+    <div 
+      class="collapse-trigger" 
+      @click="toggle">
+      <slot 
+        :open="isOpen" 
+        name="trigger" />
     </div>
+    <transition :name="animation">
+      <div 
+        v-show="isOpen" 
+        class="collapse-content">
+        <slot/>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>

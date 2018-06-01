@@ -1,13 +1,15 @@
 <template>
-    <transition :name="animation">
-        <div
-            class="loading-overlay is-active"
-            :class="{ 'is-full-page': isFullPage }"
-            v-if="isActive">
-            <div class="loading-background" @click="cancel"/>
-            <div class="loading-icon"/>
-        </div>
-    </transition>
+  <transition :name="animation">
+    <div
+      v-if="isActive"
+      :class="{ 'is-full-page': isFullPage }"
+      class="loading-overlay is-active">
+      <div 
+        class="loading-background" 
+        @click="cancel"/>
+      <div class="loading-icon"/>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -47,6 +49,31 @@
                 this.isActive = value
             }
         },
+        created() {
+            if (typeof window !== 'undefined') {
+                document.addEventListener('keyup', this.keyPress)
+            }
+        },
+        beforeMount() {
+            // Insert the Loading component in body tag
+            // only if it's programmatic
+            if (this.programmatic) {
+                if (!this.container) {
+                    document.body.appendChild(this.$el)
+                } else {
+                    this.isFullPage = false
+                    this.container.appendChild(this.$el)
+                }
+            }
+        },
+        mounted() {
+            if (this.programmatic) this.isActive = true
+        },
+        beforeDestroy() {
+            if (typeof window !== 'undefined') {
+                document.removeEventListener('keyup', this.keyPress)
+            }
+        },
         methods: {
             /**
              * Close the Modal if canCancel.
@@ -81,30 +108,5 @@
                 if (event.keyCode === 27) this.cancel()
             }
         },
-        created() {
-            if (typeof window !== 'undefined') {
-                document.addEventListener('keyup', this.keyPress)
-            }
-        },
-        beforeMount() {
-            // Insert the Loading component in body tag
-            // only if it's programmatic
-            if (this.programmatic) {
-                if (!this.container) {
-                    document.body.appendChild(this.$el)
-                } else {
-                    this.isFullPage = false
-                    this.container.appendChild(this.$el)
-                }
-            }
-        },
-        mounted() {
-            if (this.programmatic) this.isActive = true
-        },
-        beforeDestroy() {
-            if (typeof window !== 'undefined') {
-                document.removeEventListener('keyup', this.keyPress)
-            }
-        }
     }
 </script>

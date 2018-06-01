@@ -1,31 +1,33 @@
 <template>
-    <section class="datepicker-table">
-        <header class="datepicker-header">
-            <div
-                v-for="(day, index) in visibleDayNames"
-                :key="index"
-                class="datepicker-cell">
-                {{ day }}
-            </div>
-        </header>
-        <div class="datepicker-body" :class="{'has-events':hasEvents}">
-            <b-datepicker-table-row
-                v-for="(week, index) in weeksInThisMonth(focused.month, focused.year)"
-                :key="index"
-                :selected-date="value"
-                :week="week"
-                :month="focused.month"
-                :min-date="minDate"
-                :max-date="maxDate"
-                :disabled="disabled"
-                :unselectable-dates="unselectableDates"
-                :unselectable-days-of-week="unselectableDaysOfWeek"
-                :selectable-dates="selectableDates"
-                :events="eventsInThisWeek(week, index)"
-                :indicators="indicators"
-                @select="updateSelectedDate"/>
-        </div>
-    </section>
+  <section class="datepicker-table">
+    <header class="datepicker-header">
+      <div
+        v-for="(day, index) in visibleDayNames"
+        :key="index"
+        class="datepicker-cell">
+        {{ day }}
+      </div>
+    </header>
+    <div 
+      :class="{'has-events':hasEvents}" 
+      class="datepicker-body">
+      <b-datepicker-table-row
+        v-for="(week, index) in weeksInThisMonth(focused.month, focused.year)"
+        :key="index"
+        :selected-date="value"
+        :week="week"
+        :month="focused.month"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :disabled="disabled"
+        :unselectable-dates="unselectableDates"
+        :unselectable-days-of-week="unselectableDaysOfWeek"
+        :selectable-dates="selectableDates"
+        :events="eventsInThisWeek(week, index)"
+        :indicators="indicators"
+        @select="updateSelectedDate"/>
+    </div>
+  </section>
 </template>
 
 <script>

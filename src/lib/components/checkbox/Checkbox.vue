@@ -1,22 +1,24 @@
 <template>
-    <label
-        class="b-checkbox checkbox"
-        :class="[size, { 'is-disabled': disabled }]"
-        ref="label"
-        :disabled="disabled"
-        :tabindex="disabled ? false : 0"
-        @keydown.prevent.enter.space="$refs.label.click()">
-        <input
-            v-model="newValue"
-            type="checkbox"
-            :disabled="disabled"
-            :name="name"
-            :value="nativeValue"
-            :true-value="trueValue"
-            :false-value="falseValue">
-        <span class="check" :class="type" />
-        <span class="control-label"><slot/></span>
-    </label>
+  <label
+    ref="label"
+    :class="[size, { 'is-disabled': disabled }]"
+    :disabled="disabled"
+    :tabindex="disabled ? false : 0"
+    class="b-checkbox checkbox"
+    @keydown.prevent.enter.space="$refs.label.click()">
+    <input
+      v-model="newValue"
+      :disabled="disabled"
+      :name="name"
+      :value="nativeValue"
+      :true-value="trueValue"
+      :false-value="falseValue"
+      type="checkbox">
+    <span 
+      :class="type" 
+      class="check" />
+    <span class="control-label"><slot/></span>
+  </label>
 </template>
 
 <script>

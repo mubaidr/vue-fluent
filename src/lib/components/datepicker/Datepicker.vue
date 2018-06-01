@@ -1,139 +1,145 @@
 <template>
-    <div class="datepicker control" :class="[size, {'is-expanded': expanded}]">
-        <b-dropdown
-            v-if="!isMobile || inline"
-            ref="dropdown"
-            :position="position"
-            :disabled="disabled"
-            :inline="inline">
-            <b-input
-                v-if="!inline"
-                ref="input"
-                slot="trigger"
-                autocomplete="off"
-                :value="formatValue(dateSelected)"
-                :placeholder="placeholder"
-                :size="size"
-                :icon="icon"
-                :icon-pack="iconPack"
-                :rounded="rounded"
-                :loading="loading"
-                :disabled="disabled"
-                :readonly="readonly"
-                v-bind="$attrs"
-                @change.native="onChange($event.target.value)"
-                @focus="$emit('focus', $event)"
-                @blur="$emit('blur', $event) && checkHtml5Validity()"/>
+  <div 
+    :class="[size, {'is-expanded': expanded}]" 
+    class="datepicker control">
+    <b-dropdown
+      v-if="!isMobile || inline"
+      ref="dropdown"
+      :position="position"
+      :disabled="disabled"
+      :inline="inline">
+      <b-input
+        v-if="!inline"
+        ref="input"
+        slot="trigger"
+        :value="formatValue(dateSelected)"
+        :placeholder="placeholder"
+        :size="size"
+        :icon="icon"
+        :icon-pack="iconPack"
+        :rounded="rounded"
+        :loading="loading"
+        :disabled="disabled"
+        :readonly="readonly"
+        v-bind="$attrs"
+        autocomplete="off"
+        @change.native="onChange($event.target.value)"
+        @focus="$emit('focus', $event)"
+        @blur="$emit('blur', $event) && checkHtml5Validity()"/>
 
-            <b-dropdown-item :disabled="disabled" custom>
-                <header class="datepicker-header">
-                    <template v-if="$slots.header !== undefined && $slots.header.length">
-                        <slot name="header" />
-                    </template>
-                    <div v-else class="pagination field is-centered">
-                        <a
-                            v-if="!isFirstMonth && !disabled"
-                            class="pagination-previous"
-                            role="button"
-                            href="#"
-                            :disabled="disabled"
-                            @click.prevent="decrementMonth"
-                            @keydown.enter.prevent="decrementMonth"
-                            @keydown.space.prevent="decrementMonth">
+      <b-dropdown-item 
+        :disabled="disabled" 
+        custom>
+        <header class="datepicker-header">
+          <template v-if="$slots.header !== undefined && $slots.header.length">
+            <slot name="header" />
+          </template>
+          <div 
+            v-else 
+            class="pagination field is-centered">
+            <a
+              v-if="!isFirstMonth && !disabled"
+              :disabled="disabled"
+              class="pagination-previous"
+              role="button"
+              href="#"
+              @click.prevent="decrementMonth"
+              @keydown.enter.prevent="decrementMonth"
+              @keydown.space.prevent="decrementMonth">
 
-                            <b-icon
-                                icon="chevron-left"
-                                :pack="iconPack"
-                                both
-                                type="is-primary is-clickable"/>
-                        </a>
-                        <a
-                            v-show="!isLastMonth && !disabled"
-                            class="pagination-next"
-                            role="button"
-                            href="#"
-                            :disabled="disabled"
-                            @click.prevent="incrementMonth"
-                            @keydown.enter.prevent="incrementMonth"
-                            @keydown.space.prevent="incrementMonth">
+              <b-icon
+                :pack="iconPack"
+                icon="chevron-left"
+                both
+                type="is-primary is-clickable"/>
+            </a>
+            <a
+              v-show="!isLastMonth && !disabled"
+              :disabled="disabled"
+              class="pagination-next"
+              role="button"
+              href="#"
+              @click.prevent="incrementMonth"
+              @keydown.enter.prevent="incrementMonth"
+              @keydown.space.prevent="incrementMonth">
 
-                            <b-icon
-                                icon="chevron-right"
-                                :pack="iconPack"
-                                both
-                                type="is-primary is-clickable"/>
-                        </a>
-                        <div class="pagination-list">
-                            <b-field>
-                                <b-select
-                                    v-model="focusedDateData.month"
-                                    :disabled="disabled">
-                                    <option
-                                        v-for="(month, index) in monthNames"
-                                        :value="index"
-                                        :key="month">
-                                        {{ month }}
-                                    </option>
-                                </b-select>
-                                <b-select
-                                    v-model="focusedDateData.year"
-                                    :disabled="disabled">
-                                    <option
-                                        v-for="year in listOfYears"
-                                        :value="year"
-                                        :key="year">
-                                        {{ year }}
-                                    </option>
-                                </b-select>
-                            </b-field>
-                        </div>
-                    </div>
-                </header>
+              <b-icon
+                :pack="iconPack"
+                icon="chevron-right"
+                both
+                type="is-primary is-clickable"/>
+            </a>
+            <div class="pagination-list">
+              <b-field>
+                <b-select
+                  v-model="focusedDateData.month"
+                  :disabled="disabled">
+                  <option
+                    v-for="(month, index) in monthNames"
+                    :value="index"
+                    :key="month">
+                    {{ month }}
+                  </option>
+                </b-select>
+                <b-select
+                  v-model="focusedDateData.year"
+                  :disabled="disabled">
+                  <option
+                    v-for="year in listOfYears"
+                    :value="year"
+                    :key="year">
+                    {{ year }}
+                  </option>
+                </b-select>
+              </b-field>
+            </div>
+          </div>
+        </header>
 
-                <b-datepicker-table
-                    v-model="dateSelected"
-                    :day-names="dayNames"
-                    :month-names="monthNames"
-                    :first-day-of-week="firstDayOfWeek"
-                    :min-date="minDate"
-                    :max-date="maxDate"
-                    :focused="focusedDateData"
-                    :disabled="disabled"
-                    :unselectable-dates="unselectableDates"
-                    :unselectable-days-of-week="unselectableDaysOfWeek"
-                    :selectable-dates="selectableDates"
-                    :events="events"
-                    :indicators="indicators"
-                    @close="$refs.dropdown.isActive = false"/>
+        <b-datepicker-table
+          v-model="dateSelected"
+          :day-names="dayNames"
+          :month-names="monthNames"
+          :first-day-of-week="firstDayOfWeek"
+          :min-date="minDate"
+          :max-date="maxDate"
+          :focused="focusedDateData"
+          :disabled="disabled"
+          :unselectable-dates="unselectableDates"
+          :unselectable-days-of-week="unselectableDaysOfWeek"
+          :selectable-dates="selectableDates"
+          :events="events"
+          :indicators="indicators"
+          @close="$refs.dropdown.isActive = false"/>
 
-                <footer
-                    v-if="$slots.default !== undefined && $slots.default.length"
-                    class="datepicker-footer">
-                    <slot/>
-                </footer>
-            </b-dropdown-item>
-        </b-dropdown>
+        <footer
+          v-if="$slots.default !== undefined && $slots.default.length"
+          class="datepicker-footer">
+          <slot/>
+        </footer>
+      </b-dropdown-item>
+    </b-dropdown>
 
-        <b-input
-            v-else
-            ref="input"
-            type="date"
-            autocomplete="off"
-            :value="formatYYYYMMDD(value)"
-            :placeholder="placeholder"
-            :size="size"
-            :icon="icon"
-            :icon-pack="iconPack"
-            :loading="loading"
-            :max="formatYYYYMMDD(maxDate)"
-            :min="formatYYYYMMDD(minDate)"
-            :disabled="disabled"
-            :readonly="false"
-            v-bind="$attrs"
-            @change.native="onChangeNativePicker"
-            @focus="$emit('focus', $event)"
-            @blur="$emit('blur', $event) && checkHtml5Validity()"/>
-    </div>
+    <b-input
+      v-else
+      ref="input"
+      :value="formatYYYYMMDD(value)"
+      :placeholder="placeholder"
+      :size="size"
+      :icon="icon"
+      :icon-pack="iconPack"
+      :loading="loading"
+      :max="formatYYYYMMDD(maxDate)"
+      :min="formatYYYYMMDD(minDate)"
+      :disabled="disabled"
+      :readonly="false"
+      v-bind="$attrs"
+      type="date"
+      autocomplete="off"
+      @change.native="onChangeNativePicker"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event) && checkHtml5Validity()"/>
+  </div>
 </template>
 
 <script>

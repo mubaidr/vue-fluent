@@ -1,65 +1,69 @@
 <template>
-    <div class="taginput control" :class="rootClasses">
-        <div
-            class="taginput-container"
-            :class="[statusType, size, containerClasses]"
-            :disabled="disabled"
-            @click="hasInput && focus($event)">
-            <b-tag
-                v-for="(tag, index) in tags"
-                :key="index"
-                :type="type"
-                :size="size"
-                :rounded="rounded"
-                :attached="attached"
-                :tabstop="false"
-                :disabled="disabled"
-                closable
-                @close="removeTag(index)">
-                {{ getNormalizedTagText(tag) }}
-            </b-tag>
+  <div 
+    :class="rootClasses" 
+    class="taginput control">
+    <div
+      :class="[statusType, size, containerClasses]"
+      :disabled="disabled"
+      class="taginput-container"
+      @click="hasInput && focus($event)">
+      <b-tag
+        v-for="(tag, index) in tags"
+        :key="index"
+        :type="type"
+        :size="size"
+        :rounded="rounded"
+        :attached="attached"
+        :tabstop="false"
+        :disabled="disabled"
+        closable
+        @close="removeTag(index)">
+        {{ getNormalizedTagText(tag) }}
+      </b-tag>
 
-            <b-autocomplete
-                ref="autocomplete"
-                v-if="hasInput"
-                v-model="newTag"
-                v-bind="$attrs"
-                :data="data"
-                :field="field"
-                :icon="icon"
-                :icon-pack="iconPack"
-                :maxlength="maxlength"
-                :has-counter="false"
-                :size="size"
-                :disabled="disabled"
-                :loading="loading"
-                keep-first
-                @focus="onFocus"
-                @blur="customOnBlur"
-                @keydown.native="keydown"
-                @select="onSelect">
-                <template
-                    :slot="defaultSlotName"
-                    slot-scope="props">
-                    <slot
-                        :option="props.option"
-                        :index="props.index" />
-                </template>
-                <template :slot="emptySlotName">
-                    <slot name="empty" />
-                </template>
-            </b-autocomplete>
-        </div>
-
-        <p v-if="maxtags || maxlength" class="help counter">
-            <template v-if="maxlength && valueLength > 0">
-                {{ valueLength }} / {{ maxlength }}
-            </template>
-            <template v-else-if="maxtags">
-                {{ tagsLength }} / {{ maxtags }}
-            </template>
-        </p>
+      <b-autocomplete
+        v-if="hasInput"
+        ref="autocomplete"
+        v-model="newTag"
+        v-bind="$attrs"
+        :data="data"
+        :field="field"
+        :icon="icon"
+        :icon-pack="iconPack"
+        :maxlength="maxlength"
+        :has-counter="false"
+        :size="size"
+        :disabled="disabled"
+        :loading="loading"
+        keep-first
+        @focus="onFocus"
+        @blur="customOnBlur"
+        @keydown.native="keydown"
+        @select="onSelect">
+        <template
+          slot-scope="props"
+          :slot="defaultSlotName">
+          <slot
+            :option="props.option"
+            :index="props.index" />
+        </template>
+        <template :slot="emptySlotName">
+          <slot name="empty" />
+        </template>
+      </b-autocomplete>
     </div>
+
+    <p 
+      v-if="maxtags || maxlength" 
+      class="help counter">
+      <template v-if="maxlength && valueLength > 0">
+        {{ valueLength }} / {{ maxlength }}
+      </template>
+      <template v-else-if="maxtags">
+        {{ tagsLength }} / {{ maxtags }}
+      </template>
+    </p>
+  </div>
 </template>
 
 <script>

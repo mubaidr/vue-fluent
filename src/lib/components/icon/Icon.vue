@@ -1,7 +1,9 @@
 <template>
-    <span class="icon" :class="[newType, size]">
-        <i :class="[newPack, newIcon, newCustomSize, customClass]"/>
-    </span>
+  <span 
+    :class="[newType, size]" 
+    class="icon">
+    <i :class="[newPack, newIcon, newCustomSize, customClass]"/>
+  </span>
 </template>
 
 <script>

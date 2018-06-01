@@ -1,30 +1,32 @@
 <template>
-    <div class="field table-mobile-sort">
-        <div class="field has-addons">
-            <b-select v-model="mobileSort" expanded>
-                <option
-                    v-for="(column, index) in columns"
-                    v-if="column.sortable"
-                    :key="index"
-                    :value="column">
-                    {{ column.label }}
-                </option>
-            </b-select>
-            <div class="control">
-                <button
-                    class="button is-primary"
-                    @click="sort">
-                    <b-icon
-                        v-show="currentSortColumn === mobileSort"
-                        :class="{ 'is-desc': !isAsc }"
-                        icon="arrow-up"
-                        size="is-small"
-                        both
-                    />
-                </button>
-            </div>
-        </div>
+  <div class="field table-mobile-sort">
+    <div class="field has-addons">
+      <b-select 
+        v-model="mobileSort" 
+        expanded>
+        <option
+          v-for="(column, index) in columns"
+          v-if="column.sortable"
+          :key="index"
+          :value="column">
+          {{ column.label }}
+        </option>
+      </b-select>
+      <div class="control">
+        <button
+          class="button is-primary"
+          @click="sort">
+          <b-icon
+            v-show="currentSortColumn === mobileSort"
+            :class="{ 'is-desc': !isAsc }"
+            icon="arrow-up"
+            size="is-small"
+            both
+          />
+        </button>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

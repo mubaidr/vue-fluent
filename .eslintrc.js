@@ -21,6 +21,7 @@ module.exports = {
     'vue/no-reserved-keys': 'off',
     semi: 'off',
     'comma-dangle': 'off',
+    'vue/require-default-prop': 'off',
   },
   globals: {
     document: true,

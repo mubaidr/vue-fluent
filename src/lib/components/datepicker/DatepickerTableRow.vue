@@ -1,37 +1,39 @@
 <template>
-    <div class="datepicker-row">
-        <template v-for="(day, index) in week">
-            <a
-                v-if="selectableDate(day) && !disabled"
-                :key="index"
-                :class="[classObject(day), {'has-event':eventsDateMatch(day)}, indicators]"
-                class="datepicker-cell"
-                role="button"
-                href="#"
-                :disabled="disabled"
-                @click.prevent="emitChosenDate(day)"
-                @keydown.enter.prevent="emitChosenDate(day)"
-                @keydown.space.prevent="emitChosenDate(day)">
-                {{ day.getDate() }}
+  <div class="datepicker-row">
+    <template v-for="(day, index) in week">
+      <a
+        v-if="selectableDate(day) && !disabled"
+        :key="index"
+        :class="[classObject(day), {'has-event':eventsDateMatch(day)}, indicators]"
+        :disabled="disabled"
+        class="datepicker-cell"
+        role="button"
+        href="#"
+        @click.prevent="emitChosenDate(day)"
+        @keydown.enter.prevent="emitChosenDate(day)"
+        @keydown.space.prevent="emitChosenDate(day)">
+        {{ day.getDate() }}
 
-                <div class="events" v-if="eventsDateMatch(day)">
-                    <div
-                        class="event"
-                        :class="event.type"
-                        v-for="(event, index) in eventsDateMatch(day)"
-                        :key="index"/>
-                </div>
+        <div 
+          v-if="eventsDateMatch(day)" 
+          class="events">
+          <div
+            v-for="(event, index) in eventsDateMatch(day)"
+            :class="event.type"
+            :key="index"
+            class="event"/>
+        </div>
 
-            </a>
-            <div
-                v-else
-                :key="index"
-                :class="classObject(day)"
-                class="datepicker-cell">
-                {{ day.getDate() }}
-            </div>
-        </template>
-    </div>
+      </a>
+      <div
+        v-else
+        :key="index"
+        :class="classObject(day)"
+        class="datepicker-cell">
+        {{ day.getDate() }}
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>

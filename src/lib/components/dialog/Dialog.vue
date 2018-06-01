@@ -1,65 +1,73 @@
 <template>
-    <transition :name="animation">
-        <div
-            v-if="isActive"
-            class="dialog modal is-active"
-            :class="size">
-            <div class="modal-background" @click="cancel('outside')"/>
-            <div class="modal-card animation-content">
-                <header class="modal-card-head" v-if="title">
-                    <p class="modal-card-title">{{ title }}</p>
-                </header>
+  <transition :name="animation">
+    <div
+      v-if="isActive"
+      :class="size"
+      class="dialog modal is-active">
+      <div 
+        class="modal-background" 
+        @click="cancel('outside')"/>
+      <div class="modal-card animation-content">
+        <header 
+          v-if="title" 
+          class="modal-card-head">
+          <p class="modal-card-title">{{ title }}</p>
+        </header>
 
-                <section
-                    class="modal-card-body"
-                    :class="{ 'is-titleless': !title, 'is-flex': hasIcon }">
-                    <div class="media">
-                        <div class="media-left" v-if="hasIcon">
-                            <b-icon
-                                :icon="icon ? icon : iconByType"
-                                :pack="iconPack"
-                                :type="type"
-                                :both="!icon"
-                                size="is-large"/>
-                        </div>
-                        <div class="media-content">
-                            <p v-html="message"/>
-
-                            <div v-if="hasInput" class="field">
-                                <div class="control">
-                                    <input
-                                        v-model="prompt"
-                                        class="input"
-                                        ref="input"
-                                        :class="{ 'is-danger': validationMessage }"
-                                        v-bind="inputAttrs"
-                                        @keyup.enter="confirm">
-                                </div>
-                                <p class="help is-danger">{{ validationMessage }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <footer class="modal-card-foot">
-                    <button
-                        v-if="showCancel"
-                        class="button"
-                        ref="cancelButton"
-                        @click="cancel('button')">
-                        {{ cancelText }}
-                    </button>
-                    <button
-                        class="button"
-                        :class="type"
-                        ref="confirmButton"
-                        @click="confirm">
-                        {{ confirmText }}
-                    </button>
-                </footer>
+        <section
+          :class="{ 'is-titleless': !title, 'is-flex': hasIcon }"
+          class="modal-card-body">
+          <div class="media">
+            <div 
+              v-if="hasIcon" 
+              class="media-left">
+              <b-icon
+                :icon="icon ? icon : iconByType"
+                :pack="iconPack"
+                :type="type"
+                :both="!icon"
+                size="is-large"/>
             </div>
-        </div>
-    </transition>
+            <div class="media-content">
+              <p v-html="message"/>
+
+              <div 
+                v-if="hasInput" 
+                class="field">
+                <div class="control">
+                  <input
+                    ref="input"
+                    v-model="prompt"
+                    :class="{ 'is-danger': validationMessage }"
+                    v-bind="inputAttrs"
+                    class="input"
+                    @keyup.enter="confirm">
+                </div>
+                <p class="help is-danger">{{ validationMessage }}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer class="modal-card-foot">
+          <button
+            v-if="showCancel"
+            ref="cancelButton"
+            class="button"
+            @click="cancel('button')">
+            {{ cancelText }}
+          </button>
+          <button
+            ref="confirmButton"
+            :class="type"
+            class="button"
+            @click="confirm">
+            {{ confirmText }}
+          </button>
+        </footer>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -144,6 +152,28 @@
                 return this.cancelOptions.indexOf('button') >= 0
             }
         },
+        beforeMount() {
+            // Insert the Dialog component in body tag
+            document.body.appendChild(this.$el)
+        },
+        mounted() {
+            this.isActive = true
+
+            if (typeof this.inputAttrs.required === 'undefined') {
+                this.$set(this.inputAttrs, 'required', true)
+            }
+
+            this.$nextTick(() => {
+                // Handle which element receives focus
+                if (this.hasInput) {
+                    this.$refs.input.focus()
+                } else if (this.focusOn === 'cancel' && this.showCancel) {
+                    this.$refs.cancelButton.focus()
+                } else {
+                    this.$refs.confirmButton.focus()
+                }
+            })
+        },
         methods: {
             /**
              * If it's a prompt Dialog, validate the input.
@@ -174,27 +204,5 @@
                 }, 150)
             }
         },
-        beforeMount() {
-            // Insert the Dialog component in body tag
-            document.body.appendChild(this.$el)
-        },
-        mounted() {
-            this.isActive = true
-
-            if (typeof this.inputAttrs.required === 'undefined') {
-                this.$set(this.inputAttrs, 'required', true)
-            }
-
-            this.$nextTick(() => {
-                // Handle which element receives focus
-                if (this.hasInput) {
-                    this.$refs.input.focus()
-                } else if (this.focusOn === 'cancel' && this.showCancel) {
-                    this.$refs.cancelButton.focus()
-                } else {
-                    this.$refs.confirmButton.focus()
-                }
-            })
-        }
     }
 </script>

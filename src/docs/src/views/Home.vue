@@ -36,7 +36,7 @@
                 <code>
                   import 'vue-fluent/dist/vue-fluent.min.css'
                 </code>
-                <br/>or<br/>
+                <br>or<br>
                 <code>
                   import 'vue-fluent/src/lib/index.scss';
                 </code>
@@ -79,7 +79,7 @@ $family-sans-serif: "Calibri", "Arial"
 
 // Import the vue-fluent
 @import 'vue-fluent/src/lib/index.scss'
-</code></pre>
+            </code></pre>
           </p>
         </div>
       </div>

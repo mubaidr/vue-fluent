@@ -1,27 +1,33 @@
 <template>
-    <nav class="panel">
-        <div
-            class="panel-heading"
-            :class="{'is-collapsible' : collapsible}"
-            @click="toggle">
-            <span v-if="header" v-html="header"/>
-            <slot v-else name="header"/>
-            <b-icon
-                class="is-pulled-right"
-                v-if="collapsible"
-                both
-                :icon="isOpen ? 'menu-up' : 'menu-down'"/>
-        </div>
-        <transition :name="animation">
-            <div
-                class="panel-content"
-                :class="{'panel-block' : !hasCustomTemplate}"
-                v-show="isOpen">
-                <div v-if="content" v-html="content"/>
-                <slot v-else/>
-            </div>
-        </transition>
-    </nav>
+  <nav class="panel">
+    <div
+      :class="{'is-collapsible' : collapsible}"
+      class="panel-heading"
+      @click="toggle">
+      <span 
+        v-if="header" 
+        v-html="header"/>
+      <slot 
+        v-else 
+        name="header"/>
+      <b-icon
+        v-if="collapsible"
+        :icon="isOpen ? 'menu-up' : 'menu-down'"
+        class="is-pulled-right"
+        both/>
+    </div>
+    <transition :name="animation">
+      <div
+        v-show="isOpen"
+        :class="{'panel-block' : !hasCustomTemplate}"
+        class="panel-content">
+        <div 
+          v-if="content" 
+          v-html="content"/>
+        <slot v-else/>
+      </div>
+    </transition>
+  </nav>
 </template>
 
 <script>

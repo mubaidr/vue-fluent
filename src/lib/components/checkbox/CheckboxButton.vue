@@ -1,21 +1,21 @@
 <template>
-    <div class="control">
-        <label
-            class="b-checkbox checkbox button"
-            ref="label"
-            :class="[checked ? type : null, size, { 'is-disabled': disabled }]"
-            :disabled="disabled"
-            :tabindex="disabled ? false : 0"
-            @keydown.prevent.enter.space="$refs.label.click()">
-            <slot/>
-            <input
-                v-model="newValue"
-                type="checkbox"
-                :disabled="disabled"
-                :name="name"
-                :value="nativeValue">
-        </label>
-    </div>
+  <div class="control">
+    <label
+      ref="label"
+      :class="[checked ? type : null, size, { 'is-disabled': disabled }]"
+      :disabled="disabled"
+      :tabindex="disabled ? false : 0"
+      class="b-checkbox checkbox button"
+      @keydown.prevent.enter.space="$refs.label.click()">
+      <slot/>
+      <input
+        v-model="newValue"
+        :disabled="disabled"
+        :name="name"
+        :value="nativeValue"
+        type="checkbox">
+    </label>
+  </div>
 </template>
 
 <script>

@@ -1,33 +1,33 @@
 <template>
-    <label class="upload control">
-        <template v-if="!dragDrop">
-            <slot/>
-        </template>
+  <label class="upload control">
+    <template v-if="!dragDrop">
+      <slot/>
+    </template>
 
-        <div
-            v-else
-            class="upload-draggable"
-            :class="[type, {
-                'is-loading': loading,
-                'is-disabled': disabled,
-                'is-hovered': dragDropFocus
-            }]"
-            @dragover.prevent="updateDragDropFocus(true)"
-            @dragleave.prevent="updateDragDropFocus(false)"
-            @dragenter.prevent="updateDragDropFocus(true)"
-            @drop.prevent="onFileChange">
-            <slot/>
-        </div>
+    <div
+      v-else
+      :class="[type, {
+        'is-loading': loading,
+        'is-disabled': disabled,
+        'is-hovered': dragDropFocus
+      }]"
+      class="upload-draggable"
+      @dragover.prevent="updateDragDropFocus(true)"
+      @dragleave.prevent="updateDragDropFocus(false)"
+      @dragenter.prevent="updateDragDropFocus(true)"
+      @drop.prevent="onFileChange">
+      <slot/>
+    </div>
 
-        <input
-            ref="input"
-            type="file"
-            v-bind="$attrs"
-            :multiple="multiple"
-            :accept="accept"
-            :disabled="disabled"
-            @change="onFileChange">
-    </label>
+    <input
+      ref="input"
+      v-bind="$attrs"
+      :multiple="multiple"
+      :accept="accept"
+      :disabled="disabled"
+      type="file"
+      @change="onFileChange">
+  </label>
 </template>
 
 <script>

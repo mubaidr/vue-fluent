@@ -1,7 +1,9 @@
 <template>
-    <div class="tags" :class="{ 'has-addons': attached }">
-        <slot/>
-    </div>
+  <div 
+    :class="{ 'has-addons': attached }" 
+    class="tags">
+    <slot/>
+  </div>
 </template>
 
 <script>

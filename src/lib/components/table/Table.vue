@@ -1,168 +1,186 @@
 <template>
-    <div class="b-table" :class="{ 'is-loading': loading }">
-        <b-table-mobile-sort
-            v-if="mobileCards && hasSortablenewColumns"
-            :current-sort-column="currentSortColumn"
-            :is-asc="isAsc"
-            :columns="newColumns"
-            @sort="(column) => sort(column)"
-        />
+  <div 
+    :class="{ 'is-loading': loading }" 
+    class="b-table">
+    <b-table-mobile-sort
+      v-if="mobileCards && hasSortablenewColumns"
+      :current-sort-column="currentSortColumn"
+      :is-asc="isAsc"
+      :columns="newColumns"
+      @sort="(column) => sort(column)"
+    />
 
-        <div class="table-wrapper">
-            <table
-                class="table"
-                :class="tableClasses"
-                :tabindex="!focusable ? false : 0"
-                @keydown.prevent.up="pressedArrow(-1)"
-                @keydown.prevent.down="pressedArrow(1)">
-                <thead v-if="newColumns.length">
-                    <tr>
-                        <th v-if="detailed" width="40px"/>
-                        <th class="checkbox-cell" v-if="checkable">
-                            <b-checkbox :value="isAllChecked" @change.native="checkAll"/>
-                        </th>
-                        <th
-                            v-for="(column, index) in newColumns"
-                            v-if="column.visible || column.visible === undefined"
-                            :key="index"
-                            :class="{
-                                'is-current-sort': currentSortColumn === column,
-                                'is-sortable': column.sortable
-                            }"
-                            :style="{ width: column.width + 'px' }"
-                            @click.stop="sort(column)">
-                            <div
-                                class="th-wrap"
-                                :class="{
-                                    'is-numeric': column.numeric,
-                                    'is-centered': column.centered
-                            }">
-                                <slot
-                                    v-if="$scopedSlots.header"
-                                    name="header"
-                                    :column="column"
-                                    :index="index"
-                                />
-                                <template v-else>{{ column.label }}</template>
+    <div class="table-wrapper">
+      <table
+        :class="tableClasses"
+        :tabindex="!focusable ? false : 0"
+        class="table"
+        @keydown.prevent.up="pressedArrow(-1)"
+        @keydown.prevent.down="pressedArrow(1)">
+        <thead v-if="newColumns.length">
+          <tr>
+            <th 
+              v-if="detailed" 
+              width="40px"/>
+            <th 
+              v-if="checkable" 
+              class="checkbox-cell">
+              <b-checkbox 
+                :value="isAllChecked" 
+                @change.native="checkAll"/>
+            </th>
+            <th
+              v-for="(column, index) in newColumns"
+              v-if="column.visible || column.visible === undefined"
+              :key="index"
+              :class="{
+                'is-current-sort': currentSortColumn === column,
+                'is-sortable': column.sortable
+              }"
+              :style="{ width: column.width + 'px' }"
+              @click.stop="sort(column)">
+              <div
+                :class="{
+                  'is-numeric': column.numeric,
+                  'is-centered': column.centered
+                }"
+                class="th-wrap">
+                <slot
+                  v-if="$scopedSlots.header"
+                  :column="column"
+                  :index="index"
+                  name="header"
+                />
+                <template v-else>{{ column.label }}</template>
 
-                                <b-icon
-                                    v-show="currentSortColumn === column"
-                                    icon="arrow-up"
-                                    both
-                                    size="is-small"
-                                    :class="{ 'is-desc': !isAsc }"/>
-                            </div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody v-if="visibleData.length">
-                    <template v-for="(row, index) in visibleData">
+                <b-icon
+                  v-show="currentSortColumn === column"
+                  :class="{ 'is-desc': !isAsc }"
+                  icon="arrow-up"
+                  both
+                  size="is-small"/>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody v-if="visibleData.length">
+          <template v-for="(row, index) in visibleData">
+            <tr
+              :key="index"
+              :class="[rowClass(row, index), {
+                'is-selected': row === selected,
+                'is-checked': isRowChecked(row)
+              }]"
+              @click="selectRow(row)"
+              @dblclick="$emit('dblclick', row)">
+
+              <td
+                v-if="detailed"
+                class="chevron-cell"
+              >
+                <a
+                  v-if="hasDetailedVisible(row)"
+                  role="button"
+                  @click.stop="toggleDetails(row)">
+                  <b-icon
+                    :class="{'is-expanded': isVisibleDetailRow(row)}"
+                    icon="chevron-right"
+                    both/>
+                </a>
+              </td>
+
+              <td 
+                v-if="checkable" 
+                class="checkbox-cell">
+                <b-checkbox
+                  :disabled="!isRowCheckable(row)"
+                  :value="isRowChecked(row)"
+                  @change.native="checkRow(row)"
+                />
+              </td>
+
+              <slot
+                v-if="$scopedSlots.default"
+                :row="row"
+                :index="index"
+              />
+              <template v-else>
+                <BTableColumn
+                  v-for="column in newColumns"
+                  v-bind="column"
+                  :key="column.field"
+                  internal>
+                  <span
+                    v-if="column.renderHtml"
+                    v-html="getValueByPath(row, column.field)"
+                  />
+                  <template v-else>
+                    {{ getValueByPath(row, column.field) }}
+                  </template>
+                </BTableColumn>
+              </template>
+            </tr>
+
+            <!-- Do not add `key` here (breaks details) -->
+            <!-- eslint-disable-next-line -->
                         <tr
-                            :key="index"
-                            :class="[rowClass(row, index), {
-                                'is-selected': row === selected,
-                                'is-checked': isRowChecked(row)
-                            }]"
-                            @click="selectRow(row)"
-                            @dblclick="$emit('dblclick', row)">
-
-                            <td
-                                v-if="detailed"
-                                class="chevron-cell"
-                            >
-                                <a
-                                    v-if="hasDetailedVisible(row)"
-                                    role="button"
-                                    @click.stop="toggleDetails(row)">
-                                    <b-icon
-                                        icon="chevron-right"
-                                        both
-                                        :class="{'is-expanded': isVisibleDetailRow(row)}"/>
-                                </a>
-                            </td>
-
-                            <td class="checkbox-cell" v-if="checkable">
-                                <b-checkbox
-                                    :disabled="!isRowCheckable(row)"
-                                    :value="isRowChecked(row)"
-                                    @change.native="checkRow(row)"
-                                />
-                            </td>
-
-                            <slot
-                                v-if="$scopedSlots.default"
-                                :row="row"
-                                :index="index"
-                            />
-                            <template v-else>
-                                <BTableColumn
-                                    v-for="column in newColumns"
-                                    v-bind="column"
-                                    :key="column.field"
-                                    internal>
-                                    <span
-                                        v-if="column.renderHtml"
-                                        v-html="getValueByPath(row, column.field)"
-                                    />
-                                    <template v-else>
-                                        {{ getValueByPath(row, column.field) }}
-                                    </template>
-                                </BTableColumn>
-                            </template>
-                        </tr>
-
-                        <!-- Do not add `key` here (breaks details) -->
-                        <!-- eslint-disable-next-line -->
-                        <tr
-                            v-if="detailed && isVisibleDetailRow(row)"
-                            class="detail">
-                            <td :colspan="columnCount">
-                                <div class="detail-container">
-                                    <slot
-                                        name="detail"
-                                        :row="row"
-                                        :index="index"/>
-                                </div>
-                            </td>
-                        </tr>
-                    </template>
-                </tbody>
-                <tbody v-else>
-                    <tr class="is-empty">
-                        <td :colspan="columnCount">
-                            <slot name="empty"/>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot v-if="$slots.footer !== undefined">
-                    <tr class="table-footer">
-                        <slot name="footer" v-if="hasCustomFooterSlot()"/>
-                        <th :colspan="columnCount" v-else>
-                            <slot name="footer"/>
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-
-        <div v-if="checkable || paginated" class="level">
-            <div class="level-left">
-                <slot name="bottom-left"/>
-            </div>
-
-            <div class="level-right">
-                <div v-if="paginated" class="level-item">
-                    <b-pagination
-                        :total="newDataTotal"
-                        :per-page="perPage"
-                        :simple="paginationSimple"
-                        :size="paginationSize"
-                        :current="newCurrentPage"
-                        @change="pageChanged"/>
+              v-if="detailed && isVisibleDetailRow(row)"
+              class="detail">
+              <td :colspan="columnCount">
+                <div class="detail-container">
+                  <slot
+                    :row="row"
+                    :index="index"
+                    name="detail"/>
                 </div>
-            </div>
-        </div>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+        <tbody v-else>
+          <tr class="is-empty">
+            <td :colspan="columnCount">
+              <slot name="empty"/>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot v-if="$slots.footer !== undefined">
+          <tr class="table-footer">
+            <slot 
+              v-if="hasCustomFooterSlot()" 
+              name="footer"/>
+            <th 
+              v-else 
+              :colspan="columnCount">
+              <slot name="footer"/>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
     </div>
+
+    <div 
+      v-if="checkable || paginated" 
+      class="level">
+      <div class="level-left">
+        <slot name="bottom-left"/>
+      </div>
+
+      <div class="level-right">
+        <div 
+          v-if="paginated" 
+          class="level-item">
+          <b-pagination
+            :total="newDataTotal"
+            :per-page="perPage"
+            :simple="paginationSimple"
+            :size="paginationSize"
+            :current="newCurrentPage"
+            @change="pageChanged"/>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -407,6 +425,10 @@
             currentPage(newVal) {
                 this.newCurrentPage = newVal
             }
+        },
+
+        mounted() {
+            this.checkPredefinedDetailedRows()
         },
         methods: {
             /**
@@ -670,9 +692,5 @@
                 })
             }
         },
-
-        mounted() {
-            this.checkPredefinedDetailedRows()
-        }
     }
 </script>

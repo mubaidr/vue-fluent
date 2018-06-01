@@ -1,38 +1,40 @@
 <template>
-    <div
-        class="control"
-        :class="{ 'is-expanded': expanded, 'has-icons-left': icon }">
-        <span class="select" :class="spanClasses">
+  <div
+    :class="{ 'is-expanded': expanded, 'has-icons-left': icon }"
+    class="control">
+    <span 
+      :class="spanClasses" 
+      class="select">
 
-            <select
-                v-model="selected"
-                ref="select"
-                :multiple="multiple"
-                :size="nativeSize"
-                v-bind="$attrs"
-                @blur="$emit('blur', $event) && checkHtml5Validity()"
-                @focus="$emit('focus', $event)">
+      <select
+        ref="select"
+        v-model="selected"
+        :multiple="multiple"
+        :size="nativeSize"
+        v-bind="$attrs"
+        @blur="$emit('blur', $event) && checkHtml5Validity()"
+        @focus="$emit('focus', $event)">
 
-                <option
-                    v-if="placeholder"
-                    :value="null"
-                    selected
-                    disabled
-                    hidden>
-                    {{ placeholder }}
-                </option>
-                <slot/>
+        <option
+          v-if="placeholder"
+          :value="null"
+          selected
+          disabled
+          hidden>
+          {{ placeholder }}
+        </option>
+        <slot/>
 
-            </select>
-        </span>
+      </select>
+    </span>
 
-        <b-icon
-            v-if="icon"
-            class="is-left"
-            :icon="icon"
-            :pack="iconPack"
-            :size="iconSize"/>
-    </div>
+    <b-icon
+      v-if="icon"
+      :icon="icon"
+      :pack="iconPack"
+      :size="iconSize"
+      class="is-left"/>
+  </div>
 </template>
 
 <script>

@@ -1,20 +1,22 @@
 <template>
-    <label
-        class="b-radio radio"
-        ref="label"
-        :class="[size, { 'is-disabled': disabled }]"
-        :disabled="disabled"
-        :tabindex="disabled ? false : 0"
-        @keydown.prevent.enter.space="$refs.label.click()">
-        <input
-            v-model="newValue"
-            type="radio"
-            :disabled="disabled"
-            :name="name"
-            :value="nativeValue">
-        <span class="check" :class="type" />
-        <span class="control-label"><slot/></span>
-    </label>
+  <label
+    ref="label"
+    :class="[size, { 'is-disabled': disabled }]"
+    :disabled="disabled"
+    :tabindex="disabled ? false : 0"
+    class="b-radio radio"
+    @keydown.prevent.enter.space="$refs.label.click()">
+    <input
+      v-model="newValue"
+      :disabled="disabled"
+      :name="name"
+      :value="nativeValue"
+      type="radio">
+    <span 
+      :class="type" 
+      class="check" />
+    <span class="control-label"><slot/></span>
+  </label>
 </template>
 
 <script>

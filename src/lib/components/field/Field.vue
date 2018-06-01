@@ -1,41 +1,43 @@
 <template>
-    <div class="field" :class="[rootClasses, fieldType()]">
-        <div
-            v-if="horizontal"
-            class="field-label is-normal"
-            :class="customClass">
-            <label
-                v-if="label"
-                :for="labelFor"
-                class="label" >
-                {{ label }}
-            </label>
-        </div>
-        <template v-else>
-            <label
-                v-if="label"
-                :for="labelFor"
-                :class="customClass"
-                class="label">
-                {{ label }}
-            </label>
-        </template>
-        <b-field-body
-            v-if="horizontal"
-            :message="newMessage ? formattedMessage : ''"
-            :type="newType">
-            <slot/>
-        </b-field-body>
-        <template v-else>
-            <slot/>
-        </template>
-        <p
-            v-if="newMessage && !horizontal"
-            v-html="formattedMessage"
-            class="help"
-            :class="newType"
-        />
+  <div 
+    :class="[rootClasses, fieldType()]" 
+    class="field">
+    <div
+      v-if="horizontal"
+      :class="customClass"
+      class="field-label is-normal">
+      <label
+        v-if="label"
+        :for="labelFor"
+        class="label" >
+        {{ label }}
+      </label>
     </div>
+    <template v-else>
+      <label
+        v-if="label"
+        :for="labelFor"
+        :class="customClass"
+        class="label">
+        {{ label }}
+      </label>
+    </template>
+    <b-field-body
+      v-if="horizontal"
+      :message="newMessage ? formattedMessage : ''"
+      :type="newType">
+      <slot/>
+    </b-field-body>
+    <template v-else>
+      <slot/>
+    </template>
+    <p
+      v-if="newMessage && !horizontal"
+      :class="newType"
+      class="help"
+      v-html="formattedMessage"
+    />
+  </div>
 </template>
 
 <script>

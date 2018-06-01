@@ -1,18 +1,20 @@
 <template>
-    <hr v-if="separator" class="dropdown-divider">
-    <a
-        v-else-if="!custom && !hasLink"
-        class="dropdown-item"
-        :class="anchorClasses"
-        @click="selectItem">
-        <slot/>
-    </a>
-    <div
-        v-else
-        :class="itemClasses"
-        @click="selectItem">
-        <slot/>
-    </div>
+  <hr 
+    v-if="separator" 
+    class="dropdown-divider">
+  <a
+    v-else-if="!custom && !hasLink"
+    :class="anchorClasses"
+    class="dropdown-item"
+    @click="selectItem">
+    <slot/>
+  </a>
+  <div
+    v-else
+    :class="itemClasses"
+    @click="selectItem">
+    <slot/>
+  </div>
 </template>
 
 <script>
@@ -53,6 +55,12 @@
                 return !this.$parent.disabled && !this.separator && !this.disabled && !this.custom
             }
         },
+        created() {
+            if (!this.$parent.$data._isDropdown) {
+                this.$destroy()
+                throw new Error('You should wrap bDropdownItem on a bDropdown')
+            }
+        },
         methods: {
             /**
              * Click listener, select the item.
@@ -64,11 +72,5 @@
                 this.$emit('click')
             }
         },
-        created() {
-            if (!this.$parent.$data._isDropdown) {
-                this.$destroy()
-                throw new Error('You should wrap bDropdownItem on a bDropdown')
-            }
-        }
     }
 </script>

@@ -1,21 +1,21 @@
 <template>
-    <transition
-        :enter-active-class="transition.enter"
-        :leave-active-class="transition.leave">
-        <div
-            v-show="isActive"
-            class="snackbar"
-            :class="[type,position]">
-            <p class="text">{{ message }}</p>
-            <div
-                v-if="actionText"
-                class="action"
-                @click="action"
-                :class="type">
-                <button class="button is-dark">{{ actionText }}</button>
-            </div>
-        </div>
-    </transition>
+  <transition
+    :enter-active-class="transition.enter"
+    :leave-active-class="transition.leave">
+    <div
+      v-show="isActive"
+      :class="[type,position]"
+      class="snackbar">
+      <p class="text">{{ message }}</p>
+      <div
+        v-if="actionText"
+        :class="type"
+        class="action"
+        @click="action">
+        <button class="button is-dark">{{ actionText }}</button>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>

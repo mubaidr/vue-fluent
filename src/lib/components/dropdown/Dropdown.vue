@@ -1,32 +1,34 @@
 <template>
-    <div class="dropdown" :class="rootClasses">
-        <div
-            v-if="!inline"
-            role="button"
-            ref="trigger"
-            class="dropdown-trigger"
-            @click.stop="toggle">
-            <slot name="trigger"/>
-        </div>
-
-        <transition name="fade">
-            <div
-                v-if="isMobileModal"
-                v-show="isActive"
-                class="background"
-            />
-        </transition>
-        <transition name="fade">
-            <div
-                v-show="(!disabled && (isActive || hoverable)) || inline"
-                ref="dropdownMenu"
-                class="dropdown-menu">
-                <div class="dropdown-content">
-                    <slot/>
-                </div>
-            </div>
-        </transition>
+  <div 
+    :class="rootClasses" 
+    class="dropdown">
+    <div
+      v-if="!inline"
+      ref="trigger"
+      role="button"
+      class="dropdown-trigger"
+      @click.stop="toggle">
+      <slot name="trigger"/>
     </div>
+
+    <transition name="fade">
+      <div
+        v-if="isMobileModal"
+        v-show="isActive"
+        class="background"
+      />
+    </transition>
+    <transition name="fade">
+      <div
+        v-show="(!disabled && (isActive || hoverable)) || inline"
+        ref="dropdownMenu"
+        class="dropdown-menu">
+        <div class="dropdown-content">
+          <slot/>
+        </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -89,6 +91,16 @@
              */
             isActive(value) {
                 this.$emit('active-change', value)
+            }
+        },
+        created() {
+            if (typeof window !== 'undefined') {
+                document.addEventListener('click', this.clickedOutside)
+            }
+        },
+        beforeDestroy() {
+            if (typeof window !== 'undefined') {
+                document.removeEventListener('click', this.clickedOutside)
             }
         },
         methods: {
@@ -159,15 +171,5 @@
                 }
             }
         },
-        created() {
-            if (typeof window !== 'undefined') {
-                document.addEventListener('click', this.clickedOutside)
-            }
-        },
-        beforeDestroy() {
-            if (typeof window !== 'undefined') {
-                document.removeEventListener('click', this.clickedOutside)
-            }
-        }
     }
 </script>

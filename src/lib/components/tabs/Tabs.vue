@@ -1,35 +1,39 @@
 <template>
-    <div class="b-tabs" :class="{ 'is-fullwidth': expanded }">
-        <nav class="tabs" :class="navClasses">
-            <ul>
-                <li
-                    v-for="(tabItem, index) in tabItems"
-                    :key="index"
-                    v-show="tabItem.visible"
-                    :class="{ 'is-active': activeTab === index, 'is-disabled': tabItem.disabled }">
-                    <a @click="tabClick(index)">
-                        <template v-if="tabItem.$slots.header">
-                            <b-slot-component
-                                :component="tabItem"
-                                name="header"
-                                tag="span" />
-                        </template>
-                        <template v-else>
-                            <b-icon
-                                v-if="tabItem.icon"
-                                :icon="tabItem.icon"
-                                :pack="tabItem.iconPack"
-                                :size="size"/>
-                            <span>{{ tabItem.label }}</span>
-                        </template>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <section class="tab-content">
-            <slot/>
-        </section>
-    </div>
+  <div 
+    :class="{ 'is-fullwidth': expanded }" 
+    class="b-tabs">
+    <nav 
+      :class="navClasses" 
+      class="tabs">
+      <ul>
+        <li
+          v-for="(tabItem, index) in tabItems"
+          v-show="tabItem.visible"
+          :key="index"
+          :class="{ 'is-active': activeTab === index, 'is-disabled': tabItem.disabled }">
+          <a @click="tabClick(index)">
+            <template v-if="tabItem.$slots.header">
+              <b-slot-component
+                :component="tabItem"
+                name="header"
+                tag="span" />
+            </template>
+            <template v-else>
+              <b-icon
+                v-if="tabItem.icon"
+                :icon="tabItem.icon"
+                :pack="tabItem.iconPack"
+                :size="size"/>
+              <span>{{ tabItem.label }}</span>
+            </template>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <section class="tab-content">
+      <slot/>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -91,6 +95,11 @@
                 }
             }
         },
+        mounted() {
+            if (this.tabItems.length) {
+                this.tabItems[this.activeTab].isActive = true
+            }
+        },
         methods: {
             /**
              * Change the active tab and emit change event.
@@ -112,10 +121,5 @@
                 this.changeTab(value)
             }
         },
-        mounted() {
-            if (this.tabItems.length) {
-                this.tabItems[this.activeTab].isActive = true
-            }
-        }
     }
 </script>

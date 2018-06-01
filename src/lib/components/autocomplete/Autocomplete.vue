@@ -1,60 +1,64 @@
 <template>
-    <div class="autocomplete control" :class="{'is-expanded': expanded}">
-        <b-input
-            v-model="newValue"
-            ref="input"
-            :size="size"
-            :loading="loading"
-            :rounded="rounded"
-            :icon="icon"
-            :icon-pack="iconPack"
-            :maxlength="maxlength"
-            autocomplete="off"
-            v-bind="$attrs"
-            @focus="focused"
-            @blur="onBlur"
-            @keyup.native.esc.prevent="isActive = false"
-            @keydown.native.tab="tabPressed"
-            @keydown.native.enter.prevent="enterPressed"
-            @keydown.native.up.prevent="keyArrows('up')"
-            @keydown.native.down.prevent="keyArrows('down')"
-        />
+  <div 
+    :class="{'is-expanded': expanded}" 
+    class="autocomplete control">
+    <b-input
+      ref="input"
+      v-model="newValue"
+      :size="size"
+      :loading="loading"
+      :rounded="rounded"
+      :icon="icon"
+      :icon-pack="iconPack"
+      :maxlength="maxlength"
+      v-bind="$attrs"
+      autocomplete="off"
+      @focus="focused"
+      @blur="onBlur"
+      @keyup.native.esc.prevent="isActive = false"
+      @keydown.native.tab="tabPressed"
+      @keydown.native.enter.prevent="enterPressed"
+      @keydown.native.up.prevent="keyArrows('up')"
+      @keydown.native.down.prevent="keyArrows('down')"
+    />
 
-        <transition name="fade">
-            <div
-                class="dropdown-menu"
-                :class="{ 'is-opened-top': !isListInViewportVertically }"
-                v-show="isActive && (data.length > 0 || hasEmptySlot || hasHeaderSlot)"
-                ref="dropdown">
-                <div class="dropdown-content">
-                    <div
-                        v-if="hasHeaderSlot"
-                        class="dropdown-item">
-                        <slot name="header"/>
-                    </div>
-                    <a
-                        v-for="(option, index) in data"
-                        :key="index"
-                        class="dropdown-item"
-                        :class="{ 'is-hovered': option === hovered }"
-                        @click="setSelected(option)">
+    <transition name="fade">
+      <div
+        v-show="isActive && (data.length > 0 || hasEmptySlot || hasHeaderSlot)"
+        ref="dropdown"
+        :class="{ 'is-opened-top': !isListInViewportVertically }"
+        class="dropdown-menu">
+        <div class="dropdown-content">
+          <div
+            v-if="hasHeaderSlot"
+            class="dropdown-item">
+            <slot name="header"/>
+          </div>
+          <a
+            v-for="(option, index) in data"
+            :key="index"
+            :class="{ 'is-hovered': option === hovered }"
+            class="dropdown-item"
+            @click="setSelected(option)">
 
-                        <slot
-                            v-if="hasDefaultSlot"
-                            :option="option"
-                            :index="index"
-                        />
-                        <span v-else v-html="getValue(option, true)"/>
-                    </a>
-                    <div
-                        v-if="data.length === 0 && hasEmptySlot"
-                        class="dropdown-item is-disabled">
-                        <slot name="empty"/>
-                    </div>
-                </div>
-            </div>
-        </transition>
-    </div>
+            <slot
+              v-if="hasDefaultSlot"
+              :option="option"
+              :index="index"
+            />
+            <span 
+              v-else 
+              v-html="getValue(option, true)"/>
+          </a>
+          <div
+            v-if="data.length === 0 && hasEmptySlot"
+            class="dropdown-item is-disabled">
+            <slot name="empty"/>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -190,6 +194,18 @@
                 if (this.keepFirst) {
                     this.selectFirstOption(value)
                 }
+            }
+        },
+        created() {
+            if (typeof window !== 'undefined') {
+                document.addEventListener('click', this.clickedOutside)
+                window.addEventListener('resize', this.calcDropdownInViewportVertical)
+            }
+        },
+        beforeDestroy() {
+            if (typeof window !== 'undefined') {
+                document.removeEventListener('click', this.clickedOutside)
+                window.removeEventListener('resize', this.calcDropdownInViewportVertical)
             }
         },
         methods: {
@@ -367,17 +383,5 @@
                 this.$emit('blur', event)
             }
         },
-        created() {
-            if (typeof window !== 'undefined') {
-                document.addEventListener('click', this.clickedOutside)
-                window.addEventListener('resize', this.calcDropdownInViewportVertical)
-            }
-        },
-        beforeDestroy() {
-            if (typeof window !== 'undefined') {
-                document.removeEventListener('click', this.clickedOutside)
-                window.removeEventListener('resize', this.calcDropdownInViewportVertical)
-            }
-        }
     }
 </script>

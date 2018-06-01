@@ -1,21 +1,21 @@
 <template>
-    <div class="control">
-        <label
-            class="b-radio radio button"
-            ref="label"
-            :class="[newValue === nativeValue ? type : null, size]"
-            :disabled="disabled"
-            :tabindex="disabled ? false : 0"
-            @keydown.prevent.enter.space="$refs.label.click()">
-            <slot/>
-            <input
-                v-model="newValue"
-                type="radio"
-                :disabled="disabled"
-                :name="name"
-                :value="nativeValue">
-        </label>
-    </div>
+  <div class="control">
+    <label
+      ref="label"
+      :class="[newValue === nativeValue ? type : null, size]"
+      :disabled="disabled"
+      :tabindex="disabled ? false : 0"
+      class="b-radio radio button"
+      @keydown.prevent.enter.space="$refs.label.click()">
+      <slot/>
+      <input
+        v-model="newValue"
+        :disabled="disabled"
+        :name="name"
+        :value="nativeValue"
+        type="radio">
+    </label>
+  </div>
 </template>
 
 <script>

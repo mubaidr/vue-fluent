@@ -1,14 +1,14 @@
 <template>
-    <transition
-        :enter-active-class="transition.enter"
-        :leave-active-class="transition.leave">
-        <div
-            v-show="isActive"
-            class="toast"
-            :class="[type, position]">
-            <div v-html="message"/>
-        </div>
-    </transition>
+  <transition
+    :enter-active-class="transition.enter"
+    :leave-active-class="transition.leave">
+    <div
+      v-show="isActive"
+      :class="[type, position]"
+      class="toast">
+      <div v-html="message"/>
+    </div>
+  </transition>
 </template>
 
 <script>

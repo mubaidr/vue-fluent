@@ -1,10 +1,10 @@
 <template>
-    <td
-        v-if="visible"
-        :class="rootClasses"
-        :data-label="label">
-        <span><slot/></span>
-    </td>
+  <td
+    v-if="visible"
+    :class="rootClasses"
+    :data-label="label">
+    <span><slot/></span>
+  </td>
 </template>
 
 <script>

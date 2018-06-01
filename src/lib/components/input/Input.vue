@@ -1,56 +1,58 @@
 <template>
-    <div class="control" :class="rootClasses">
-        <input
-            v-if="type !== 'textarea'"
-            ref="input"
-            class="input"
-            :class="inputClasses"
-            :type="newType"
-            :autocomplete="newAutocomplete"
-            :maxlength="maxlength"
-            :value="newValue"
-            v-bind="$attrs"
-            @input="onInput"
-            @blur="onBlur"
-            @focus="onFocus">
+  <div 
+    :class="rootClasses" 
+    class="control">
+    <input
+      v-if="type !== 'textarea'"
+      ref="input"
+      :class="inputClasses"
+      :type="newType"
+      :autocomplete="newAutocomplete"
+      :maxlength="maxlength"
+      :value="newValue"
+      v-bind="$attrs"
+      class="input"
+      @input="onInput"
+      @blur="onBlur"
+      @focus="onFocus">
 
-        <textarea
-            v-else
-            ref="textarea"
-            class="textarea"
-            :class="inputClasses"
-            :maxlength="maxlength"
-            :value="newValue"
-            v-bind="$attrs"
-            @input="onInput"
-            @blur="onBlur"
-            @focus="onFocus"/>
+    <textarea
+      v-else
+      ref="textarea"
+      :class="inputClasses"
+      :maxlength="maxlength"
+      :value="newValue"
+      v-bind="$attrs"
+      class="textarea"
+      @input="onInput"
+      @blur="onBlur"
+      @focus="onFocus"/>
 
-        <b-icon
-            v-if="icon"
-            class="is-left"
-            :icon="icon"
-            :pack="iconPack"
-            :size="iconSize"/>
+    <b-icon
+      v-if="icon"
+      :icon="icon"
+      :pack="iconPack"
+      :size="iconSize"
+      class="is-left"/>
 
-        <b-icon
-            v-if="!loading && (passwordReveal || statusType)"
-            class="is-right"
-            :class="{ 'is-clickable': passwordReveal }"
-            :icon="passwordReveal ? passwordVisibleIcon : statusTypeIcon"
-            :pack="iconPack"
-            :size="iconSize"
-            :type="!passwordReveal ? statusType : 'is-primary'"
-            both
-            @click.native="togglePasswordVisibility"/>
+    <b-icon
+      v-if="!loading && (passwordReveal || statusType)"
+      :class="{ 'is-clickable': passwordReveal }"
+      :icon="passwordReveal ? passwordVisibleIcon : statusTypeIcon"
+      :pack="iconPack"
+      :size="iconSize"
+      :type="!passwordReveal ? statusType : 'is-primary'"
+      class="is-right"
+      both
+      @click.native="togglePasswordVisibility"/>
 
-        <small
-            v-if="maxlength && hasCounter && type !== 'number'"
-            class="help counter"
-            :class="{ 'is-invisible': !isFocused }">
-            {{ valueLength }} / {{ maxlength }}
-        </small>
-    </div>
+    <small
+      v-if="maxlength && hasCounter && type !== 'number'"
+      :class="{ 'is-invisible': !isFocused }"
+      class="help counter">
+      {{ valueLength }} / {{ maxlength }}
+    </small>
+  </div>
 </template>
 
 <script>
