@@ -6,6 +6,8 @@
 
 > [Fluent Design Theme for Bulma](https://github.com/mubaidr/bulma-fluent) is also available.
 
+> [Addons for Bulma](https://github.com/mubaidr/bulma-addons) are also available.
+
 <br/>
 
 <a href="https://patreon.com/mubaidr">
