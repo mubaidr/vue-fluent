@@ -13,7 +13,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['vue'],
-  extends: ['standard', 'plugin:vue/essential', 'prettier'],
+  extends: ['standard', 'plugin:vue/recommended', 'prettier'],
   rules: {
     'linebreak-style': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
