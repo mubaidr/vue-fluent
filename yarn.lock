@@ -1462,9 +1462,9 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
-bulma-addons@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/bulma-addons/-/bulma-addons-0.1.6.tgz#209dbb7a39018ce003ef35c1a12cad78dbc6b432"
+bulma-addons@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/bulma-addons/-/bulma-addons-0.1.8.tgz#9c64539bf73350e89b9dc73f9329f98bfb8861be"
   dependencies:
     bulma "^0.7.1"
 
@@ -5511,6 +5511,10 @@ prettier@^1.13.0:
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.3.tgz#e74c09a7df6519d472ca6febaa37cf7addb48a20"
 
+prettier@^1.13.4:
+  version "1.13.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.4.tgz#31bbae6990f13b1093187c731766a14036fa72e6"
+
 pretty-error@^2.0.2:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/pretty-error/-/pretty-error-2.1.1.tgz#5f4f87c8f91e5ae3f3ba87ab4cf5e03b1a17f1a3"
@@ -6078,9 +6082,9 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
-sass-loader@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-7.0.1.tgz#fd937259ccba3a9cfe0d5f8a98746d48adfcc261"
+sass-loader@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-7.0.2.tgz#036c322890f2fa389df8373f79e890327b74d1fb"
   dependencies:
     clone-deep "^2.0.1"
     loader-utils "^1.0.1"
