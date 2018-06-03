@@ -49,7 +49,8 @@
     "build-lib-js":
       "poi build --out-dir dist --filename.js vue-fluent.min.js --format cjs",
     "dev": "cd src/docs && npm run serve && cd ../../",
-    "lint": "eslint --ext .js,.vue --fix src/"
+    "lint": "eslint --ext .js,.vue --fix src/",
+    "prettier": "prettier --write src/(*.js|*.vue)"
   },
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

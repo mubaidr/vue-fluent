@@ -1,0 +1,9 @@
+build/*.js
+config/*.js
+**/*min.js
+node_modules
+test/output/
+.cache
+**.*snap
+.gitignore
+*.lock
