@@ -28,10 +28,10 @@
 </template>
 
 <script>
-    import MessageMixin from '../../utils/MessageMixin.js'
+import MessageMixin from '../../utils/MessageMixin.js'
 
-    export default {
-        name: 'BNotification',
-        mixins: [MessageMixin]
-    }
+export default {
+  name: 'BNotification',
+  mixins: [MessageMixin],
+}
 </script>

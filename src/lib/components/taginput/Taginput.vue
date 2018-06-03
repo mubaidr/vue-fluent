@@ -67,216 +67,229 @@
 </template>
 
 <script>
-    import { getValueByPath } from '../../utils/helpers'
-    import Autocomplete from '../autocomplete'
-    import FormElementMixin from '../../utils/FormElementMixin'
+import { getValueByPath } from '../../utils/helpers'
+import Autocomplete from '../autocomplete'
+import FormElementMixin from '../../utils/FormElementMixin'
 
-    export default {
-        name: 'BTaginput',
-        components: {
-            [Autocomplete.name]: Autocomplete
-        },
-        mixins: [FormElementMixin],
-        inheritAttrs: false,
-        props: {
-            value: {
-                type: Array,
-                default: () => []
-            },
-            data: {
-                type: Array,
-                default: () => []
-            },
-            type: String,
-            rounded: {
-                type: Boolean,
-                default: false
-            },
-            attached: {
-                type: Boolean,
-                default: false
-            },
-            maxtags: {
-                type: [Number, String],
-                required: false
-            },
-            field: {
-                type: String,
-                default: 'value'
-            },
-            autocomplete: Boolean,
-            disabled: Boolean,
-            confirmKeyCodes: {
-                type: Array,
-                default: () => [13, 188]
-            },
-            removeOnKeys: {
-                type: Array,
-                default: () => [8]
-            },
-            allowNew: Boolean,
-            onPasteSeparators: {
-                type: Array,
-                default: () => [',']
-            },
-            beforeAdding: {
-                type: Function,
-                default: () => true
-            }
-        },
-        data() {
-            return {
-                tags: this.value || [],
-                newTag: '',
-                _elementRef: 'input',
-                _isTaginput: true
-            }
-        },
-        computed: {
-            rootClasses() {
-                return {
-                    'is-expanded': this.expanded
-                }
-            },
-
-            containerClasses() {
-                return {
-                    'is-focused': this.isFocused,
-                    'is-focusable': this.hasInput
-                }
-            },
-
-            valueLength() {
-                return this.newTag.trim().length
-            },
-
-            defaultSlotName() {
-                return this.hasDefaultSlot ? 'default' : 'dontrender'
-            },
-
-            emptySlotName() {
-                return this.hasEmptySlot ? 'empty' : 'dontrender'
-            },
-
-            hasDefaultSlot() {
-                return !!this.$scopedSlots.default
-            },
-
-            hasEmptySlot() {
-                return !!this.$slots.empty
-            },
-
-            /**
-             * Show the input field if a maxtags hasn't been set or reached.
-             */
-            hasInput() {
-                return this.maxtags == null || this.tagsLength < this.maxtags
-            },
-
-            tagsLength() {
-                return this.tags.length
-            },
-
-            /**
-             * If Taginput has onPasteSeparators prop,
-             * returning new RegExp used to split pasted string.
-             */
-            separatorsAsRegExp() {
-                const sep = this.onPasteSeparators
-
-                return sep.length ? new RegExp(sep.map((s) => s ? s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') : null).join('|'), 'g') : null
-            }
-        },
-        watch: {
-            /**
-             * When v-model is changed set internal value.
-             */
-            value(value) {
-                this.tags = value
-            },
-
-            newTag(value) {
-                this.$emit('typing', value.trim())
-            },
-
-            hasInput() {
-                if (!this.hasInput) this.onBlur()
-            }
-        },
-        methods: {
-            addTag(tag) {
-                const tagToAdd = tag || this.newTag.trim()
-
-                if (tagToAdd) {
-                    const reg = this.separatorsAsRegExp
-                    if (reg && tagToAdd.match(reg)) {
-                        tagToAdd.split(reg)
-                            .map((t) => t.trim())
-                            .filter((t) => t.length !== 0)
-                            .map(this.addTag)
-                        return
-                    }
-
-                    // Add the tag input if it is not blank or previously added.
-                    if (this.tags.indexOf(tagToAdd) === -1 && this.beforeAdding(tagToAdd)) {
-                        this.tags.push(tagToAdd)
-                        this.$emit('input', this.tags)
-                        this.$emit('add', tagToAdd)
-                    }
-                }
-
-                this.newTag = ''
-            },
-
-            getNormalizedTagText(tag) {
-                if (typeof tag === 'object') {
-                    return getValueByPath(tag, this.field)
-                }
-
-                return tag
-            },
-
-            customOnBlur($event) {
-                // Add tag on-blur if not select only
-                if (!this.autocomplete) this.addTag()
-
-                this.onBlur($event)
-            },
-
-            onSelect(option) {
-                if (!option) return
-
-                this.addTag(option)
-                this.$nextTick(() => {
-                    this.newTag = ''
-                })
-            },
-
-            removeTag(index) {
-                const tag = this.tags.splice(index, 1)[0]
-                this.$emit('input', this.tags)
-                this.$emit('remove', tag)
-                return tag
-            },
-
-            removeLastTag() {
-                if (this.tagsLength > 0) {
-                    this.removeTag(this.tagsLength - 1)
-                }
-            },
-
-            keydown(event) {
-                if (this.removeOnKeys.indexOf(event.keyCode) !== -1 && !this.newTag.length) {
-                    this.removeLastTag()
-                }
-                // Stop if is to accept select only
-                if (this.autocomplete && !this.allowNew) return
-
-                if (this.confirmKeyCodes.indexOf(event.keyCode) >= 0) {
-                    event.preventDefault()
-                    this.addTag()
-                }
-            }
-        }
+export default {
+  name: 'BTaginput',
+  components: {
+    [Autocomplete.name]: Autocomplete,
+  },
+  mixins: [FormElementMixin],
+  inheritAttrs: false,
+  props: {
+    value: {
+      type: Array,
+      default: () => [],
+    },
+    data: {
+      type: Array,
+      default: () => [],
+    },
+    type: String,
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
+    attached: {
+      type: Boolean,
+      default: false,
+    },
+    maxtags: {
+      type: [Number, String],
+      required: false,
+    },
+    field: {
+      type: String,
+      default: 'value',
+    },
+    autocomplete: Boolean,
+    disabled: Boolean,
+    confirmKeyCodes: {
+      type: Array,
+      default: () => [13, 188],
+    },
+    removeOnKeys: {
+      type: Array,
+      default: () => [8],
+    },
+    allowNew: Boolean,
+    onPasteSeparators: {
+      type: Array,
+      default: () => [','],
+    },
+    beforeAdding: {
+      type: Function,
+      default: () => true,
+    },
+  },
+  data() {
+    return {
+      tags: this.value || [],
+      newTag: '',
+      _elementRef: 'input',
+      _isTaginput: true,
     }
+  },
+  computed: {
+    rootClasses() {
+      return {
+        'is-expanded': this.expanded,
+      }
+    },
+
+    containerClasses() {
+      return {
+        'is-focused': this.isFocused,
+        'is-focusable': this.hasInput,
+      }
+    },
+
+    valueLength() {
+      return this.newTag.trim().length
+    },
+
+    defaultSlotName() {
+      return this.hasDefaultSlot ? 'default' : 'dontrender'
+    },
+
+    emptySlotName() {
+      return this.hasEmptySlot ? 'empty' : 'dontrender'
+    },
+
+    hasDefaultSlot() {
+      return !!this.$scopedSlots.default
+    },
+
+    hasEmptySlot() {
+      return !!this.$slots.empty
+    },
+
+    /**
+     * Show the input field if a maxtags hasn't been set or reached.
+     */
+    hasInput() {
+      return this.maxtags == null || this.tagsLength < this.maxtags
+    },
+
+    tagsLength() {
+      return this.tags.length
+    },
+
+    /**
+     * If Taginput has onPasteSeparators prop,
+     * returning new RegExp used to split pasted string.
+     */
+    separatorsAsRegExp() {
+      const sep = this.onPasteSeparators
+
+      return sep.length
+        ? new RegExp(
+            sep
+              .map(
+                s => (s ? s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') : null)
+              )
+              .join('|'),
+            'g'
+          )
+        : null
+    },
+  },
+  watch: {
+    /**
+     * When v-model is changed set internal value.
+     */
+    value(value) {
+      this.tags = value
+    },
+
+    newTag(value) {
+      this.$emit('typing', value.trim())
+    },
+
+    hasInput() {
+      if (!this.hasInput) this.onBlur()
+    },
+  },
+  methods: {
+    addTag(tag) {
+      const tagToAdd = tag || this.newTag.trim()
+
+      if (tagToAdd) {
+        const reg = this.separatorsAsRegExp
+        if (reg && tagToAdd.match(reg)) {
+          tagToAdd
+            .split(reg)
+            .map(t => t.trim())
+            .filter(t => t.length !== 0)
+            .map(this.addTag)
+          return
+        }
+
+        // Add the tag input if it is not blank or previously added.
+        if (this.tags.indexOf(tagToAdd) === -1 && this.beforeAdding(tagToAdd)) {
+          this.tags.push(tagToAdd)
+          this.$emit('input', this.tags)
+          this.$emit('add', tagToAdd)
+        }
+      }
+
+      this.newTag = ''
+    },
+
+    getNormalizedTagText(tag) {
+      if (typeof tag === 'object') {
+        return getValueByPath(tag, this.field)
+      }
+
+      return tag
+    },
+
+    customOnBlur($event) {
+      // Add tag on-blur if not select only
+      if (!this.autocomplete) this.addTag()
+
+      this.onBlur($event)
+    },
+
+    onSelect(option) {
+      if (!option) return
+
+      this.addTag(option)
+      this.$nextTick(() => {
+        this.newTag = ''
+      })
+    },
+
+    removeTag(index) {
+      const tag = this.tags.splice(index, 1)[0]
+      this.$emit('input', this.tags)
+      this.$emit('remove', tag)
+      return tag
+    },
+
+    removeLastTag() {
+      if (this.tagsLength > 0) {
+        this.removeTag(this.tagsLength - 1)
+      }
+    },
+
+    keydown(event) {
+      if (
+        this.removeOnKeys.indexOf(event.keyCode) !== -1 &&
+        !this.newTag.length
+      ) {
+        this.removeLastTag()
+      }
+      // Stop if is to accept select only
+      if (this.autocomplete && !this.allowNew) return
+
+      if (this.confirmKeyCodes.indexOf(event.keyCode) >= 0) {
+        event.preventDefault()
+        this.addTag()
+      }
+    },
+  },
+}
 </script>

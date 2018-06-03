@@ -31,54 +31,54 @@
 </template>
 
 <script>
-    export default {
-        name: 'BPanel',
-        props: {
-            collapsible: {
-                type: Boolean,
-                default: false
-            },
-            open: {
-                type: Boolean,
-                default: true
-            },
-            hasCustomTemplate: {
-                type: Boolean,
-                default: false
-            },
-            header: String,
-            content: String,
-            animation: {
-                type: String,
-                default: 'fade'
-            }
-        },
-        data() {
-            return {
-                isOpen: this.open
-            }
-        },
-        watch: {
-            open(value) {
-                this.isOpen = value
-            }
-        },
-        methods: {
-            /**
-             * Toggle the Panel and emit events if collapsible.
-             */
-            toggle() {
-                if (!this.collapsible) return
-
-                this.isOpen = !this.isOpen
-                this.$emit('update:open', this.isOpen)
-
-                if (this.isOpen) {
-                    this.$emit('open')
-                } else {
-                    this.$emit('close')
-                }
-            }
-        }
+export default {
+  name: 'BPanel',
+  props: {
+    collapsible: {
+      type: Boolean,
+      default: false,
+    },
+    open: {
+      type: Boolean,
+      default: true,
+    },
+    hasCustomTemplate: {
+      type: Boolean,
+      default: false,
+    },
+    header: String,
+    content: String,
+    animation: {
+      type: String,
+      default: 'fade',
+    },
+  },
+  data() {
+    return {
+      isOpen: this.open,
     }
+  },
+  watch: {
+    open(value) {
+      this.isOpen = value
+    },
+  },
+  methods: {
+    /**
+     * Toggle the Panel and emit events if collapsible.
+     */
+    toggle() {
+      if (!this.collapsible) return
+
+      this.isOpen = !this.isOpen
+      this.$emit('update:open', this.isOpen)
+
+      if (this.isOpen) {
+        this.$emit('open')
+      } else {
+        this.$emit('close')
+      }
+    },
+  },
+}
 </script>

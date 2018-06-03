@@ -3,7 +3,4 @@ import FieldBody from './FieldBody'
 
 export default Field
 
-export {
-    Field,
-    FieldBody
-}
+export { Field, FieldBody }

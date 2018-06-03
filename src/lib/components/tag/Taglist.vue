@@ -7,10 +7,10 @@
 </template>
 
 <script>
-    export default {
-        name: 'BTaglist',
-        props: {
-            attached: Boolean
-        }
-    }
+export default {
+  name: 'BTaglist',
+  props: {
+    attached: Boolean,
+  },
+}
 </script>

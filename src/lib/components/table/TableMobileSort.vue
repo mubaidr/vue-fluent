@@ -30,40 +30,40 @@
 </template>
 
 <script>
-    import BSelect from '../select'
-    import BIcon from '../icon'
+import BSelect from '../select'
+import BIcon from '../icon'
 
-    export default {
-        name: 'BTableMobileSort',
-        components: {
-            BSelect,
-            BIcon
-        },
-        props: {
-            currentSortColumn: Object,
-            isAsc: Boolean,
-            columns: Array
-        },
-        data() {
-            return {
-                mobileSort: this.currentSortColumn
-            }
-        },
-        watch: {
-            mobileSort(column) {
-                if (this.currentSortColumn === column) return
-
-                this.$emit('sort', column)
-            },
-
-            currentSortColumn(column) {
-                this.mobileSort = column
-            }
-        },
-        methods: {
-            sort() {
-                this.$emit('sort', this.mobileSort)
-            }
-        }
+export default {
+  name: 'BTableMobileSort',
+  components: {
+    BSelect,
+    BIcon,
+  },
+  props: {
+    currentSortColumn: Object,
+    isAsc: Boolean,
+    columns: Array,
+  },
+  data() {
+    return {
+      mobileSort: this.currentSortColumn,
     }
+  },
+  watch: {
+    mobileSort(column) {
+      if (this.currentSortColumn === column) return
+
+      this.$emit('sort', column)
+    },
+
+    currentSortColumn(column) {
+      this.mobileSort = column
+    },
+  },
+  methods: {
+    sort() {
+      this.$emit('sort', this.mobileSort)
+    },
+  },
+}
 </script>
