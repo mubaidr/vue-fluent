@@ -5,13 +5,20 @@
     "url": "https://github.com/mubaidr/vue-fluent/issues"
   },
   "dependencies": {
-    "bulma-addons": "^0.1.8",
-    "bulma-fluent": "^0.3.8"
+    "bulma-addons": "^0.1.9",
+    "bulma-fluent": "^0.3.10"
   },
   "description":
     "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
   "devDependencies": {
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
     "clean-css-cli": "^4.1.11",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
@@ -21,15 +28,34 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "eslint-plugin-vue": "^4.5.0",
+    "jest": "^23.1.0",
+    "jest-serializer-vue": "^2.0.1",
     "node-sass": "^4.9.0",
     "node-sass-import": "^2.0.1",
-    "poi": "^10.2.1",
+    "poi": "^10.2.3",
     "prettier": "^1.13.4",
     "rimraf": "^2.6.2",
-    "sass-loader": "^7.0.2"
+    "sass-loader": "^7.0.2",
+    "vue-jest": "^2.6.0",
+    "vue-template-compiler": "^2.5.16"
   },
   "files": ["dist", "src/lib", "LICENSE", "README.md"],
   "homepage": "https://mubaidr.github.io/vue-fluent",
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/",
+    "moduleFileExtensions": ["js", "vue"],
+    "moduleNameMapper": {
+      "^@components/(.*)$": "<rootDir>/src/components/$1",
+      "^@utils/(.*)$": "<rootDir>/src/utils/$1"
+    },
+    "roots": ["<rootDir>/src"],
+    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"],
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    }
+  },
   "keywords": ["vue", "bulma", "theme", "fluent", "components"],
   "license": "MIT",
   "main": "src/lib/index.js",
@@ -51,7 +77,9 @@
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/",
     "prettier":
-      "prettier --write ./src/**/*.js && prettier --write ./src/**/*.vue "
+      "prettier --write ./src/**/*.js && prettier --write ./src/**/*.vue",
+    "test": "jest",
+    "test:watch": "jest -- --watchAll"
   },
   "version": "0.1.3"
 }
