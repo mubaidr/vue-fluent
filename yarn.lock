@@ -5138,8 +5138,8 @@ jest-runtime@^23.1.0:
     yargs "^11.0.0"
 
 jest-serializer-vue@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/jest-serializer-vue/-/jest-serializer-vue-2.0.1.tgz#dfaef04e98ec33f87efb011c86b3e9de0e000c40"
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/jest-serializer-vue/-/jest-serializer-vue-2.0.2.tgz#b238ef286357ec6b480421bd47145050987d59b3"
   dependencies:
     pretty "2.0.0"
 
