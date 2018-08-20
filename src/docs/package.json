@@ -5,7 +5,7 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
+    "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-service": "^3.0.0-rc.5",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
