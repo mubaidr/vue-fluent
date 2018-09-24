@@ -1,5 +1,9 @@
 {
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "dependencies": {
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
