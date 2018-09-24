@@ -84,14 +84,43 @@ $family-sans-serif: "Calibri", "Arial"
         </div>
       </div>
     </section>
+    <section class="section">
+      <prop-doc :component="Checkbox"/>
+      <div>
+        <h1>{{ CheckboxDoc.name }}</h1>
+        <p>{{ CheckboxDoc.introduction }}</p>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-export default {}
+import propDoc from 'propdoc'
+import Checkbox from '../../../lib/components/checkbox/CheckboxButton'
+
+export default {
+  components: {
+    propDoc,
+  },
+
+  data() {
+    return {
+      Checkbox,
+    }
+  },
+
+  // or call getDoc() and use the same data in your own template
+  computed: {
+    CheckboxDoc() {
+      return propDoc.getDoc(Checkbox)
+    },
+  },
+}
 </script>
 
-<style>
+<style lang="scss">
+@import './../assets/style.scss';
+
 .padded-list li {
   padding: 1em 0;
 }

@@ -14,8 +14,7 @@
   },
   "description": "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
   "devDependencies": {
-    "@vuedoc/md": "^1.5.0",
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.1.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
@@ -93,7 +92,6 @@
     "build": "npm run build-lib-js && npm run build-lib-css",
     "build-docs": "cd src/docs && npm run build && cd ../../",
     "build-lib-css": "node-sass src/lib/index.scss dist/vue-fluent.min.css --output-style compressed --importer node_modules/node-sass-import",
-    "build-docs-api": "",
     "build-lib-js": "poi build --out-dir dist --filename.js vue-fluent.min.js --format cjs",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/",

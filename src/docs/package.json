@@ -5,6 +5,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
+    "propdoc": "^0.9.3",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
@@ -19,6 +20,7 @@
   "private": true,
   "scripts": {
     "build": "vue-cli-service build  --dest ../../docs",
+    "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve"
   },
   "version": "0.1.0"
