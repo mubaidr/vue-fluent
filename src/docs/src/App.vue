@@ -1,12 +1,20 @@
 <template>
   <div id="app">
     <header-view/>
-    <transition
-      name="slide-right"
-      appear="appear"
-      mode="out-in">
-      <router-view/>
-    </transition>
+
+    <section class="section">
+      <div class="container">
+
+        <transition
+          name="slide-right"
+          appear="appear"
+          mode="out-in">
+          <router-view/>
+        </transition>
+
+      </div>
+    </section>
+
     <footer-view/>
   </div>
 </template>

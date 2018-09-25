@@ -4,6 +4,7 @@ import router from './router'
 
 import './assets/fontawesome/css/fontawesome-all.css'
 
+import './assets/prop-doc-style.scss'
 import './styles.sass'
 import VueFluent from '../../lib/index'
 

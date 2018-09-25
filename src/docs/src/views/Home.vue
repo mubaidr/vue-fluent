@@ -1,69 +1,67 @@
 <template>
   <div>
-    <section class="section">
-      <div class="container">
-        <h1 class="title">Getting started</h1>
+    <h1 class="title">Getting started</h1>
 
-        <hr>
+    <hr>
 
-        <div class="content">
+    <div class="content">
+      <p>
+        You can either:
+      </p>
+      <ol>
+        <li>
+          use
+          <strong>npm</strong> to install the
+          <em>vue-fluent</em> package
+        </li>
+        <li>
+          use
+          <strong>CDN</strong>
+        </li>
+        <li>
+          use the
+          <strong>GitHub repository</strong> to get the latest development version
+        </li>
+      </ol>
+      <ol class="padded-list">
+        <li>
+          <span class="title is-5">Use npm:
+          </span>
           <p>
-            You can either:
+            <a href="https://nodei.co/npm/vue-fluent/"><img src="https://nodei.co/npm/vue-fluent.png?compact=true"></a>
           </p>
-          <ol>
-            <li>
-              use
-              <strong>npm</strong> to install the
-              <em>vue-fluent</em> package
-            </li>
-            <li>
-              use
-              <strong>CDN</strong>
-            </li>
-            <li>
-              use the
-              <strong>GitHub repository</strong> to get the latest development version
-            </li>
-          </ol>
-          <ol class="padded-list">
-            <li>
-              <span class="title is-5">Use npm:
-              </span>
-              <p>
-                <a href="https://nodei.co/npm/vue-fluent/"><img src="https://nodei.co/npm/vue-fluent.png?compact=true"></a>
-              </p>
-              <p>
-                <code>
-                  import 'vue-fluent/dist/vue-fluent.min.css'
-                </code>
-                <br>or<br>
-                <code>
-                  import 'vue-fluent/src/lib/index.scss';
-                </code>
-              </p>
-            </li>
-            <li>
-              <span class="title is-5">CDN link</span>
-              <p>
-                <a href="https://unpkg.com/vue-fluent/dist/">unpkg.com/vue-fluent</a>
-              </p>
-            </li>
-            <li>
-              <span class="title is-5">
-                Download from the repository:
-              </span>
-              <p>
-                <a href="https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/">https://github.com/mubaidr/vue-fluent/tree/master/dist</a>
-              </p>
-            </li>
-          </ol>
-        </div>
-
-        <div class="content">
-          <h2 class="subtitle is-3">Customize</h2>
-          <p>Simply set your own Sass variables before importing vue-fluent.</p>
           <p>
-            <pre>
+            <code>
+              import 'vue-fluent/dist/vue-fluent.min.css'
+            </code>
+            <br>or<br>
+            <code>
+              import 'vue-fluent/src/lib/index.scss';
+            </code>
+          </p>
+        </li>
+        <li>
+          <span class="title is-5">CDN link</span>
+          <p>
+            <a href="https://unpkg.com/vue-fluent/dist/">unpkg.com/vue-fluent</a>
+          </p>
+        </li>
+        <li>
+          <span class="title is-5">
+            Download from the repository:
+          </span>
+          <p>
+            <a href="https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/">https://github.com/mubaidr/vue-fluent/tree/master/dist</a>
+          </p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="content">
+      <h2 class="subtitle is-3">Customize</h2>
+      <p>Simply set your own Sass variables before importing vue-fluent.</p>
+      <p>
+        <pre>
             <code>
 // Set your brand colors
 $primary: #8A4D76
@@ -79,48 +77,17 @@ $family-sans-serif: "Calibri", "Arial"
 
 // Import the vue-fluent
 @import 'vue-fluent/src/lib/index.scss'
-            </code></pre>
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <prop-doc :component="Checkbox"/>
-      <div>
-        <h1>{{ CheckboxDoc.name }}</h1>
-        <p>{{ CheckboxDoc.introduction }}</p>
-      </div>
-    </section>
+        </code></pre>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
-import propDoc from 'propdoc'
-import Checkbox from '../../../lib/components/checkbox/CheckboxButton'
-
-export default {
-  components: {
-    propDoc,
-  },
-
-  data() {
-    return {
-      Checkbox,
-    }
-  },
-
-  // or call getDoc() and use the same data in your own template
-  computed: {
-    CheckboxDoc() {
-      return propDoc.getDoc(Checkbox)
-    },
-  },
-}
+export default {}
 </script>
 
-<style lang="scss">
-@import './../assets/style.scss';
-
+<style>
 .padded-list li {
   padding: 1em 0;
 }

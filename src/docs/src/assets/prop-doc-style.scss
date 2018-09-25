@@ -1,5 +1,8 @@
-$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !default;
-$code-font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
+$base-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+  'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif !default;
+$code-font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+  monospace !default;
 
 .props {
   .proprow:nth-child(even) {
@@ -33,7 +36,7 @@ $code-font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier
   .name {
     font-weight: 600;
     &.required span {
-      border-bottom: 0.2rem solid transparentize(#CE7780, 0.5);
+      border-bottom: 0.2rem solid transparentize(#ce7780, 0.5);
     }
   }
 }
@@ -46,20 +49,21 @@ $code-font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier
 }
 code {
   font-family: $code-font-family;
-  background-color: transparentize(#F3C387, 0.5);
-  color: #14435A;
+  background-color: transparentize(#f3c387, 0.5);
+  color: #14435a;
   padding: 0.2rem;
 }
 pre code {
   line-height: 1.8;
   padding: 1.2rem;
-  &.labelled, .token & {
+  &.labelled,
+  .token & {
     position: relative;
     margin-bottom: 2rem;
     &:after {
       content: attr(data-lang);
       font-size: 0.8rem;
-      color: #CE7780;
+      color: #ce7780;
       font-weight: 600;
       font-family: $base-font-family;
       position: absolute;
@@ -68,7 +72,8 @@ pre code {
     }
   }
 }
-.use, .props {
+.use,
+.props {
   margin: 2.8rem 0;
 }
 .token pre {

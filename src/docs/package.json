@@ -11,17 +11,40 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",
+    "@vue/cli-plugin-eslint": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
+    "@vue/eslint-config-prettier": "^3.0.3",
+    "eslint": "^5.6.0",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.17"
   },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/recommended",
+      "@vue/prettier"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "root": true,
+    "rules": {}
+  },
   "name": "vue-fluent",
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
   "private": true,
   "scripts": {
     "build": "vue-cli-service build  --dest ../../docs",
-    "dev": "vue-cli-service serve",
-    "serve": "vue-cli-service serve"
+    "dev": "npm run serve",
+    "lint": "vue-cli-service lint --fix",
+    "serve": "vue-cli-service serve --open"
   },
   "version": "0.1.0"
 }
