@@ -16,7 +16,8 @@
         :attached="attached"
         :tabstop="false"
         :disabled="disabled"
-        closable
+        :ellipsis="ellipsis"
+        :closable="closable"
         @close="removeTag(index)">
         {{ getNormalizedTagText(tag) }}
       </b-tag>
@@ -68,13 +69,15 @@
 
 <script>
 import { getValueByPath } from '../../utils/helpers'
-import Autocomplete from '../autocomplete'
+import Tag from '../tag/Tag'
+import Autocomplete from '../autocomplete/Autocomplete'
 import FormElementMixin from '../../utils/FormElementMixin'
 
 export default {
   name: 'BTaginput',
   components: {
     [Autocomplete.name]: Autocomplete,
+    [Tag.name]: Tag,
   },
   mixins: [FormElementMixin],
   inheritAttrs: false,
@@ -106,6 +109,11 @@ export default {
     },
     autocomplete: Boolean,
     disabled: Boolean,
+    ellipsis: Boolean,
+    closable: {
+      type: Boolean,
+      default: true,
+    },
     confirmKeyCodes: {
       type: Array,
       default: () => [13, 188],
@@ -122,6 +130,10 @@ export default {
     beforeAdding: {
       type: Function,
       default: () => true,
+    },
+    allowDuplicates: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -187,9 +199,9 @@ export default {
       return sep.length
         ? new RegExp(
             sep
-              .map(
-                s => (s ? s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') : null)
-              )
+              .map(s => {
+                return s ? s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') : null
+              })
               .join('|'),
             'g'
           )
@@ -217,18 +229,24 @@ export default {
       const tagToAdd = tag || this.newTag.trim()
 
       if (tagToAdd) {
-        const reg = this.separatorsAsRegExp
-        if (reg && tagToAdd.match(reg)) {
-          tagToAdd
-            .split(reg)
-            .map(t => t.trim())
-            .filter(t => t.length !== 0)
-            .map(this.addTag)
-          return
+        if (!this.autocomplete) {
+          const reg = this.separatorsAsRegExp
+          if (reg && tagToAdd.match(reg)) {
+            tagToAdd
+              .split(reg)
+              .map(t => t.trim())
+              .filter(t => t.length !== 0)
+              .map(this.addTag)
+            return
+          }
         }
 
-        // Add the tag input if it is not blank or previously added.
-        if (this.tags.indexOf(tagToAdd) === -1 && this.beforeAdding(tagToAdd)) {
+        // Add the tag input if it is not blank
+        // or previously added (if not allowDuplicates).
+        const add = !this.allowDuplicates
+          ? this.tags.indexOf(tagToAdd) === -1
+          : true
+        if (add && this.beforeAdding(tagToAdd)) {
           this.tags.push(tagToAdd)
           this.$emit('input', this.tags)
           this.$emit('add', tagToAdd)
@@ -263,7 +281,7 @@ export default {
     },
 
     removeTag(index) {
-      const tag = this.tags.splice(index, 1)[0]
+      var tag = this.tags.splice(index, 1)[0]
       this.$emit('input', this.tags)
       this.$emit('remove', tag)
       return tag

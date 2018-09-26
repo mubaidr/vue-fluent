@@ -9,6 +9,7 @@
     <input
       v-model="newValue"
       :disabled="disabled"
+      :required="required"
       :name="name"
       :value="nativeValue"
       type="radio">
@@ -27,6 +28,7 @@ export default {
     nativeValue: [String, Number, Boolean, Function, Object, Array, Symbol],
     type: String,
     disabled: Boolean,
+    required: Boolean,
     name: String,
     size: String,
   },

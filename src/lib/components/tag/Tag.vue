@@ -5,7 +5,9 @@
     <span
       :class="[type, size, { 'is-rounded': rounded }]"
       class="tag">
-      <slot/>
+      <span :class="{ 'has-ellipsis': ellipsis }">
+        <slot/>
+      </span>
     </span>
     <a
       :tabindex="tabstop ? 0 : false"
@@ -21,7 +23,9 @@
     v-else
     :class="[type, size, { 'is-rounded': rounded }]"
     class="tag">
-    <slot/>
+    <span :class="{ 'has-ellipsis': ellipsis }">
+      <slot/>
+    </span>
 
     <a
       v-if="closable"
@@ -45,6 +49,7 @@ export default {
     size: String,
     rounded: Boolean,
     disabled: Boolean,
+    ellipsis: Boolean,
     tabstop: {
       type: Boolean,
       default: true,

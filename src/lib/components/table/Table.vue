@@ -25,8 +25,9 @@
             <th 
               v-if="checkable" 
               class="checkbox-cell">
-              <b-checkbox 
-                :value="isAllChecked" 
+              <b-checkbox
+                :value="isAllChecked"
+                :disabled="isAllUncheckable"
                 @change.native="checkAll"/>
             </th>
             <th
@@ -55,6 +56,7 @@
 
                 <b-icon
                   v-show="currentSortColumn === column"
+                  :icon-pack="iconPack"
                   :class="{ 'is-desc': !isAsc }"
                   icon="arrow-up"
                   both
@@ -83,6 +85,7 @@
                   role="button"
                   @click.stop="toggleDetails(row)">
                   <b-icon
+                    :icon-pack="iconPack"
                     :class="{'is-expanded': isVisibleDetailRow(row)}"
                     icon="chevron-right"
                     both/>
@@ -160,7 +163,7 @@
     </div>
 
     <div 
-      v-if="checkable || paginated" 
+      v-if="(checkable && hasBottomLeftSlot()) || paginated" 
       class="level">
       <div class="level-left">
         <slot name="bottom-left"/>
@@ -171,6 +174,7 @@
           v-if="paginated" 
           class="level-item">
           <b-pagination
+            :icon-pack="iconPack"
             :total="newDataTotal"
             :per-page="perPage"
             :simple="paginationSimple"
@@ -185,22 +189,26 @@
 
 <script>
 import { getValueByPath, indexOf } from '../../utils/helpers'
-import { Checkbox as BCheckbox } from '../checkbox'
-import BPagination from '../pagination'
-import BIcon from '../icon'
 
-import BTableMobileSort from './TableMobileSort'
-import BTableColumn from './TableColumn'
+import Checkbox from '../checkbox/Checkbox'
+import Icon from '../icon/Icon'
+import Pagination from '../pagination/Pagination'
+
+import TableMobileSort from './TableMobileSort'
+import TableColumn from './TableColumn'
+
+import BaseElementMixin from '../../utils/BaseElementMixin'
 
 export default {
   name: 'BTable',
   components: {
-    BPagination,
-    BIcon,
-    BCheckbox,
-    BTableMobileSort,
-    BTableColumn,
+    [Checkbox.name]: Checkbox,
+    [Icon.name]: Icon,
+    [Pagination.name]: Pagination,
+    [TableMobileSort.name]: TableMobileSort,
+    [TableColumn.name]: TableColumn,
   },
+  mixins: [BaseElementMixin],
   props: {
     data: {
       type: Array,
@@ -309,10 +317,11 @@ export default {
 
       if (this.newData.length <= perPage) {
         return this.newData
+      } else {
+        const start = (currentPage - 1) * perPage
+        const end = parseInt(start, 10) + parseInt(perPage, 10)
+        return this.newData.slice(start, end)
       }
-      const start = (currentPage - 1) * perPage
-      const end = parseInt(start, 10) + parseInt(perPage, 10)
-      return this.newData.slice(start, end)
     },
 
     /**
@@ -322,22 +331,36 @@ export default {
       const validVisibleData = this.visibleData.filter(row =>
         this.isRowCheckable(row)
       )
-      const isAllChecked = validVisibleData.some(
-        currentVisibleRow =>
+      if (validVisibleData.length === 0) return false
+      const isAllChecked = validVisibleData.some(currentVisibleRow => {
+        return (
           indexOf(
             this.newCheckedRows,
             currentVisibleRow,
             this.customIsChecked
           ) < 0
-      )
+        )
+      })
       return !isAllChecked
+    },
+
+    /**
+     * Check if all rows in the page are checkable.
+     */
+    isAllUncheckable() {
+      const validVisibleData = this.visibleData.filter(row =>
+        this.isRowCheckable(row)
+      )
+      return validVisibleData.length === 0
     },
 
     /**
      * Check if has any sortable column.
      */
     hasSortablenewColumns() {
-      return this.newColumns.some(column => column.sortable)
+      return this.newColumns.some(column => {
+        return column.sortable
+      })
     },
 
     /**
@@ -410,10 +433,12 @@ export default {
         this.initSort()
         this.firstTimeSort = false
       } else if (newColumns.length) {
-        for (let i = 0; i < newColumns.length; i++) {
-          if (newColumns[i].newKey === this.currentSortColumn.newKey) {
-            this.currentSortColumn = newColumns[i]
-            break
+        if (this.currentSortColumn.field) {
+          for (let i = 0; i < newColumns.length; i++) {
+            if (newColumns[i].field === this.currentSortColumn.field) {
+              this.currentSortColumn = newColumns[i]
+              break
+            }
           }
         }
       }
@@ -637,6 +662,13 @@ export default {
       if (tag !== 'th' && tag !== 'td') return false
 
       return true
+    },
+
+    /**
+     * Check if bottom-left slot exists.
+     */
+    hasBottomLeftSlot() {
+      return typeof this.$slots['bottom-left'] !== 'undefined'
     },
 
     /**

@@ -22,6 +22,7 @@
             class="media-left">
             <b-icon
               :icon="icon"
+              :icon-pack="iconPack"
               :class="type"
               :size="newIconSize"
               both/>

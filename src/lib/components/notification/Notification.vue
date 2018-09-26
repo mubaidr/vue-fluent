@@ -16,6 +16,7 @@
           class="media-left">
           <b-icon
             :icon="icon"
+            :icon-pack="iconPack"
             both
             size="is-large"/>
         </div>

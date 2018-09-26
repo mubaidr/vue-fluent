@@ -71,10 +71,11 @@
 </template>
 
 <script>
-import Icon from '../icon'
-import { Modal } from '../modal'
+import Icon from '../icon/Icon'
+import Modal from '../modal/Modal'
 import config from '../../utils/config'
 import { removeElement } from '../../utils/helpers'
+import BaseElementMixin from '../../utils/BaseElementMixin'
 
 export default {
   name: 'BDialog',
@@ -82,11 +83,11 @@ export default {
     [Icon.name]: Icon,
   },
   extends: Modal,
+  mixins: [BaseElementMixin],
   props: {
     title: String,
     message: String,
     icon: String,
-    iconPack: String,
     hasIcon: Boolean,
     type: {
       type: String,
@@ -95,17 +96,19 @@ export default {
     size: String,
     confirmText: {
       type: String,
-      default: () =>
-        config.defaultDialogConfirmText
+      default: () => {
+        return config.defaultDialogConfirmText
           ? config.defaultDialogConfirmText
-          : 'OK',
+          : 'OK'
+      },
     },
     cancelText: {
       type: String,
-      default: () =>
-        config.defaultDialogCancelText
+      default: () => {
+        return config.defaultDialogCancelText
           ? config.defaultDialogCancelText
-          : 'Cancel',
+          : 'Cancel'
+      },
     },
     hasInput: Boolean, // Used internally to know if it's prompt
     inputAttrs: {

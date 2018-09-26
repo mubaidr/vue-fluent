@@ -5,10 +5,7 @@ module.exports = {
     jest: true,
   },
   parserOptions: {
-    ecmaVersion: 6,
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true,
-    },
+    ecmaVersion: 8,
     parser: 'babel-eslint',
     sourceType: 'module',
   },

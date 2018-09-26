@@ -34,8 +34,9 @@
           <template v-if="$slots.header !== undefined && $slots.header.length">
             <slot name="header" />
           </template>
-          <div 
-            v-else 
+          <div
+            v-else
+            :class="size"
             class="pagination field is-centered">
             <a
               v-if="!isFirstMonth && !disabled"
@@ -73,7 +74,8 @@
               <b-field>
                 <b-select
                   v-model="focusedDateData.month"
-                  :disabled="disabled">
+                  :disabled="disabled"
+                  :size="size">
                   <option
                     v-for="(month, index) in monthNames"
                     :value="index"
@@ -83,7 +85,8 @@
                 </b-select>
                 <b-select
                   v-model="focusedDateData.year"
-                  :disabled="disabled">
+                  :disabled="disabled"
+                  :size="size">
                   <option
                     v-for="year in listOfYears"
                     :value="year"
@@ -147,11 +150,12 @@ import FormElementMixin from '../../utils/FormElementMixin'
 import { isMobile } from '../../utils/helpers'
 import config from '../../utils/config'
 
-import { Dropdown, DropdownItem } from '../dropdown'
-import Input from '../input'
-import Field from '../field'
-import Select from '../select'
-import Icon from '../icon'
+import Dropdown from '../dropdown/Dropdown'
+import DropdownItem from '../dropdown/DropdownItem'
+import Input from '../input/Input'
+import Field from '../field/Field'
+import Select from '../select/Select'
+import Icon from '../icon/Icon'
 import DatepickerTable from './DatepickerTable'
 
 export default {
@@ -174,8 +178,9 @@ export default {
       default: () => {
         if (Array.isArray(config.defaultDayNames)) {
           return config.defaultDayNames
+        } else {
+          return ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'S']
         }
-        return ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'S']
       },
     },
     monthNames: {
@@ -183,21 +188,22 @@ export default {
       default: () => {
         if (Array.isArray(config.defaultMonthNames)) {
           return config.defaultMonthNames
+        } else {
+          return [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+          ]
         }
-        return [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December',
-        ]
       },
     },
     firstDayOfWeek: {
@@ -205,8 +211,9 @@ export default {
       default: () => {
         if (typeof config.defaultFirstDayOfWeek === 'number') {
           return config.defaultFirstDayOfWeek
+        } else {
+          return 0
         }
-        return 0
       },
     },
     inline: Boolean,
@@ -225,7 +232,9 @@ export default {
     unselectableDates: Array,
     unselectableDaysOfWeek: {
       type: Array,
-      default: () => config.defaultUnselectableDaysOfWeek,
+      default: () => {
+        return config.defaultUnselectableDaysOfWeek
+      },
     },
     selectableDates: Array,
     dateFormatter: {
@@ -233,11 +242,16 @@ export default {
       default: date => {
         if (typeof config.defaultDateFormatter === 'function') {
           return config.defaultDateFormatter(date)
+        } else {
+          const yyyyMMdd =
+            date.getFullYear() +
+            '/' +
+            (date.getMonth() + 1) +
+            '/' +
+            date.getDate()
+          const d = new Date(yyyyMMdd)
+          return d.toLocaleDateString()
         }
-        const dateUTC = new Date(
-          Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
-        )
-        return dateUTC.toLocaleDateString()
       },
     },
     dateParser: {
@@ -245,13 +259,16 @@ export default {
       default: date => {
         if (typeof config.defaultDateParser === 'function') {
           return config.defaultDateParser(date)
+        } else {
+          return new Date(Date.parse(date))
         }
-        return new Date(Date.parse(date))
       },
     },
     mobileNative: {
       type: Boolean,
-      default: () => config.defaultDatepickerMobileNative,
+      default: () => {
+        return config.defaultDatepickerMobileNative
+      },
     },
     position: String,
     events: Array,
@@ -357,10 +374,10 @@ export default {
     /*
             * Emit input event on month and/or year change
             */
-    'focusedDateData.month': function(value) {
+    'focusedDateData.month'(value) {
       this.$emit('change-month', value)
     },
-    'focusedDateData.year': function(value) {
+    'focusedDateData.year'(value) {
       this.$emit('change-year', value)
     },
   },
@@ -392,8 +409,9 @@ export default {
     formatValue(value) {
       if (value && !isNaN(value)) {
         return this.dateFormatter(value)
+      } else {
+        return null
       }
-      return null
     },
 
     /*
@@ -435,9 +453,13 @@ export default {
         const year = date.getFullYear()
         const month = date.getMonth() + 1
         const day = date.getDate()
-        return `${year}-${(month < 10 ? '0' : '') + month}-${(day < 10
-          ? '0'
-          : '') + day}`
+        return (
+          year +
+          '-' +
+          ((month < 10 ? '0' : '') + month) +
+          '-' +
+          ((day < 10 ? '0' : '') + day)
+        )
       }
       return ''
     },
@@ -447,7 +469,7 @@ export default {
             */
     onChangeNativePicker(event) {
       const date = event.target.value
-      this.dateSelected = date ? new Date(date) : null
+      this.dateSelected = date ? new Date(date.replace(/-/g, '/')) : null
     },
   },
 }

@@ -55,6 +55,13 @@
             <span>Components</span>
           </router-link>
           <router-link
+            to="/api"
+            title="API"
+            class="navbar-item"
+            active-class="is-active">
+            <span>API</span>
+          </router-link>
+          <router-link
             to="/extras"
             title="Extras"
             class="navbar-item"

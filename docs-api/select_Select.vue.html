@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: select/Select.vue | Tui JSDoc Template</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 150px; height: 13px">
+        
+            <a href="https://github.com/nhnent/tui.jsdoc-template" rel="noopener noreferrer" target="_blank">
+                <img src="http://nhnent.github.io/tui.component.tree/latest/styles/logo.png" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Tui JSDoc Template</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+  &lt;div
+    :class="{ 'is-expanded': expanded, 'has-icons-left': icon }"
+    class="control">
+    &lt;span 
+      :class="spanClasses" 
+      class="select">
+
+      &lt;select
+        ref="select"
+        v-model="selected"
+        :multiple="multiple"
+        :size="nativeSize"
+        v-bind="$attrs"
+        @blur="$emit('blur', $event) &amp;&amp; checkHtml5Validity()"
+        @focus="$emit('focus', $event)">
+
+        &lt;option
+          v-if="placeholder"
+          :value="null"
+          selected
+          disabled
+          hidden>
+          {{ placeholder }}
+        &lt;/option>
+        &lt;slot/>
+
+      &lt;/select>
+    &lt;/span>
+
+    &lt;b-icon
+      v-if="icon"
+      :icon="icon"
+      :pack="iconPack"
+      :size="iconSize"
+      class="is-left"/>
+  &lt;/div>
+&lt;/template>
+
+&lt;script>
+import Icon from '../icon/Icon'
+import FormElementMixin from '../../utils/FormElementMixin'
+
+export default {
+  name: 'BSelect',
+  components: {
+    [Icon.name]: Icon,
+  },
+  mixins: [FormElementMixin],
+  inheritAttrs: false,
+  props: {
+    value: {
+      type: [String, Number, Boolean, Object, Array, Symbol, Function],
+      default: null,
+    },
+    placeholder: String,
+    multiple: Boolean,
+    nativeSize: [String, Number],
+  },
+  data() {
+    return {
+      selected: this.value,
+      _isSelect: true,
+      _elementRef: 'select',
+    }
+  },
+  computed: {
+    spanClasses() {
+      return [
+        this.size,
+        this.statusType,
+        {
+          'is-fullwidth': this.expanded,
+          'is-loading': this.loading,
+          'is-multiple': this.multiple,
+          'is-rounded': this.rounded,
+          'is-empty': this.selected === null,
+        },
+      ]
+    },
+  },
+  watch: {
+    /**
+     * When v-model is changed:
+     *   1. Set the selected option.
+     *   2. If it's invalid, validate again.
+     */
+    value(value) {
+      this.selected = value
+      !this.isValid &amp;&amp; this.checkHtml5Validity()
+    },
+    /**
+     * When selected:
+     *   1. Emit input event to update the user v-model.
+     *   2. If it's invalid, validate again.
+     */
+    selected(value) {
+      this.$emit('input', value)
+      !this.isValid &amp;&amp; this.checkHtml5Validity()
+    },
+  },
+}
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="http://nhnent.github.io/tui.component.tree/latest/styles/logo.png" style="width: 150px; height: 13px">
+    <div class="footer-text">My awesome footer text</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

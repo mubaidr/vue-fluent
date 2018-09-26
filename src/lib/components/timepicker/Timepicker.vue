@@ -30,48 +30,49 @@
       <b-dropdown-item 
         :disabled="disabled" 
         custom>
-        <div class="pagination-list">
-          <b-field>
-            <b-select
-              v-model="hoursSelected"
-              :disabled="disabled"
-              placeholder="00"
-              @change.native="onHoursChange($event.target.value)">
-              <option
-                v-for="hour in hours"
-                :value="hour.value"
-                :key="hour.value"
-                :disabled="isHourDisabled(hour.value)">
-                {{ hour.label }}
-              </option>
-            </b-select>
-            <b-select
-              v-model="minutesSelected"
-              :disabled="disabled"
-              placeholder="00"
-              @change.native="onMinutesChange($event.target.value)">
-              <option
-                v-for="minute in minutes"
-                :value="minute.value"
-                :key="minute.value"
-                :disabled="isMinuteDisabled(minute.value)">
-                {{ minute.label }}
-              </option>
-            </b-select>
-            <b-select
-              v-if="!isHourFormat24"
-              v-model="meridienSelected"
-              :disabled="disabled"
-              @change.native="onMeridienChange($event.target.value)">
-              <option
-                v-for="meridien in meridiens"
-                :value="meridien"
-                :key="meridien">
-                {{ meridien }}
-              </option>
-            </b-select>
-          </b-field>
-        </div>
+        <b-field 
+          grouped 
+          position="is-centered">
+          <b-select
+            v-model="hoursSelected"
+            :disabled="disabled"
+            placeholder="00"
+            @change.native="onHoursChange($event.target.value)">
+            <option
+              v-for="hour in hours"
+              :value="hour.value"
+              :key="hour.value"
+              :disabled="isHourDisabled(hour.value)">
+              {{ hour.label }}
+            </option>
+          </b-select>
+          <span class="control is-colon">:</span>
+          <b-select
+            v-model="minutesSelected"
+            :disabled="disabled"
+            placeholder="00"
+            @change.native="onMinutesChange($event.target.value)">
+            <option
+              v-for="minute in minutes"
+              :value="minute.value"
+              :key="minute.value"
+              :disabled="isMinuteDisabled(minute.value)">
+              {{ minute.label }}
+            </option>
+          </b-select>
+          <b-select
+            v-if="!isHourFormat24"
+            v-model="meridienSelected"
+            :disabled="disabled"
+            @change.native="onMeridienChange($event.target.value)">
+            <option
+              v-for="meridien in meridiens"
+              :value="meridien"
+              :key="meridien">
+              {{ meridien }}
+            </option>
+          </b-select>
+        </b-field>
 
         <footer
           v-if="$slots.default !== undefined && $slots.default.length"
@@ -108,18 +109,21 @@ import FormElementMixin from '../../utils/FormElementMixin'
 import { isMobile } from '../../utils/helpers'
 import config from '../../utils/config'
 
-import { Dropdown, DropdownItem } from '../dropdown'
-import Input from '../input'
-import Field from '../field'
-import Select from '../select'
-import Icon from '../icon'
+import Dropdown from '../dropdown/Dropdown'
+import DropdownItem from '../dropdown/DropdownItem'
+import Input from '../input/Input'
+import Field from '../field/Field'
+import Select from '../select/Select'
+import Icon from '../icon/Icon'
 
 const AM = 'AM'
 const PM = 'PM'
 const HOUR_FORMAT_24 = '24'
 const HOUR_FORMAT_12 = '12'
 
-const formatNumber = value => (value < 10 ? '0' : '') + value
+const formatNumber = value => {
+  return (value < 10 ? '0' : '') + value
+}
 
 const timeFormatter = (date, vm) => {
   let hours = date.getHours()
@@ -133,9 +137,12 @@ const timeFormatter = (date, vm) => {
       hours = 12
     }
   }
-  return `${formatNumber(hours)}:${formatNumber(minutes)}${
-    vm.hourFormat === HOUR_FORMAT_12 ? ` ${am ? AM : PM}` : ''
-  }`
+  return (
+    formatNumber(hours) +
+    ':' +
+    formatNumber(minutes) +
+    (vm.hourFormat === HOUR_FORMAT_12 ? ' ' + (am ? AM : PM) : '')
+  )
 }
 
 const timeParser = (date, vm) => {
@@ -212,7 +219,9 @@ export default {
     hourFormat: {
       type: String,
       default: HOUR_FORMAT_24,
-      validator: value => value === HOUR_FORMAT_24 || value === HOUR_FORMAT_12,
+      validator: value => {
+        return value === HOUR_FORMAT_24 || value === HOUR_FORMAT_12
+      },
     },
     incrementMinutes: {
       type: Number,
@@ -223,8 +232,9 @@ export default {
       default: (date, vm) => {
         if (typeof config.defaultTimeFormatter === 'function') {
           return config.defaultTimeFormatter(date)
+        } else {
+          return timeFormatter(date, vm)
         }
-        return timeFormatter(date, vm)
       },
     },
     timeParser: {
@@ -232,13 +242,16 @@ export default {
       default: (date, vm) => {
         if (typeof config.defaultTimeParser === 'function') {
           return config.defaultTimeParser(date)
+        } else {
+          return timeParser(date, vm)
         }
-        return timeParser(date, vm)
       },
     },
     mobileNative: {
       type: Boolean,
-      default: () => config.defaultTimepickerMobileNative,
+      default: () => {
+        return config.defaultTimepickerMobileNative
+      },
     },
     position: String,
     unselectableTimes: Array,
@@ -275,7 +288,7 @@ export default {
         }
         hours.push({
           label: formatNumber(label),
-          value,
+          value: value,
         })
       }
       return hours
@@ -414,16 +427,17 @@ export default {
       if (this.unselectableTimes) {
         if (!disabled) {
           if (this.minutesSelected !== null) {
-            const unselectable = this.unselectableTimes.filter(
-              time =>
+            const unselectable = this.unselectableTimes.filter(time => {
+              return (
                 time.getHours() === hour &&
                 time.getMinutes() === this.minutesSelected
-            )
+              )
+            })
             disabled = unselectable.length > 0
           } else {
-            const unselectable = this.unselectableTimes.filter(
-              time => time.getHours() === hour
-            )
+            const unselectable = this.unselectableTimes.filter(time => {
+              return time.getHours() === hour
+            })
             disabled = unselectable.length === this.minutes.length
           }
         }
@@ -452,11 +466,12 @@ export default {
         }
         if (this.unselectableTimes) {
           if (!disabled) {
-            const unselectable = this.unselectableTimes.filter(
-              time =>
+            const unselectable = this.unselectableTimes.filter(time => {
+              return (
                 time.getHours() === this.hoursSelected &&
                 time.getMinutes() === minute
-            )
+              )
+            })
             disabled = unselectable.length > 0
           }
         }
@@ -485,8 +500,9 @@ export default {
     formatValue(value) {
       if (value && !isNaN(value)) {
         return this.timeFormatter(value, this)
+      } else {
+        return null
       }
-      return null
     },
 
     /*
@@ -506,7 +522,7 @@ export default {
       if (value && !isNaN(date)) {
         const hours = date.getHours()
         const minutes = date.getMinutes()
-        return `${formatNumber(hours)}:${formatNumber(minutes)}:00`
+        return formatNumber(hours) + ':' + formatNumber(minutes) + ':00'
       }
       return ''
     },

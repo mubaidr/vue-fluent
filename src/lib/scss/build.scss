@@ -2,6 +2,10 @@
 @import 'bulma-fluent';
 
 // Addons for Bulma
+@import 'bulma-addons/src/sass/checkbox.sass';
+@import 'bulma-addons/src/sass/radio.sass';
+@import 'bulma-addons/src/sass/toggle.sass';
+@import 'bulma-addons/src/sass/custom-loader.sass';
 @import 'bulma-addons/src/sass/custom-loader.sass';
 @import 'bulma-addons/src/sass/navigation-view.sass';
 @import 'bulma-addons/src/sass/is-highlighted.sass';

@@ -21,11 +21,6 @@
 <script>
 export default {
   name: 'BCheckboxButton',
-  introduction: 'an amazing checkbox',
-  description: `
-  This \`checkbox\` is amazing, you should _check_ it out.
-  `,
-  token: "<checkbox label='foo'></checkbox>",
   props: {
     value: [String, Number, Boolean, Function, Object, Array, Symbol],
     nativeValue: [String, Number, Boolean, Function, Object, Array, Symbol],

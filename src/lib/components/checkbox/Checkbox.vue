@@ -9,6 +9,7 @@
     <input
       v-model="newValue"
       :disabled="disabled"
+      :required="required"
       :name="name"
       :value="nativeValue"
       :true-value="trueValue"
@@ -29,6 +30,7 @@ export default {
     nativeValue: [String, Number, Boolean, Function, Object, Array, Symbol],
     type: String,
     disabled: Boolean,
+    required: Boolean,
     name: String,
     size: String,
     trueValue: {

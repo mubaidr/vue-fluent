@@ -1,6 +1,6 @@
 <template>
-  <div 
-    :class="{'is-expanded': expanded}" 
+  <div
+    :class="{'is-expanded': expanded}"
     class="autocomplete control">
     <b-input
       ref="input"
@@ -36,6 +36,7 @@
           </div>
           <a
             v-for="(option, index) in data"
+            v-show="isActive"
             :key="index"
             :class="{ 'is-hovered': option === hovered }"
             class="dropdown-item"
@@ -46,8 +47,8 @@
               :option="option"
               :index="index"
             />
-            <span 
-              v-else 
+            <span
+              v-else
               v-html="getValue(option, true)"/>
           </a>
           <div
@@ -64,10 +65,12 @@
 <script>
 import { getValueByPath, escapeRegExpChars } from '../../utils/helpers'
 import FormElementMixin from '../../utils/FormElementMixin'
-import Input from '../input'
+import Input from '../input/Input'
 
 export default {
   name: 'BAutocomplete',
+  introduction: 'introduction',
+  token: 'token',
   components: {
     [Input.name]: Input,
   },

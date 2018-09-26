@@ -6,8 +6,8 @@ import './assets/fontawesome/css/fontawesome-all.css'
 
 import './assets/prop-doc-style.scss'
 import './assets/animations.sass'
-import '../../lib/index.scss'
-
+// vue-fluent import
+import '../../lib/scss/build.scss'
 import VueFluent from '../../lib/index'
 
 Vue.config.productionTip = false

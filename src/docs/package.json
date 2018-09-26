@@ -5,7 +5,6 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "propdoc": "^0.9.3",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
@@ -16,8 +15,11 @@
     "@vue/cli-plugin-pwa": "^3.0.4",
     "@vue/cli-service": "^3.0.4",
     "@vue/eslint-config-prettier": "^3.0.4",
+    "jsdoc": "^3.5.5",
+    "jsdoc-vuejs": "^2.2.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "tui-jsdoc-template": "^1.2.2",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
@@ -32,7 +34,9 @@
       "parser": "babel-eslint"
     },
     "root": true,
-    "rules": {}
+    "rules": {
+      "no-console": 1
+    }
   },
   "name": "docs",
   "postcss": {
@@ -49,6 +53,7 @@
   "scripts": {
     "build": "vue-cli-service build",
     "dev": "npm run serve",
+    "generate-docs": "jsdoc -c conf.json",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve"
   },

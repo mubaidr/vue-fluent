@@ -8,8 +8,9 @@
       href="#"
       class="pagination-previous"
       @click.prevent="prev" >
-      <b-icon 
-        icon="chevron-left" 
+      <b-icon
+        :icon-pack="iconPack"
+        icon="chevron-left"
         both/>
     </a>
     <a
@@ -18,8 +19,9 @@
       href="#"
       class="pagination-next"
       @click.prevent="next" >
-      <b-icon 
-        icon="chevron-right" 
+      <b-icon
+        :icon-pack="iconPack"
+        icon="chevron-right"
         both/>
     </a>
     <ul 
@@ -66,19 +68,26 @@
     <small 
       v-if="simple" 
       class="info">
-      {{ firstItem }}-{{ Math.min(current * perPage, total) }} / {{ total }}
+      <template v-if="perPage == 1">
+        {{ firstItem }} / {{ total }}
+      </template>
+      <template v-else>
+        {{ firstItem }}-{{ Math.min(current * perPage, total) }} / {{ total }}
+      </template>
     </small>
   </div>
 </template>
 
 <script>
-import Icon from '../icon'
+import Icon from '../icon/Icon'
+import BaseElementMixin from '../../utils/BaseElementMixin'
 
 export default {
   name: 'BPagination',
   components: {
     [Icon.name]: Icon,
   },
+  mixins: [BaseElementMixin],
   props: {
     total: [Number, String],
     perPage: {

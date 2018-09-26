@@ -1,3 +1,15 @@
 import Switch from './Switch'
 
-export default Switch
+import { use, registerComponent } from '../../utils/plugins'
+
+const Plugin = {
+  install(Vue) {
+    registerComponent(Vue, Switch)
+  },
+}
+
+use(Plugin)
+
+export default Plugin
+
+export { Switch }

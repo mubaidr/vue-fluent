@@ -85,8 +85,9 @@ export default {
             day.getMonth() === enabledDate.getMonth()
           ) {
             return true
+          } else {
+            validity.push(false)
           }
-          validity.push(false)
         }
       }
 
