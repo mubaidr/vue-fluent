@@ -4,13 +4,7 @@
 
 
 <script>
-import propdoc from 'propdoc'
-
-export default {
-  components: {
-    propdoc,
-  },
-}
+export default {}
 </script>
 
 <style>
