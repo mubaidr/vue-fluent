@@ -5,7 +5,9 @@ import router from './router'
 import './assets/fontawesome/css/fontawesome-all.css'
 
 import './assets/prop-doc-style.scss'
-import './styles.sass'
+import './assets/animations.sass'
+import '../../lib/index.scss'
+
 import VueFluent from '../../lib/index'
 
 Vue.config.productionTip = false

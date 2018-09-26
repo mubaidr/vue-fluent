@@ -7,9 +7,8 @@ module.exports = {
   // https://www.foobar.com/my-app/
   // then change this to '/my-app/'
   baseUrl: '/vue-fluent/',
-
+  outputDir: '../../docs',
   // where to put static assets (js/css/img/font/...)
   // assetsDir: 'assets',
-
   // configureWebpack: () => {},
 }

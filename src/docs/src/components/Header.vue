@@ -6,7 +6,7 @@
           to="/"
           class="navbar-item"><img
             src="https://bulma.io/images/bulma-logo.png"
-            alt="Bulma: a modern CSS framework based on Flexbox"
+            alt="Vue-fluent logo"
             width="112"
             height="28">
         </router-link>
@@ -90,7 +90,9 @@
         </div>
       </div>
     </nav>
-    <section class="hero is-primary is-medium">
+    <section
+      :class="{'is-medium': $route.name === 'home'}"
+      class="hero is-dark">
       <!-- Hero content: will be in the middle -->
       <div class="hero-body">
         <div class="container has-text-centered">
@@ -113,7 +115,7 @@
           <br>
           <p>
             <a
-              class="button is-white is-highlighted"
+              class="button is-light is-highlighted"
               href="https://github.com/mubaidr/vue-fluent"
               title="Github Repository"
               target="_blank">
@@ -168,5 +170,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass">
+.hero-body
+  transition: all 0.25s ease
 </style>

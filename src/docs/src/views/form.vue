@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title">Getting started</h1>
+    <h1 class="title">Form Elements</h1>
 
     <hr>
 
@@ -11,7 +11,13 @@
 </template>
 
 <script>
-export default {}
+import propdoc from 'propdoc'
+
+export default {
+  components: {
+    propdoc,
+  },
+}
 </script>
 
 <style>

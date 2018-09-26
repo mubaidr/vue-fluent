@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "bulma-addons": "^0.1.12",
-    "bulma-fluent": "^0.3.11"
+    "bulma-fluent": "^0.3.12"
   },
   "description": "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
   "devDependencies": {
     "@babel/core": "^7.1.0",
-    "babel-eslint": "^9.0.0",
+    "babel-eslint": "^10.0.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-transform-runtime": "^6.23.0",

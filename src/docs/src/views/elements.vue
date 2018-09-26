@@ -1,9 +1,16 @@
 <template>
-
+  <div>Elements</div>
 </template>
 
+
 <script>
-export default {}
+import propdoc from 'propdoc'
+
+export default {
+  components: {
+    propdoc,
+  },
+}
 </script>
 
 <style>
