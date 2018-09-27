@@ -5,13 +5,13 @@ import router from './router'
 import './assets/fontawesome/css/fontawesome-all.css'
 
 import './assets/animations.sass'
+
 // vue-fluent import
-import '../../lib/scss/build.scss'
+import '../../lib/index.sass'
 import VueFluent from '../../lib/index'
+Vue.use(VueFluent)
 
 Vue.config.productionTip = false
-
-Vue.use(VueFluent)
 
 new Vue({
   router,
