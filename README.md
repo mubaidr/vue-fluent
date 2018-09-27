@@ -1,3 +1,4 @@
+![logo_vue-fluent_black.png](https://github.com/vensurfer61/vue-fluent/blob/master/docs/img/logo%20vue-fluent%20black.png?raw=true)
 # Vue-Fluent
 
 > [WIP] NOT READY FOR USE YET
