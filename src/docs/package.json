@@ -15,11 +15,8 @@
     "@vue/cli-plugin-pwa": "^3.0.4",
     "@vue/cli-service": "^3.0.4",
     "@vue/eslint-config-prettier": "^3.0.4",
-    "jsdoc": "^3.5.5",
-    "jsdoc-vuejs": "^2.2.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
-    "tui-jsdoc-template": "^1.2.2",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {

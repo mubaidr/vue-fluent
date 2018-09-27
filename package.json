@@ -9,6 +9,7 @@
     "url": "https://github.com/mubaidr/vue-fluent/issues"
   },
   "dependencies": {
+    "buefy": "^0.6.7",
     "bulma-addons": "^0.1.12",
     "bulma-fluent": "^0.3.12"
   },
@@ -16,7 +17,6 @@
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "babel-eslint": "^10.0.0",
-    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
@@ -31,15 +31,12 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^4.7.1",
-    "jest": "^23.6.0",
-    "jest-serializer-vue": "^2.0.2",
     "node-sass": "^4.9.3",
     "node-sass-import": "^2.0.1",
     "poi": "^10.2.10",
     "prettier": "^1.14.3",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
-    "vue-jest": "^2.6.0",
     "vue-template-compiler": "^2.5.17"
   },
   "files": [
@@ -49,28 +46,6 @@
     "README.md"
   ],
   "homepage": "https://mubaidr.github.io/vue-fluent",
-  "jest": {
-    "collectCoverage": true,
-    "coverageDirectory": "./coverage/",
-    "moduleFileExtensions": [
-      "js",
-      "vue"
-    ],
-    "moduleNameMapper": {
-      "^@components/(.*)$": "<rootDir>/src/components/$1",
-      "^@utils/(.*)$": "<rootDir>/src/utils/$1"
-    },
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
-    ],
-    "transform": {
-      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    }
-  },
   "keywords": [
     "vue",
     "bulma",
@@ -90,15 +65,12 @@
   },
   "scripts": {
     "build": "npm run build-lib-js && npm run build-lib-css",
-    "build-api-docs": "cd src/docs && npm run generate-docs && cd ../../",
     "build-docs": "cd src/docs && npm run build && cd ../../",
     "build-lib-css": "node-sass src/lib/scss/build.scss dist/vue-fluent.min.css --output-style compressed --importer node_modules/node-sass-import",
     "build-lib-js": "poi build --out-dir dist --filename.js vue-fluent.min.js --format cjs",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/",
-    "prettier": "prettier --write ./src/**/*.js && prettier --write ./src/**/*.vue",
-    "test": "jest",
-    "test:watch": "jest -- --watchAll"
+    "prettier": "prettier --write ./src/**/*.js && prettier --write ./src/**/*.vue"
   },
   "version": "0.1.3"
 }
