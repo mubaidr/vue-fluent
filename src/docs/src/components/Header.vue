@@ -34,27 +34,6 @@
             <span>Getting Started</span>
           </router-link>
           <router-link
-            to="/form"
-            title="Form Inputs"
-            class="navbar-item"
-            active-class="is-active">
-            <span>Form Inputs</span>
-          </router-link>
-          <router-link
-            to="/elements"
-            title="Elements"
-            class="navbar-item"
-            active-class="is-active">
-            <span>Elements</span>
-          </router-link>
-          <router-link
-            to="/components"
-            title="Components"
-            class="navbar-item"
-            active-class="is-active">
-            <span>Components</span>
-          </router-link>
-          <router-link
             to="/api"
             title="API"
             class="navbar-item"

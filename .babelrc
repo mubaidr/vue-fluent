@@ -1,17 +1,10 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
-        "modules": false
+        "targets": "> 0.25%, not dead"
       }
-    ],
-    "stage-2"
-  ],
-  "plugins": ["transform-runtime"],
-  "env": {
-    "test": {
-      "presets": ["env", "stage-2"]
-    }
-  }
+    ]
+  ]
 }

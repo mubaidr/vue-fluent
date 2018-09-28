@@ -11,18 +11,14 @@
   "dependencies": {
     "buefy": "^0.6.7",
     "bulma-addons": "^0.1.12",
-    "bulma-fluent": "^0.3.12"
+    "bulma-fluent": "^0.3.12",
+    "rollup": "^0.66.2"
   },
   "description": "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
   "devDependencies": {
     "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
     "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "clean-css-cli": "^4.2.1",
     "eslint": "^5.6.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-standard": "^12.0.0",
@@ -33,10 +29,8 @@
     "eslint-plugin-vue": "^4.7.1",
     "node-sass": "^4.9.3",
     "node-sass-import": "^2.0.1",
-    "poi": "^10.2.10",
     "prettier": "^1.14.3",
     "rimraf": "^2.6.2",
-    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.17"
   },
   "files": [
@@ -67,7 +61,7 @@
     "build": "npm run build-lib-js && npm run build-lib-css",
     "build-docs": "cd src/docs && npm run build && cd ../../",
     "build-lib-css": "node-sass src/lib/index.sass dist/vue-fluent.min.css --output-style compressed --importer node_modules/node-sass-import",
-    "build-lib-js": "poi build --out-dir dist --filename.js vue-fluent.min.js --format cjs",
+    "build-lib-js": "",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/",
     "prettier": "prettier --write ./src/**/*.js && prettier --write ./src/**/*.vue"
