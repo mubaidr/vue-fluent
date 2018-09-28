@@ -62,7 +62,7 @@
     "build": "npm run build-lib-js && npm run build-lib-css",
     "build-docs": "cd src/docs && npm run build && cd ../../",
     "build-lib-css": "node-sass src/lib/index.sass dist/vue-fluent.min.css --output-style compressed --importer node_modules/node-sass-import",
-    "build-lib-js": "poi build ./src/lib/index.js --filename.js vue-fluent.min.js -d ./dist/ --format umd --module-name VueFluent",
+    "build-lib-js": "poi build ./src/lib/index.js --filename.js vue-fluent.min.js -d ./dist/ --format umd --module-name VueFluent --jsx vue",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/",
     "prettier": "prettier --write ./src/**/*.js && prettier --write ./src/**/*.vue"
