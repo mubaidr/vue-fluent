@@ -9,6 +9,7 @@ import './assets/animations.sass'
 // vue-fluent import
 import '../../lib/index.sass'
 import VueFluent from '../../lib/index'
+
 Vue.use(VueFluent)
 
 Vue.config.productionTip = false

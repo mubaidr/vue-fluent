@@ -1,12 +1,11 @@
 <template>
-  <h1>API</h1>
-  <!-- TODO: redirect to buefy documentation -->
+  <h1>API
+    <!-- TODO: redirect to buefy documentation -->
+  </h1>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style>

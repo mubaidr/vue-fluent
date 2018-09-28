@@ -10,11 +10,14 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.0",
     "@vue/cli-plugin-babel": "^3.0.4",
     "@vue/cli-plugin-eslint": "^3.0.4",
     "@vue/cli-plugin-pwa": "^3.0.4",
     "@vue/cli-service": "^3.0.4",
+    "@vue/eslint-config-airbnb": "^3.0.4",
     "@vue/eslint-config-prettier": "^3.0.4",
+    "eslint": "^5.6.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
@@ -24,9 +27,15 @@
       "node": true
     },
     "extends": [
+      "@vue/airbnb",
       "plugin:vue/recommended",
       "@vue/prettier"
     ],
+    "globals": {
+      "Vue": true,
+      "document": true,
+      "window": true
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     },
@@ -50,7 +59,6 @@
   "scripts": {
     "build": "vue-cli-service build",
     "dev": "npm run serve",
-    "generate-docs": "jsdoc -c conf.json",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve"
   },
