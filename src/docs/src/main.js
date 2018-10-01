@@ -6,6 +6,10 @@ import './assets/fontawesome/css/fontawesome-all.css'
 
 import './assets/animations.sass'
 
+// Prism sytax highlighter
+import './assets/prism'
+import './assets/prism.css'
+
 // vue-fluent import
 import '../../lib/index.sass'
 import VueFluent from '../../lib/index'

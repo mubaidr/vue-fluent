@@ -31,13 +31,20 @@
             <a href="https://nodei.co/npm/vue-fluent/"><img src="https://nodei.co/npm/vue-fluent.png?compact=true"></a>
           </p>
           <p>
-            <code>
-              import 'vue-fluent/dist/vue-fluent.min.css'
-            </code>
-            <br>or<br>
-            <code>
-              import 'vue-fluent/src/lib/index.scss';
-            </code>
+            <pre>
+              <code class="language-bash">
+npm install vue-fluent --save</code>
+            </pre>
+            and then import in your project:
+            <pre>
+              <code class="language-js">
+import Vue from 'vue'
+import VueFluent from 'vue-fluent'
+import 'vue-fluent/dist/vue-fluent.css'
+
+Vue.use(VueFluent)
+</code>
+            </pre>
           </p>
         </li>
         <li>
@@ -62,7 +69,7 @@
       <p>Simply set your own Sass variables before importing vue-fluent.</p>
       <p>
         <pre>
-            <code>
+            <code class="language-sass">
 // Set your brand colors
 $primary: #8A4D76
 $info: #FA7C91
@@ -76,7 +83,7 @@ $dark: #444
 $family-sans-serif: "Calibri", "Arial"
 
 // Import the vue-fluent
-@import 'vue-fluent/src/lib/index.scss'
+@import 'vue-fluent/src/lib/index.sass'
         </code></pre>
       </p>
     </div>

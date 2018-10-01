@@ -9,7 +9,9 @@
           name="slide-right"
           appear="appear"
           mode="out-in">
-          <router-view/>
+          <keep-alive>
+            <router-view/>
+          </keep-alive>
         </transition>
 
       </div>
@@ -26,6 +28,10 @@ export default {
   components: {
     HeaderView,
     FooterView,
+  },
+
+  mounted() {
+    Prism.highlightAll()
   },
 }
 </script>

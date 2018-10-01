@@ -12,6 +12,12 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/demo',
+      name: 'demo',
+      component: () =>
+        import(/* webpackChunkName: "demo" */ './views/Demo.vue'),
+    },
+    {
       path: '/api',
       name: 'api',
       component: () => import(/* webpackChunkName: "api" */ './views/Api.vue'),

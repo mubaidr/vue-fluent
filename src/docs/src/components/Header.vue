@@ -34,6 +34,13 @@
             <span>Getting Started</span>
           </router-link>
           <router-link
+            to="/demo"
+            title="Demo"
+            class="navbar-item"
+            active-class="is-active">
+            <span>Demo</span>
+          </router-link>
+          <router-link
             to="/api"
             title="API"
             class="navbar-item"
@@ -96,6 +103,12 @@
               <a
                 href="https://fluent.microsoft.com"
                 target="_blank">Microsoft’s Fluent Design System</a>
+            </span>
+            <span class="is-size-6">
+              <br> based on
+              <a
+                href="//buefy.github.io/"
+                target="_blank">Buefy</a>
             </span>
           </h2>
           <br>
