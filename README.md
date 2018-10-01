@@ -2,9 +2,7 @@
 
 # Vue-Fluent
 
-> [WIP] NOT READY FOR USE YET
-
-> Fluent Design Components for [Vue.js](https://vuejs.org) using [Bulma](http://bulma.io) and [bulma-fluent](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
+> Fluent Design Components for [Vue.js](https://vuejs.org) based on [Buefy](https://github.com/buefy/buefy) and [bulma-fluent](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
 
 > [Fluent Design Theme for Bulma](https://github.com/mubaidr/bulma-fluent) is also available.
 
@@ -41,10 +39,11 @@ import VueFluent from 'vue-fluent'
 Vue.use(VueFluent)
 
 // Or Import individual components
-
-Vue.component(VueFluent.Checkbox.name, VueFluent.Checkbox)
-Vue.component(VueFluent.Table.name, VueFluent.Table)
-Vue.component(VueFluent.Switch.name, VueFluent.Switch)
+import Vue from 'vue'
+import Field from 'buefy/dist/components/field'
+import Input from 'buefy/dist/components/input'
+Vue.use(Field)
+Vue.use(Input)
 
 import 'vue-fluent/dist/vue-fluent.css'
 
@@ -63,5 +62,7 @@ import 'vue-fluent/src/lib/index.scss'
 [Download Latest Minified CSS](https://raw.githubusercontent.com/mubaidr/vue-fluent/master/dist/)
 
 ## Copyright and license
+
+All credits to <a href="//github.com/buefy/buefy#collaborators">Buefy Collaborators</a> for implementing these beautiful components.
 
 Code released under [the MIT license](https://github.com/mubaidr/vue-fluent/blob/master/LICENSE).
