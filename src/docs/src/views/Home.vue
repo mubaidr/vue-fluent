@@ -1,5 +1,22 @@
 <template>
   <div>
+    <h1 class="title">Vue-Fluent</h1>
+    <div class="box">
+      <p>This library is based on <a
+        href="//buefy.github.io/"
+        target="_blank">Buefy</a> and extends its behavior using <a
+          href="//mubaidr.js.org/bulma-fluent/#/"
+          target="_blank">Bulma-Fluent</a> theme and other customizations to integrate <a
+            href="//fluent.microsoft.com/"
+            target="_blank">fluent design principals</a>.
+            This means that you get all the components and features from the Buefy and you can use official <a
+              href="//buefy.github.io/documentation"
+              target="_blank">Buefy documentation to get started</a>.
+      </p>
+    </div>
+
+    <div class="notification is-info">All credits to <a href="//github.com/buefy/buefy#collaborators">Buefy Collaborators</a> for implementing these beautiful components. </div>
+
     <h1 class="title">Getting started</h1>
 
     <hr>

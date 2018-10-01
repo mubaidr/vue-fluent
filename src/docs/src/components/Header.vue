@@ -94,21 +94,15 @@
           </h1>
           <h2 class="subtitle is-4">
             Fluent Design Components for
-            <a href="https://vuejs.org">Vue.js</a> using
+            <a href="https://vuejs.org">Vue.js</a> based on
             <a
-              href="http://bulma.io"
-              target="_blank">Bulma</a>
+              href="//buefy.github.io/"
+              target="_blank">Buefy</a>
             <span class="is-size-6">
               <br> inspired by
               <a
                 href="https://fluent.microsoft.com"
                 target="_blank">Microsoft’s Fluent Design System</a>
-            </span>
-            <span class="is-size-6">
-              <br> based on
-              <a
-                href="//buefy.github.io/"
-                target="_blank">Buefy</a>
             </span>
           </h2>
           <br>

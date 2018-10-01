@@ -14,7 +14,9 @@ import './assets/prism.css'
 import '../../lib/index.sass'
 import VueFluent from '../../lib/index'
 
-Vue.use(VueFluent)
+Vue.use(VueFluent, {
+  defaultIconPack: 'fas',
+})
 
 Vue.config.productionTip = false
 
