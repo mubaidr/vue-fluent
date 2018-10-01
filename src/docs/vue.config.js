@@ -6,7 +6,7 @@ module.exports = {
   // sub-path here. For example, if your app is deployed at
   // https://www.foobar.com/my-app/
   // then change this to '/my-app/'
-  baseUrl: '/vue-fluent/',
+  baseUrl: 'vue-fluent',
   outputDir: '../../docs',
   // where to put static assets (js/css/img/font/...)
   // assetsDir: 'assets',
