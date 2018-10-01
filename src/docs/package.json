@@ -15,7 +15,7 @@
     "@vue/cli-plugin-eslint": "^3.0.4",
     "@vue/cli-plugin-pwa": "^3.0.4",
     "@vue/cli-service": "^3.0.4",
-    "@vue/eslint-config-airbnb": "^3.0.4",
+    "@vue/eslint-config-standard": "^3.0.4",
     "@vue/eslint-config-prettier": "^3.0.4",
     "eslint": "^5.6.1",
     "node-sass": "^4.9.0",
@@ -27,11 +27,12 @@
       "node": true
     },
     "extends": [
-      "@vue/airbnb",
+      "@vue/standard",
       "plugin:vue/recommended",
       "@vue/prettier"
     ],
     "globals": {
+      "Prism": true,
       "Vue": true,
       "document": true,
       "window": true
@@ -44,6 +45,9 @@
       "no-console": 1
     }
   },
+  "eslintIgnore": [
+    "src/assets/"
+  ],
   "name": "docs",
   "postcss": {
     "plugins": {

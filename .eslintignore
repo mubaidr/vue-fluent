@@ -3,5 +3,4 @@ config/*.js
 **/*min.js
 node_modules
 dist
-docs
-src/docs
+./docs/

@@ -1,4 +1,5 @@
 ![logo_vue-fluent_black.png](https://github.com/vensurfer61/vue-fluent/blob/master/docs/img/logo%20vue-fluent%20black.png?raw=true)
+
 # Vue-Fluent
 
 > [WIP] NOT READY FOR USE YET
@@ -45,7 +46,9 @@ Vue.component(VueFluent.Checkbox.name, VueFluent.Checkbox)
 Vue.component(VueFluent.Table.name, VueFluent.Table)
 Vue.component(VueFluent.Switch.name, VueFluent.Switch)
 
-// You can customize the theme, for details check cutsomize section
+import 'vue-fluent/dist/vue-fluent.css'
+
+// You can customize the theme, for details check cutosmize section
 // Then import styles
 
 import 'vue-fluent/src/lib/index.scss'
@@ -61,6 +64,4 @@ import 'vue-fluent/src/lib/index.scss'
 
 ## Copyright and license
 
-Code copyright 2018 [Muhammad Ubaid Raza](https://mubaidr.github.io).
-
-Code released under [the MIT license](https://github.com/jgthms/bulma/blob/master/LICENSE).
+Code released under [the MIT license](https://github.com/mubaidr/vue-fluent/blob/master/LICENSE).
