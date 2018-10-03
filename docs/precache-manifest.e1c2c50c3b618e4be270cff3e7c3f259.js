@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/vue-fluent/fonts/fa-solid-900.9c39a8a4.woff2"
   },
   {
-    "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
+    "revision": "735ab4f94fbcd57074377afca324c813",
     "url": "/vue-fluent/robots.txt"
   },
   {
@@ -12,36 +12,36 @@ self.__precacheManifest = [
     "url": "/vue-fluent/fonts/fa-brands-400.9404b3cb.woff2"
   },
   {
-    "revision": "a6c3bdfb93535fbf681c",
-    "url": "/vue-fluent/css/app.6644c869.css"
+    "revision": "48a6750d6d2f197714b2",
+    "url": "/vue-fluent/css/app.911cef0e.css"
   },
   {
-    "revision": "79faaaef7c3ddc452324",
-    "url": "/vue-fluent/js/chunk-vendors.2ac44373.js"
+    "revision": "9889d092c8a275285f76",
+    "url": "/vue-fluent/js/chunk-vendors.e846df16.js"
   },
   {
-    "revision": "d685ed8c997e3f7e8f57",
+    "revision": "0e7341039758e734150a",
     "url": "/vue-fluent/css/demo.2cd6703a.css"
   },
   {
-    "revision": "d685ed8c997e3f7e8f57",
-    "url": "/vue-fluent/js/demo.86bc8a6a.js"
+    "revision": "0e7341039758e734150a",
+    "url": "/vue-fluent/js/demo.4f2aa42c.js"
   },
   {
-    "revision": "6035fba646b5d4d4cf9a",
+    "revision": "e47345a3016f3e1ce8a3",
     "url": "/vue-fluent/css/extras.2b3deb1b.css"
   },
   {
-    "revision": "6035fba646b5d4d4cf9a",
-    "url": "/vue-fluent/js/extras.e83d17b9.js"
-  },
-  {
-    "revision": "8c98619845ad2a91084e0b881e0671e4",
-    "url": "/vue-fluent/fonts/fa-regular-400.8c986198.woff"
+    "revision": "e47345a3016f3e1ce8a3",
+    "url": "/vue-fluent/js/extras.db1e536b.js"
   },
   {
     "revision": "28ec6d38ccb96288be39293dae9ba767",
     "url": "/vue-fluent/fonts/fa-regular-400.28ec6d38.woff2"
+  },
+  {
+    "revision": "8c98619845ad2a91084e0b881e0671e4",
+    "url": "/vue-fluent/fonts/fa-regular-400.8c986198.woff"
   },
   {
     "revision": "e07d72d705d882694ab4a4efce9f7104",
@@ -52,12 +52,12 @@ self.__precacheManifest = [
     "url": "/vue-fluent/fonts/fa-regular-400.0b697cf4.ttf"
   },
   {
-    "revision": "a8f61abb8024bd0bcd2b",
-    "url": "/vue-fluent/js/api.41c000e9.js"
+    "revision": "b517f77f525f21d842c5",
+    "url": "/vue-fluent/js/api.14326e2d.js"
   },
   {
-    "revision": "a6c3bdfb93535fbf681c",
-    "url": "/vue-fluent/js/app.3eb88110.js"
+    "revision": "48a6750d6d2f197714b2",
+    "url": "/vue-fluent/js/app.3d8528f6.js"
   },
   {
     "revision": "4ff89f9329d4a4c28f58dd5ef7f08651",
@@ -80,12 +80,12 @@ self.__precacheManifest = [
     "url": "/vue-fluent/img/fa-regular-400.576b41bc.svg"
   },
   {
-    "revision": "24f9359f2b036d41c1aa739942f86024",
-    "url": "/vue-fluent/fonts/fa-solid-900.24f9359f.eot"
-  },
-  {
     "revision": "af4698a4a8ea6baa01c4c8bc3969f8e2",
     "url": "/vue-fluent/fonts/fa-solid-900.af4698a4.ttf"
+  },
+  {
+    "revision": "24f9359f2b036d41c1aa739942f86024",
+    "url": "/vue-fluent/fonts/fa-solid-900.24f9359f.eot"
   },
   {
     "revision": "11c05d473f66db7ce479bfefc6d2bfc0",
@@ -96,11 +96,11 @@ self.__precacheManifest = [
     "url": "/vue-fluent/img/fa-brands-400.e29e9563.svg"
   },
   {
-    "revision": "0f49fd01a29cbda08cd7246d23616525",
+    "revision": "2afcb4cdf8f61f85c314408c06e2bece",
     "url": "/vue-fluent/index.html"
   },
   {
-    "revision": "a8f61abb8024bd0bcd2b",
+    "revision": "b517f77f525f21d842c5",
     "url": "/vue-fluent/css/api.3b4c83a9.css"
   }
 ];

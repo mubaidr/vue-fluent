@@ -11,14 +11,14 @@
   "dependencies": {
     "buefy": "^0.6.7",
     "bulma-addons": "^0.1.12",
-    "bulma-fluent": "^0.3.12"
+    "bulma-fluent": "^0.3.13"
   },
   "description": "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
   "devDependencies": {
-    "@babel/core": "^7.1.0",
+    "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.6.0",
+    "eslint": "^5.6.1",
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
@@ -64,7 +64,8 @@
     "build-lib-js": "poi build ./src/lib/index.js --filename.js vue-fluent.min.js -d ./dist/ --format umd --module-name VueFluent --jsx vue",
     "dev": "cd src/docs && npm run serve && cd ../../",
     "lint": "eslint --ext .js,.vue --fix src/",
-    "prettier": "prettier --write ./src/**/*.js && prettier --write ./src/**/*.vue"
+    "prettier": "prettier --write ./src/**/*.js && prettier --write ./src/**/*.vue",
+    "upgrade": "npm-check-updates -a -u && npm install && cd src/docs && npm-check-updates -a -u && npm install"
   },
   "version": "0.1.3"
 }
