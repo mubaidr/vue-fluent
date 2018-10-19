@@ -1,5 +1,7 @@
 <p align="center"><img src="https://raw.githubusercontent.com/jbeguna04/vue-fluent/master/logodesigns/logotype1blue.png"></p>
 
+Logo by ![jbeguna04](https://github.com/jbeguna04) 
+
 # Vue-Fluent
 > Fluent Design Components for [Vue.js](https://vuejs.org) based on [Buefy](https://github.com/buefy/buefy) and [bulma-fluent](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
 
