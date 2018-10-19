@@ -1,7 +1,6 @@
-![logo_vue-fluent_black.png](https://github.com/vensurfer61/vue-fluent/blob/master/docs/img/logo%20vue-fluent%20black.png?raw=true)
+<p align="center"><img src="https://raw.githubusercontent.com/jbeguna04/vue-fluent/master/logodesigns/logotype1blue.png"></p>
 
 # Vue-Fluent
-
 > Fluent Design Components for [Vue.js](https://vuejs.org) based on [Buefy](https://github.com/buefy/buefy) and [bulma-fluent](https://mubaidr.github.io/vue-fluent/), inspired by [Microsoft’s Fluent Design System](https://fluent.microsoft.com).
 
 > [Fluent Design Theme for Bulma](https://github.com/mubaidr/bulma-fluent) is also available.
