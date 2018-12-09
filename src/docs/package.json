@@ -20,7 +20,7 @@
     "eslint": "^5.10.0",
     "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.19"
   },
   "eslintConfig": {
     "env": {
