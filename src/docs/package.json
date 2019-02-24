@@ -6,7 +6,7 @@
   ],
   "dependencies": {
     "register-service-worker": "^1.6.1",
-    "vue": "^2.6.6",
+    "vue": "^2.6.7",
     "vue-router": "^3.0.2"
   },
   "devDependencies": {
@@ -20,7 +20,7 @@
     "eslint": "^5.14.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.6"
+    "vue-template-compiler": "^2.6.7"
   },
   "eslintConfig": {
     "env": {
