@@ -10,7 +10,7 @@
     "vue-router": "^3.0.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-pwa": "^3.8.0",
