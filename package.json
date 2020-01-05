@@ -9,7 +9,7 @@
     "url": "https://github.com/mubaidr/vue-fluent/issues"
   },
   "dependencies": {
-    "buefy": "^0.7.0",
+    "buefy": "^0.8.9",
     "bulma-addons": "^0.1.12",
     "bulma-fluent": "^0.3.13"
   },
