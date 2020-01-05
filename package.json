@@ -25,7 +25,7 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^5.2.2",
+    "eslint-plugin-vue": "^6.1.2",
     "node-sass": "^4.9.3",
     "node-sass-import": "^2.0.1",
     "poi": "^12.6.10",
