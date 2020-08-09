@@ -11,7 +11,7 @@
   "dependencies": {
     "buefy": "^0.7.0",
     "bulma-addons": "^0.1.12",
-    "bulma-fluent": "^0.3.13"
+    "bulma-fluent": "^0.4.2"
   },
   "description": "Fluent Design Components for Vue.js using Bulma CSS framework and Bulma-Fluent theme, inspired by Microsoft’s Fluent Design System.",
   "devDependencies": {
