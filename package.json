@@ -29,7 +29,7 @@
     "node-sass": "^4.9.3",
     "node-sass-import": "^2.0.1",
     "poi": "^12.6.10",
-    "prettier": "^1.14.3",
+    "prettier": "^2.2.0",
     "rimraf": "^2.6.2",
     "vue-template-compiler": "^2.5.17"
   },
